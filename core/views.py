@@ -1,5 +1,7 @@
+from django.shortcuts import render
+from django.contrib.auth.forms import PasswordChangeForm
 from core.models import Event, Business, LeaveReview, Profile
-from core.forms import LeaveReviewForm 
+from core.forms import LeaveReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -10,42 +12,43 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+
 def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all()
     return render(request, 'index.html', {
         "events": events,
-        "businesses": businesses, 
+        "businesses": businesses,
     })
+
 
 def new_index(request):
     events = Event.objects.all()
     businesses = Business.objects.all()
     return render(request, 'bsindex.html', {
         "events": events,
-        "businesses": businesses, 
+        "businesses": businesses,
     })
 
 
 def business_directory(request):
     businesses = Business.objects.all()
     return render(request, 'business/business_directory.html', {
-        "businesses": businesses, 
+        "businesses": businesses,
     })
 
 
-
 def event_detail(request, slug):
-   event = Event.objects.get(slug=slug)
-   is_favorite = False
+    event = Event.objects.get(slug=slug)
+    is_favorite = False
 
-   if event.favorite.filter(id=request.user.id).exists():
-       is_favorite = True
+    if event.favorite.filter(id=request.user.id).exists():
+        is_favorite = True
 
-   return render(request, 'events/event_detail.html', {
-       'event': event,
-       'is_favorite': is_favorite,
-   })
+    return render(request, 'events/event_detail.html', {
+        'event': event,
+        'is_favorite': is_favorite,
+    })
 
 
 def business_detail(request, slug):
@@ -102,3 +105,19 @@ def favorite_event(request, id):
     return redirect('home')
 
 
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('profile')
+        else:
+            return redirect('change_password')
+
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+        args = {'form': form}
+        return render(request, 'profile/change_password.html', args)
