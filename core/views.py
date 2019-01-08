@@ -1,11 +1,12 @@
-from django.shortcuts import render
-
 from core.models import Event, Business, LeaveReview, Profile
 from core.forms import LeaveReviewForm 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -59,6 +60,7 @@ def business_detail(request, slug):
        if form.is_valid():
            review = form.save(commit=False)
            review.business = business
+           review.reviewer = request.user
            review.save()
            return redirect('home')
 
@@ -71,7 +73,16 @@ def business_detail(request, slug):
        'review': review,
    })  
 
+@login_required
+def user_delete_review(request, id):
+    user = request.user
+    review = LeaveReview.objects.filter(reviewer=user)
+    
+    review.delete()
+    return redirect('home')
+    
 
+@login_required
 def get_user_profile(request):
     user = request.user
     reviews = LeaveReview.objects.filter(reviewer=user)
@@ -89,3 +100,5 @@ def favorite_event(request, id):
     else:
         event.favorite.add(request.user)
     return redirect('home')
+
+

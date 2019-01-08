@@ -1,6 +1,4 @@
-from django.contrib import admin
 
-# Register your models here.
 from django.contrib import admin
 from core.models import Profile, Event, Business, LeaveReview
 # Register your models here.
@@ -18,7 +16,7 @@ class BusinessAdmin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     model = LeaveReview
-    list_display = ("reviewer", "text", "rating", "business", 'event')
+    list_display = ("reviewer", "text", "rating")
 
 admin.site.register(Business, BusinessAdmin)
 admin.site.register(LeaveReview, ReviewAdmin)
