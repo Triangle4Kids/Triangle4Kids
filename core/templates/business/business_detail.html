@@ -50,6 +50,13 @@
                                 <h2 class = "subtitle"> User:  {{ user }} </h2>
                                 <h2 class = "subtitle"> Review:  {{ review.text}} </h2>
                                 <h2 class = "subtitle"> Rating:  {{ review.rating }} </h2>
+
+                                 {% comment %} {% if user == review.reviewer or user.is_staff %} {% endcomment %}
+                                <a class="button" href="{% url 'user_delete_review' id=review.id %}" ><i class="fas fa-trash-alt"></i> &nbsp; Delete</a>
+                                {% comment %} {% endif %}  {% endcomment %}
+
+
+
                         </div>
 
                 {% endfor %}

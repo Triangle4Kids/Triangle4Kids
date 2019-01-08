@@ -59,7 +59,6 @@ class Event(models.Model):
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="reviews")
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="event")
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500, blank=False)
     rating = models.IntegerField(default="0") 

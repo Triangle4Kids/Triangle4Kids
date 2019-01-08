@@ -41,8 +41,11 @@ urlpatterns = [
     path('business/<slug>/', views.business_detail, name='business_detail'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
-    path(r'(?P<id>\d+)/favorite_event/$',
-         views.favorite_event, name='favorite_event'),
+    path('review/<id>/delete', views.user_delete_review, name="user_delete_review"),
+    
+    path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
+    # path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
+    
 
 
 

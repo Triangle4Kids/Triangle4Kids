@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -49,29 +52,40 @@ def event_detail(request, slug):
 
 
 def business_detail(request, slug):
-    business = Business.objects.get(slug=slug)
-    events = business.events.all()
+   business = Business.objects.get(slug=slug)
+   events = business.events.all()
+   
+   form = LeaveReviewForm()
 
-    form = LeaveReviewForm()
+   
+   if request.method == "POST":
+       form = LeaveReviewForm(request.POST)
+       if form.is_valid():
+           review = form.save(commit=False)
+           review.business = business
+           review.reviewer = request.user
+           review.save()
+           return redirect('home')
 
-    if request.method == "POST":
-        form = LeaveReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.business = business
-            review.save()
-            return redirect('home')
+   review = LeaveReview.objects.filter(business=business)
 
-    review = LeaveReview.objects.filter(business=business)
+   return render(request, 'business/business_detail.html', {
+       'business': business,
+       'events': events,
+       'form': form,
+       'review': review,
+   })  
 
-    return render(request, 'business/business_detail.html', {
-        'business': business,
-        'events': events,
-        'form': form,
-        'review': review,
-    })
+@login_required
+def user_delete_review(request, id):
+    user = request.user
+    review = LeaveReview.objects.filter(reviewer=user)
+    
+    review.delete()
+    return redirect('home')
+    
 
-
+@login_required
 def get_user_profile(request):
     user = request.user
     reviews = LeaveReview.objects.filter(reviewer=user)

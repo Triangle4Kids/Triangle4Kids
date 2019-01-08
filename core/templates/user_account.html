@@ -3,13 +3,19 @@
 
 <h1 > ------------------ {{user}} PROFILE---------------- </h1>
 <br>
+
+
+
+<br>
+<br>
+
 <h2> Reviews for {{ user }} : </h2>
     {% for review in reviews %}
 
         <div > 
                 <h2 > User:  {{ user }} </h2>
-                <h2 > Review:  {{ review.text}} </h2>
-                <h2 class = "subtitle"> Rating:  {{ review.rating }} </h2>
+                <p > Review:  {{ review.text}} <p>
+                <p class = "subtitle"> Rating:  {{ review.rating }} <p>
         </div>
 
 
@@ -25,7 +31,7 @@
 
     
                 <h2 > Event Name :  {{ event.title }} </h2>
-                <p> class = "subtitle"> Descrption:  {{ event.description }} </p>
+                <p class = "subtitle"> Descrption:  {{ event.description }} </p>
 
 
     {% endfor %}
