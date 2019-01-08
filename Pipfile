@@ -9,6 +9,7 @@ django-extensions = "*"
 django-debug-toolbar = "*"
 "psycopg2" = "*"
 django-registration-redux = "==2.0"
+django-filter = "*"
 
 [dev-packages]
 

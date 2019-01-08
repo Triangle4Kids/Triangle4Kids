@@ -89,3 +89,8 @@ def favorite_event(request, id):
     else:
         event.favorite.add(request.user)
     return redirect('home')
+
+# for django-filters
+def event_list(request):
+    f = EventFilter(request.GET, queryset=Product.objects.all())
+    return render(request, 'templates/events/category_search.html', {'filter': f})

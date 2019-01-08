@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import django_filters
 
 # Create your models here.
 
@@ -50,9 +51,43 @@ class Event(models.Model):
     start_time = models.CharField(max_length=255)
     end_time = models.CharField(max_length=255)
     favorite = models.ManyToManyField(User, related_name='favorite', blank=True)
-    
+# For django-filters categories
+    # pre_k = models.BooleanField(default=False)
+    # elementary = models.BooleanField(default=False)
+    # middle = models.BooleanField(default=False)
+    # high = models.BooleanField(default=False)
+    # half_day = models.BooleanField(default=False)
+    # full_day = models.BooleanField(default=False)
+    # academic = models.BooleanField(default=False)
+    # arts_and_crafts = models.BooleanField(default=False)
+    # games = models.BooleanField(default=False)
+    # language = models.BooleanField(default=False)
+    # nature_outdoor = models.BooleanField(default=False)
+    # performance = models.BooleanField(default=False)
+    # stem = models.BooleanField(default=False)
+    # other = models.BooleanField(default=False)
+    # carrboro = models.BooleanField(default=False)
+
+# Alternate more complicated way for ages/cities:
+# EVENT_CATEGORY = (
+#     ('pre_k', 'Pre_K'),
+#     ('elementary', 'Elementary'),
+#     ('middle', 'Middle'),
+#     ('high', 'High'),
+# ETC
+# )
+
+
+class EventFilter(django_filters.FilterSet):
     class Meta:
         verbose_name_plural = "Events"
+        model = Event
+        fields = {
+            'age': ['pre_k', 'elementary', 'middle', 'high'],
+            'city': ['carrboro', 'Chapel_Hill', 'Durham', 'Morrisville',             'Raleigh', 'RTP'],
+            'type': ['class', 'camp', 'full_day', 'half_day'],
+            'theme': ['academic', 'arts_and_crafts', 'games', 'language',             'nature_outdoor', 'performance', 'stem', 'other'],
+        }
 
     def __str__(self):
         return self.title
