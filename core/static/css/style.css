@@ -641,7 +641,6 @@ ul.pagination .active a {
 }
 
 .bg-2 {
-  background: url(../images/subscription/subscription-back.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
