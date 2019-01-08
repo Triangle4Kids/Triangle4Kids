@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+{% block title %}
+Homepage - {{ block.super }} 
+{% endblock title %}
+
+{% block content %}
+
+
+
+    <h1 class="subtitle">-------------Events-------------------</h1>
+    <br>
+    <br>
+    
+
+
+
+    {% for event in events %}
+    
+        <div class="panel panel-default">  
+            <div class="panel ">    
+                <h1><a href="{% url 'event_detail' slug=event.slug %}"> Event Title:{{event.title}} </a></h1>
+                <h2>Business:{{event.business }} </h2>
+                <p>Description: {{event.description}}</p>
+                <p>_________________________________</p>
+        </div>
+        </div>
+
+    {% endfor %}
+
+    
+    
+
+
+{% endblock content %}

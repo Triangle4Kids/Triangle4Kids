@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 > ------------------ {{user}} PROFILE---------------- </h1>
+<br>
+<h2> Reviews for {{ user }} : </h2>
+    {% for review in reviews %}
+
+        <div > 
+                <h2 > User:  {{ user }} </h2>
+                <h2 > Review:  {{ review.text}} </h2>
+                <h2 class = "subtitle"> Rating:  {{ review.rating }} </h2>
+        </div>
+
+
+    {% endfor %}
+    <br>
+    <br>
+
+    <h2 > {{ user }} Favorites :  </h2>
+    <br>
+    <br>
+
+    {% for event in favorite_event %}
+
+    
+                <h2 > Event Name :  {{ event.title }} </h2>
+                <p> class = "subtitle"> Descrption:  {{ event.description }} </p>
+
+
+    {% endfor %}
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock content %}
