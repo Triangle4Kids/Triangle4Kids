@@ -1,0 +1,67 @@
+{% extends 'base.html' %} 
+{% block title %}
+{{ post.title }} - {{ block.super }} 
+{% endblock title %}
+
+{% block content %}
+
+<div class ="box">
+        
+        <h1 class="title"> {{business.name}}</h1>
+        <h3>Business Address: {{business.address}}</h3>
+        <p>Average Rating {{business.average_rating}}</p>
+        <p>________________________________________________</p>
+        <br>
+       
+
+       
+<h2>Upcoming Events for {{business.name}}: <h2>
+
+        {% for event in events %}
+                <div >
+                        <h3> {{ event.title }} </h3>
+                </div>
+        {% endfor %}
+
+        <p>________________________________________________</p>
+        <br>
+
+<h2>Leave A review for {{business.name}} : </h2>
+
+
+        <form role="form" action="" method="post" class= "subtitle is-4" >
+                {% csrf_token %}
+                {{ form.as_table }}
+                <br>
+                <button type="submit" class = "button hero is-outlined  form-padding">Submit</button>   
+        </form> 
+        <p>________________________________________________</p>
+
+
+</div>
+
+
+
+<h2>All User Reviews for {{business.name}} </p>
+        <p>REVIEWS Start Here </p>
+
+                {% for review in review %}
+                        <div class="box"> 
+                                <h2 class = "subtitle"> User:  {{ user }} </h2>
+                                <h2 class = "subtitle"> Review:  {{ review.text}} </h2>
+                                <h2 class = "subtitle"> Rating:  {{ review.rating }} </h2>
+                        </div>
+
+                {% endfor %}
+
+        <p>REVIEWS End Here </p>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+{% endblock content %}
