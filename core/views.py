@@ -40,6 +40,7 @@ def business_directory(request):
 
 def event_detail(request, slug):
     event = Event.objects.get(slug=slug)
+    business = event.business
     is_favorite = False
 
     if event.favorite.filter(id=request.user.id).exists():
@@ -48,6 +49,7 @@ def event_detail(request, slug):
     return render(request, 'events/event_detail.html', {
         'event': event,
         'is_favorite': is_favorite,
+        'business': business,
     })
 
 
@@ -98,11 +100,12 @@ def get_user_profile(request):
 
 def favorite_event(request, id):
     event = get_object_or_404(Event, id=id)
+    
     if event.favorite.filter(id=request.user.id).exists():
         event.favorite.remove(request.user)
     else:
         event.favorite.add(request.user)
-    return redirect('home')
+    return redirect('event_detail', slug=event.slug )
 
 
 def change_password(request):
