@@ -18,20 +18,33 @@ from django.urls import path
 from core import views
 from django.urls import path, include
 from django.conf.urls import url
+from django.contrib.auth.views import (
+    PasswordResetView, PasswordResetDoneView,
+    PasswordResetConfirmView, PasswordResetCompleteView,
+)
 
 
 urlpatterns = [
+    path('accounts/password/reset/', PasswordResetView.as_view(
+        template_name='registration/password_reset_form.html'), name="password_reset"),
+    path('accounts/password/reset/done/', PasswordResetView.as_view(
+        template_name='registration/password_reset_done.html'), name="password_reset_done"),
+    path('accounts/password/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(
+        template_name='registration/password_reset_confirm.html'), name="password_reset_confirm"),
+    path('accounts/password/done/', PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
+         name="password_reset_complete"),
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('index', views.new_index, name='new_index'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', views.business_directory, name='business_directory'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
-    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('registration.backends.simple.urls')),
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
-    path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
-    
+    path(r'(?P<id>\d+)/favorite_event/$',
+         views.favorite_event, name='favorite_event'),
 
 
-   
+
+
 ]
