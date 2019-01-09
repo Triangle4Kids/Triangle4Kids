@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 {% block title %}
-{{ post.title }} - {{ block.super }} 
+        {{ post.title }} - {{ block.super }} 
 {% endblock title %}
 
 {% block content %}
@@ -13,19 +13,22 @@
         <p>{{event.class_camp_choice}}</p>
         <p>{{event.cities_choice}}</p>
         
+        <p> {{event.description}}</p>
+        <p>  <a href="{% url 'business_detail' slug=business_slug %}"> {{event.business}}</p>
+
 
 
 
         <div id="favorite-section">
-        {% if is_favorite %}
-        <a href="{% url 'favorite_event' id=event.id %}">
-                <i class="far fa-heart"></i>
-        </a>
-        {% else %}
-        <a href="{% url 'favorite_event' id=event.id %}">
-                <i class="fas fa-heart"></i>
-        </a>
-        {% endif %}
+                {% if is_favorite %}
+                <a href="{% url 'favorite_event' id=event.id %}">
+                        <i class="fas fa-heart"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'favorite_event' id=event.id %}">
+                        <i class="far fa-heart"></i>
+                </a>
+                {% endif %}
 
         </div> 
 

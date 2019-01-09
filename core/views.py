@@ -41,6 +41,8 @@ def business_directory(request):
 def event_detail(request, slug):
     event = Event.objects.get(slug=slug)
     is_favorite = False
+    business = event.business
+    business_slug = event.business.slug
 
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
@@ -48,8 +50,10 @@ def event_detail(request, slug):
     return render(request, 'events/event_detail.html', {
         'event': event,
         'is_favorite': is_favorite,
+        'business': business,
+        'business_slug': business_slug,
+        
     })
-
 
 def business_detail(request, slug):
    business = Business.objects.get(slug=slug)
@@ -65,7 +69,7 @@ def business_detail(request, slug):
            review.business = business
            review.reviewer = request.user
            review.save()
-           return redirect('home')
+           return redirect('business_detail', slug=business.slug)
 
    review = LeaveReview.objects.filter(business=business)
 
@@ -88,8 +92,10 @@ def user_delete_review(request, id):
 @login_required
 def get_user_profile(request):
     user = request.user
+
     reviews = LeaveReview.objects.filter(reviewer=user)
     favorite_event = user.favorite.all()
+
     return render(request, 'user_account.html', {
         'reviews': reviews,
         'favorite_event': favorite_event,
@@ -98,11 +104,12 @@ def get_user_profile(request):
 
 def favorite_event(request, id):
     event = get_object_or_404(Event, id=id)
+    
     if event.favorite.filter(id=request.user.id).exists():
         event.favorite.remove(request.user)
     else:
         event.favorite.add(request.user)
-    return redirect('home')
+    return redirect('event_detail', slug=event.slug )
 
 
 def change_password(request):
