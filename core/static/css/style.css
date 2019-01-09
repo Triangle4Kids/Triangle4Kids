@@ -5,6 +5,23 @@ body {
   font-family: "Muli", sans-serif;
 }
 
+/* Sam's Css Classes */
+
+.navtwo {
+  padding-right: 35px;
+  padding-left: 35px;
+}
+
+
+
+
+/* End Sams CSS Classes */
+
+
+
+
+
+
 p, li, input, select, button {
   font-family: "Muli", sans-serif;
   color: #666;
@@ -157,7 +174,7 @@ ul.social-circle-icons li:last-child {
 
 ul.social-circle-icons li a {
   display: block;
-  font-size: 15px;
+  font-size: 15x;
   line-height: 38px;
   color: #5672f9;
   height: 38px;
@@ -839,7 +856,7 @@ ul.pagination .active a {
 
 .hero-area .advance-search {
   background: #fff;
-  padding: 40px 30px;
+  padding: 15px 30px;
   border-radius: 3px;
   margin-bottom: -50px;
   box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.12);

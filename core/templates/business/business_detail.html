@@ -19,7 +19,8 @@
 
         {% for event in events %}
                 <div >
-                        <h3> {{ event.title }} </h3>
+                        <h1><a href="{% url 'event_detail' slug=event.slug %}"> Event Title:{{event.title}} </a></h1>
+                        
                 </div>
         {% endfor %}
 
@@ -48,7 +49,7 @@
                 {% for review in review %}
                         <div class="box"> 
                                 <h2 class = "subtitle"> User:  {{ user }} </h2>
-                                <h2 class = "subtitle"> Review:  {{ review.text}} </h2>
+                                <h2 class = "subtitle"> Review:  {{ review.text }} </h2>
                                 <h2 class = "subtitle"> Rating:  {{ review.rating }} </h2>
 
                                  {% comment %} {% if user == review.reviewer or user.is_staff %} {% endcomment %}
