@@ -54,10 +54,10 @@ def event_detail(request, slug):
 def business_detail(request, slug):
    business = Business.objects.get(slug=slug)
    events = business.events.all()
-   
+
    form = LeaveReviewForm()
 
-   
+
    if request.method == "POST":
        form = LeaveReviewForm(request.POST)
        if form.is_valid():
@@ -74,16 +74,16 @@ def business_detail(request, slug):
        'events': events,
        'form': form,
        'review': review,
-   })  
+   })
 
 @login_required
 def user_delete_review(request, id):
     user = request.user
     review = LeaveReview.objects.filter(reviewer=user)
-    
+
     review.delete()
     return redirect('home')
-    
+
 
 @login_required
 def get_user_profile(request):
