@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # My apps
     'core',
     # Third Party Apps
     'django_extensions',
     'debug_toolbar',
     'registration',
+    'category',
+    'multiselectfield',
 
 ]
 
@@ -145,3 +148,5 @@ LOGIN_REDIRECT_URL = "home"
 
 # Activate django_heroku
 django_heroku.settings(locals())
+
+SITE_ID = 1
