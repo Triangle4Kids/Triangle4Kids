@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,20 +32,24 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #Default
+    # Default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #My apps
+    # My apps
     'core',
-    #Third Party Apps
+    # Third Party Apps
     'django_extensions',
     'debug_toolbar',
     'registration',
+<<<<<<< HEAD
     'django_filters',
+=======
+
+>>>>>>> master
 ]
 
 MIDDLEWARE = [
@@ -84,11 +89,11 @@ WSGI_APPLICATION = 'triangle4kids.wsgi.application'
 
 DATABASES = {
     'default': {
-'ENGINE': 'django.db.backends.postgresql',
-'NAME': 'triangle4kids',
-'USER': 'triangle4kids',
-'HOST': '127.0.0.1',
-'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'triangle4kids',
+        'USER': 'triangle4kids',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
 
     }
 }
@@ -132,13 +137,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ACCOUNT_ACTIVATION_DAYS = 7 
+ACCOUNT_ACTIVATION_DAYS = 7
 STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'testing@example.com'
+DEFAULT_FROM_EMAIL = 'triangle4kids@gmail.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
 
+# Activate django_heroku
+django_heroku.settings(locals())
