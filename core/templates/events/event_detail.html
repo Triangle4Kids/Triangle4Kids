@@ -1,27 +1,27 @@
 {% extends 'base.html' %} 
 {% block title %}
-{{ post.title }} - {{ block.super }} 
+        {{ post.title }} - {{ block.super }} 
 {% endblock title %}
 
 {% block content %}
 
         <h1>{{event.title}}</h1>
         <p> {{event.description}}</p>
-        <p> {{event.business}}</p>
+        <p>  <a href="{% url 'business_detail' slug=business_slug %}"> {{event.business}}</p>
 
 
 
 
         <div id="favorite-section">
-        {% if is_favorite %}
-        <a href="{% url 'favorite_event' id=event.id %}">
-                <i class="far fa-heart"></i>
-        </a>
-        {% else %}
-        <a href="{% url 'favorite_event' id=event.id %}">
-                <i class="fas fa-heart"></i>
-        </a>
-        {% endif %}
+                {% if is_favorite %}
+                <a href="{% url 'favorite_event' id=event.id %}">
+                        <i class="fas fa-heart"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'favorite_event' id=event.id %}">
+                        <i class="far fa-heart"></i>
+                </a>
+                {% endif %}
 
         </div> 
 
