@@ -46,7 +46,8 @@ urlpatterns = [
     path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
     # path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
     
-
+    #MapBox
+    url(r'', views.default_map, name="default"),
 
 
 
