@@ -59,6 +59,9 @@
 <button type="button" class="btn btn-warning"><a href="{% url 'get_user_profile' %}"> MY PROFILE </a></button>
 <button type="button" class="btn btn-warning"><a href="{% url 'new_index' %}"> new INDEX</a></button>
 
+<!-- For New Event Post--Sam you can move/style this. -->
+<a href="{% url 'event_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+<!-- end Event Post -->
 <br>
 
     {% if user.is_authenticated %} 

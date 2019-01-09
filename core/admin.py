@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib import admin
 from core.models import Profile, Event, Business, LeaveReview
+# , Age
 # Register your models here.
 
 class EventsInLine(admin.StackedInline):
@@ -20,5 +21,10 @@ class ReviewAdmin(admin.ModelAdmin):
     model = LeaveReview
     list_display = ("reviewer", "text", "rating", "business", 'event')
 
+# class AgeAdmin(admin.ModelAdmin):
+#     model = Age
+#     list_display = ("age_range", "AGE_RANGE_CHOICES")
+
 admin.site.register(Business, BusinessAdmin)
 admin.site.register(LeaveReview, ReviewAdmin)
+# admin.site.register(Age, AgeAdmin)

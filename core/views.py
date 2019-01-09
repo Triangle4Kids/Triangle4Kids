@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from core.models import Event, Business, LeaveReview, Profile
-from core.forms import LeaveReviewForm 
+from core.forms import LeaveReviewForm, EventForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -71,6 +71,9 @@ def business_detail(request, slug):
        'review': review,
    })  
 
+def event_new(request):
+    form = EventForm()
+    return render(request, 'triangle4kids/event_edit.html', {'form': form})
 
 def get_user_profile(request):
     user = request.user

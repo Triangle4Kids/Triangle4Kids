@@ -10,7 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
-    
+ 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -36,9 +36,22 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+# class AgeRange(models.Model):
+
+#     PRE_K = 1
+#     ELEMENTARY = 2
+#     MIDDLE = 3
+#     HIGH = 4
+    
+
+#     event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name="age_ranges")
+#     age = models.ForeignKey("Age", on_delete=models.CASCADE, related_name="age_ranges")
+#     # range = models.IntegerField(choices=AGE_RANGE_CHOICES, blank=True, null=True)
+
 class Event(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="events")
+    ages = models.ManyToManyField("Age", related_name="events")
     title = models.CharField(max_length=255)
     link = models.URLField(null=True, blank=True)
     description = models.TextField()
@@ -51,6 +64,7 @@ class Event(models.Model):
     start_time = models.CharField(max_length=255)
     end_time = models.CharField(max_length=255)
     favorite = models.ManyToManyField(User, related_name='favorite', blank=True)
+    ages = models.ManyToManyField("Age", related_name="events")
 # For django-filters categories
     # pre_k = models.BooleanField(default=False)
     # elementary = models.BooleanField(default=False)
@@ -66,31 +80,44 @@ class Event(models.Model):
     # performance = models.BooleanField(default=False)
     # stem = models.BooleanField(default=False)
     # other = models.BooleanField(default=False)
-    # carrboro = models.BooleanField(default=False)
-
-# Alternate more complicated way for ages/cities:
-# EVENT_CATEGORY = (
-#     ('pre_k', 'Pre_K'),
-#     ('elementary', 'Elementary'),
-#     ('middle', 'Middle'),
-#     ('high', 'High'),
-# ETC
-# )
-
-
-class EventFilter(django_filters.FilterSet):
-    class Meta:
-        verbose_name_plural = "Events"
-        model = Event
-        fields = {
-            'age': ['pre_k', 'elementary', 'middle', 'high'],
-            'city': ['carrboro', 'Chapel_Hill', 'Durham', 'Morrisville',             'Raleigh', 'RTP'],
-            'type': ['class', 'camp', 'full_day', 'half_day'],
-            'theme': ['academic', 'arts_and_crafts', 'games', 'language',             'nature_outdoor', 'performance', 'stem', 'other'],
-        }
 
     def __str__(self):
         return self.title
+
+class Age(models.Model):
+    PRE_K = 'PRE-K'
+    ELEMENTARY = 'ELEMENTARY'
+    MIDDLE = 'MIDDLE'
+    HIGH = 'HIGH'
+
+    AGE_RANGE_CHOICES = (
+        (PRE_K, 'Pre-K'),
+        (ELEMENTARY, 'Elementary'),
+        (MIDDLE, 'Middle'),
+        (HIGH, 'High'),
+    )
+    age_range = models.CharField(
+        max_length=12,
+        choices=AGE_RANGE_CHOICES,
+        blank=True, null=True
+    )
+
+    def __str__(self):
+        return self.age_range
+    
+    
+
+# class EventFilter(django_filters.FilterSet):
+#     class Meta:
+#         verbose_name_plural = "Events"
+#         model = Event
+#         fields = {
+#             'age': ['pre_k', 'elementary', 'middle', 'high'],
+#             'city': ['carrboro', 'Chapel_Hill', 'Durham', 'Morrisville',             'Raleigh', 'RTP'],
+#             'type': ['class', 'camp', 'full_day', 'half_day'],
+#             'theme': ['academic', 'arts_and_crafts', 'games', 'language',             'nature_outdoor', 'performance', 'stem', 'other'],
+#         }
+
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="reviews")
