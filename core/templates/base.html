@@ -7,6 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Mapbox meta-->
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     
     <!-- PLUGINS CSS STYLE -->
     <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -32,8 +34,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
 
     <!-- MAPBOX -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+  
   <!-- GOOGLE ANALYTICS-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132030982-1"></script>
@@ -65,9 +68,19 @@
     {% endblock title %}
 </title>
 
+<!-- Mapbox Style -->
 <style>
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:2; bottom:0; width:100%; }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
 </style>
 
 {% endblock header %}
@@ -101,20 +114,33 @@
 
 <br>
 
-<div>
-<!-- MAPBOX -->
-    <div id='map' style='width=device-width; height: 300px;'></div>
+<div id='map' width="100%" style='height:400px'></div>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow';
-        var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-78.78, 35.88],
-        zoom: 9
+    mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'; // replace this with your access token
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/triangle4kids/cjqnnjj934q5o2rpd5gk06x1q',
+      center: [-78.88, 35.88],
+      zoom: 9.5
     });
-    </script>
-</div>
+    {% comment %} /map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['t4k-draft(1)']
+  });
 
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map); {% endcomment %}
+
+    </script>
 <br>
 
 

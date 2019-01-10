@@ -107,6 +107,10 @@ class LeaveReview(models.Model):
     def __str__(self):
         return self.title
 
+
+
+
+
 #class Location
 # event location
 #   
