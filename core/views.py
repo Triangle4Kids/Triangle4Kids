@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -72,12 +73,16 @@ def business_detail(request, slug):
            return redirect('business_detail', slug=business.slug)
 
    review = LeaveReview.objects.filter(business=business)
+   average_score = review.aggregate(Avg('rating'))
+   
+
 
    return render(request, 'business/business_detail.html', {
        'business': business,
        'events': events,
        'form': form,
        'review': review,
+       'average_score': average_score,
    })
 
 @login_required
