@@ -9,7 +9,6 @@
 
   <form method="GET">
     {{ filter.form|bootstrap }}
-    <!-- {{ filter.form.as_p }} -->
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
 
@@ -17,19 +16,19 @@
   {% for event in filter.qs %}
     <li>
      
-    {{ event.title }} - <p>{{ event.get_class_camp_choice_display }}</p>
+    {{ event.title }} - {{ event.class_camp_choice }}
     <p>{{ event.start_date }} - {{ event.end_date }}</p>
     <p>{{ event.start_time }} - {{ event.end_time }}</p>
     <p>{{ event.type_choice }}</p>
     <p>{{ event.get_age_choice_display }}</p>
-            <p>{{ event.business }}</p>
-           <p>{{ event.link }}</p>
-           <p>{{ event.description }}</p>
-           <p>{{ event.address }}</p>
-           <p>{{ event.city }}</p>
+    <p>{{ event.business }}</p>
+    <p>{{ event.link }}</p>
+    <p>{{ event.description }}</p>
+    <p>{{ event.address }}</p>
+    <p>{{ event.city }}</p>
            <!-- <p>{{ event.favorite }}</p> -->
            
-        </li>
+    </li>
   {% endfor %}
 </ul>
 
