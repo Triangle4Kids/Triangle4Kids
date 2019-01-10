@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block title %}Event List{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+
+  <form method="GET">
+    {{ filter.form|bootstrap }}
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <ul> 
+  {% for event in filter.qs %}
+    <li>
+      <a href="{% url 'events:detail' event.id %}">{{ event.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+</div>
+<!-- alternatively: -->
+    <!-- <form action="" method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for event in filter.qs %}
+        {{ event.title }} - ${{ event.city }}<br />
+    {% endfor %} -->
+
+{% endblock %}

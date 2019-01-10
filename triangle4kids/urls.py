@@ -44,7 +44,7 @@ urlpatterns = [
     path('review/<id>/delete', views.user_delete_review, name="user_delete_review"),
 
     # django-filters list of searched events
-    path('filter_events/', views.event_list),
+    path('filter-events/', views.eventlistview, name='event_list'),
 
     path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
     # path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),

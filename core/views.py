@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
-from core.models import Event, Business, LeaveReview, Profile, EventFilter
+from core.models import Event, Business, LeaveReview, Profile
 from core.forms import LeaveReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -9,12 +9,23 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .filters import EventFilter
+from django.views.generic.list import ListView
 
 
 # For searching events with django-filters
-def event_list(request):
-    f = EventFilter(request.GET, queryset=Event.objects.all())
-    return render(request, 'filter_events/events.html', {'filter': f})
+class EventListView(ListView):
+    model = Event
+    template_name = 'events/event_list.html'
+
+    def get_event_context_data(self, **kwargs):
+        event_context = super().get_event_context_data(**kwargs)
+        event_context['filter'] = EventFilter(self.request.GET, queryset=self.get_queryset())
+        return event_context
+
+# alternatively (from django-filters docs)
+    # f = EventFilter(request.GET, queryset=Event.objects.all())
+    # return render(request, 'filter_events/events.html', {'filter': f})
 # core/templates/events/filter_events
 # 'my_app/template.html'
 
