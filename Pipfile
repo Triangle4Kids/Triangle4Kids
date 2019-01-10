@@ -15,6 +15,7 @@ django-category = "*"
 django-multiselectfield = "*"
 
 [dev-packages]
+pylint = "*"
 "flake8" = "*"
 
 [requires]

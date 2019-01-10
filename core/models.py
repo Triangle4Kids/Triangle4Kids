@@ -108,3 +108,30 @@ class LeaveReview(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+
+
+#class Location
+# event location
+#   
+# business location
+# search box would be a map filter
+# JS would take fields from search box to construct the map
+# have a city that is "anywhere" that is show all
+# how to get info in/out from database from JS...will need to do query against the db
+# events in the next month
+# js class map_builder
+# create rest api that allows to get event data / manipulating objects in db
+# only object that has access to python models is rest api
+# "separation of concerns"
+# 
+# 
+# 
+# 
+#
+#
+#
+#
+#

@@ -1,27 +1,42 @@
 {% load staticfiles %} 
-<!doctype html> 
+<!DOCTYPE html> 
 <html lang="en">
 <head>
-  <!-- SITE TITTLE -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block header %}
+    <!-- SITE TITTLE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Mapbox meta-->
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+    <!-- PLUGINS CSS STYLE -->
+    <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+    <!-- CUSTOM CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- FAVICON -->
+    <link href="img/favicon.png" rel="shortcut icon">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
+
+    <!-- MAPBOX -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
   
-  <!-- PLUGINS CSS STYLE -->
-  <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-  <!-- Bootstrap -->
-  <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Owl Carousel -->
-  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
-  <!-- CUSTOM CSS -->
-  <link href="css/style.css" rel="stylesheet">
-
-  <!-- FAVICON -->
-  <link href="img/favicon.png" rel="shortcut icon">
-
   <!-- GOOGLE ANALYTICS-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132030982-1"></script>
@@ -44,31 +59,42 @@
 
 <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
 
-
-
-
-</head>
+    <!-- FontAwesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 <title>
-{% block title %}
- 4kids
-{% endblock title %}
+    {% block title %}
+        4kids
+    {% endblock title %}
 </title>
 
+<!-- Mapbox Style -->
+<style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+</style>
 
-{% block header %}{% endblock header %}
+{% endblock header %}
+
 </head>
+
 <body>
 
+    <h1 class="title"> Triangle4kids! </h1>
 
-<h1 class="title"> Triangle4kids! </h1>
-
-<button type="button" class="btn btn-warning"><a href="{% url 'home' %}"> Home | </a></button>
-<button type="button" class="btn btn-warning"><a href="{% url 'business_directory' %}"> BUSINESS DIRECTORY </a></button>
-<button type="button" class="btn btn-warning"><a href="{% url 'get_user_profile' %}"> MY PROFILE </a></button>
-<button type="button" class="btn btn-warning"><a href="{% url 'new_index' %}"> new INDEX</a></button>
+    <button type="button" class="btn btn-warning"><a href="{% url 'home' %}"> Home | </a></button>
+    <button type="button" class="btn btn-warning"><a href="{% url 'business_directory' %}"> BUSINESS DIRECTORY </a></button>
+    <button type="button" class="btn btn-warning"><a href="{% url 'get_user_profile' %}"> MY PROFILE </a></button>
+    <button type="button" class="btn btn-warning"><a href="{% url 'new_index' %}"> new INDEX</a></button>
 
 <br>
 
@@ -86,7 +112,36 @@
             </li>
         {% endif %}
 
+<br>
 
+<div id='map' width="100%" style='height:400px'></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'; // replace this with your access token
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/triangle4kids/cjqnnjj934q5o2rpd5gk06x1q',
+      center: [-78.88, 35.88],
+      zoom: 9.5
+    });
+    {% comment %} /map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['t4k-draft(1)']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map); {% endcomment %}
+
+    </script>
+<br>
 
 
 
