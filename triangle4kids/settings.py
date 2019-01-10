@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'registration',
     'multiselectfield',
+    'django_filters',
 
 ]
 

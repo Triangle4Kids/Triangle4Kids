@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
-from core.models import Event, Business, LeaveReview, Profile
+from core.models import Event, Business, LeaveReview, Profile, EventFilter
 from core.forms import LeaveReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,8 +10,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-# Create your views here.
 
+# For searching events with django-filters
+def event_list(request):
+    f = EventFilter(request.GET, queryset=Event.objects.all())
+    return render(request, 'filter_events/events.html', {'filter': f})
+# core/templates/events/filter_events
+# 'my_app/template.html'
 
 def index(request):
     events = Event.objects.all()

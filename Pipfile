@@ -13,6 +13,7 @@ gunicorn = "*"
 django-heroku = "*"
 django-category = "*"
 django-multiselectfield = "*"
+django-filter = "*"
 
 [dev-packages]
 "flake8" = "*"

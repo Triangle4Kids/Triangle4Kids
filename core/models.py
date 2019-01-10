@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
+import django_filters
 
 
 # Create your models here.
@@ -94,6 +95,15 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+
+class EventFilter(django_filters.FilterSet):
+    # research lookup expressions
+    name = django_filters.CharFilter(lookup_expr='iexact')
+
+    class Meta:
+        model = Event
+        fields = ['type_choice', 'age_choice', 'class_camp_choice', 'cities_choice']
+     # test these, then add title, start_date, start_time)
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="reviews")

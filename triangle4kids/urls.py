@@ -42,9 +42,13 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
     path('review/<id>/delete', views.user_delete_review, name="user_delete_review"),
-    
+
+    # django-filters list of searched events
+    path('filter_events/', views.event_list),
+
     path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
     # path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
+
     
 
 
