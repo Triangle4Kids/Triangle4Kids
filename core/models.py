@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
@@ -95,11 +96,12 @@ class Event(models.Model):
         return self.title
 
 
+
 class LeaveReview(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="reviews")
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500, blank=False)
-    rating = models.IntegerField(default="0") 
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5) ])
 
     class Meta:
         verbose_name_plural = "Reviews"
