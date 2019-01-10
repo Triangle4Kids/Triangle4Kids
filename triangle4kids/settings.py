@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'registration',
-    'category',
     'multiselectfield',
 
 ]
@@ -148,5 +147,3 @@ LOGIN_REDIRECT_URL = "home"
 
 # Activate django_heroku
 django_heroku.settings(locals())
-
-SITE_ID = 1
