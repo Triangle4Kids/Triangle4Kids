@@ -6,6 +6,13 @@
 {% block content %}
 
         <h1>{{event.title}}</h1>
+        <p>{{event.description}}</p>
+        <p>{{event.business}}</p>
+        <p>{{event.type_choice}}</p>
+        <p>{{event.get_age_choice_display}}</p>
+        <p>{{event.get_class_camp_choice_display}}</p>
+        <p>{{event.get_cities_choice_display}}</p>
+        
         <p> {{event.description}}</p>
         <p>  <a href="{% url 'business_detail' slug=business_slug %}"> {{event.business}}</p>
 

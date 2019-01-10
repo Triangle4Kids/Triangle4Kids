@@ -35,6 +35,44 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+<<<<<<< Updated upstream
+=======
+
+EVENT_TYPE = (
+             ('half_day', 'Half-Day'),
+             ('full_day', 'Full-Day'),
+             ('academic', 'Academic'),
+             ('arts_crafts', 'Arts & Crafts'),
+             ('athletics', 'Athletics'),
+             ('games', 'Games'),
+             ('language', 'Language'),
+             ('nature_outdoor', 'Nature/Outdoor'),
+             ('performance', 'Performance'),
+             ('stem', 'STEM'),
+             ('other', 'Other'),
+)
+
+
+AGE_RANGE = (
+            ('pre_k', 'Pre-K'),
+            ('elementary', 'Elementary'),
+            ('middle', 'Middle'),
+            ('high', 'High'),
+)
+
+CLASS_CAMP = (
+             ('class', 'Class'),
+             ('camp', 'Camp'),
+)
+
+CITIES = (
+         ('raleigh', 'Raleigh'),
+         ('durham', 'Durham'),
+         ('cary', 'Cary'),
+         ('chapel_hill', 'Chapel Hill'),
+)
+
+>>>>>>> Stashed changes
 class Event(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="events")

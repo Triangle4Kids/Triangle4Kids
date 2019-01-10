@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'registration',
+<<<<<<< Updated upstream
+=======
+    'multiselectfield',
+>>>>>>> Stashed changes
 
 ]
 
@@ -145,3 +149,7 @@ LOGIN_REDIRECT_URL = "home"
 
 # Activate django_heroku
 django_heroku.settings(locals())
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
