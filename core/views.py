@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import EventFilter
 from django.views.generic.list import ListView
-
+from django.views.generic.detail import DetailView
 
 # For searching events with django-filters
 class EventListView(ListView):
@@ -22,6 +22,10 @@ class EventListView(ListView):
         event_context = super().get_event_context_data(**kwargs)
         event_context['filter'] = EventFilter(self.request.GET, queryset=self.get_queryset())
         return event_context
+
+# class EventDetailView(DetailView):
+#     model = Event
+#     template_name = 'events/event_detail.html'
 
 # alternatively (from django-filters docs)
     # f = EventFilter(request.GET, queryset=Event.objects.all())

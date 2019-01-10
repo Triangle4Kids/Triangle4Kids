@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
+from core.views import EventListView
 from core import views
 from django.urls import path, include
 from django.conf.urls import url
@@ -44,7 +46,7 @@ urlpatterns = [
     path('review/<id>/delete', views.user_delete_review, name="user_delete_review"),
 
     # django-filters list of searched events
-    path('filter-events/', views.eventlistview, name='event_list'),
+    path('filter/', EventListView.as_view(template_name="events/event_list.html")),
 
     path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
     # path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
