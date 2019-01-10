@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_filters',
     'bootstrapform',
 
+
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,9 @@ ROOT_URLCONF = 'triangle4kids.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'core/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

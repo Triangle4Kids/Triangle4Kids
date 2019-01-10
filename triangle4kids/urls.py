@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import TemplateView
-from core.views import EventListView
+# from django.views.generic import TemplateView
+# from core.views import EventListView
+# from core.views import search
 from core import views
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
     PasswordResetConfirmView, PasswordResetCompleteView,
+#sibtc
+# from search import views
 )
 
 
@@ -38,6 +41,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('index', views.new_index, name='new_index'),
+
+    path('events/', views.event_list, name='event_list'),
+
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', views.business_directory, name='business_directory'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
@@ -45,11 +51,9 @@ urlpatterns = [
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
     path('review/<id>/delete', views.user_delete_review, name="user_delete_review"),
 
-    # django-filters list of searched events
-    path('filter/', EventListView.as_view(template_name="events/event_list.html")),
-
+   
     path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
-    # path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
+    path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
 
     
 

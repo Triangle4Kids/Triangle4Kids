@@ -10,28 +10,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import EventFilter
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
 
-# For searching events with django-filters
-class EventListView(ListView):
-    model = Event
-    template_name = 'events/event_list.html'
 
-    def get_event_context_data(self, **kwargs):
-        event_context = super().get_event_context_data(**kwargs)
-        event_context['filter'] = EventFilter(self.request.GET, queryset=self.get_queryset())
-        return event_context
+# from django-filters docs
+def event_list(request):
+    f = EventFilter(request.GET, queryset=Event.objects.all())
+    return render(request, 'events/event_list.html', {'filter': f})
 
-# class EventDetailView(DetailView):
-#     model = Event
-#     template_name = 'events/event_detail.html'
-
-# alternatively (from django-filters docs)
-    # f = EventFilter(request.GET, queryset=Event.objects.all())
-    # return render(request, 'filter_events/events.html', {'filter': f})
-# core/templates/events/filter_events
-# 'my_app/template.html'
 
 def index(request):
     events = Event.objects.all()
