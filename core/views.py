@@ -17,24 +17,24 @@ from django.db.models import Avg
 def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all()
-    return render(request, 'index.html', {
-        "events": events,
-        "businesses": businesses,
-    })
-
-
-def new_index(request):
-    events = Event.objects.all()
-    businesses = Business.objects.all()
     return render(request, 'bsindex.html', {
         "events": events,
         "businesses": businesses,
     })
 
 
+# def new_index(request):
+#     events = Event.objects.all()
+#     businesses = Business.objects.all()
+#     return render(request, 'bsindex.html', {
+#         "events": events,
+#         "businesses": businesses,
+#     })
+
+
 def business_directory(request):
     businesses = Business.objects.all()
-    return render(request, 'business/business_directory.html', {
+    return render(request, 'bsbusiness_directory.html', {
         "businesses": businesses,
     })
 
@@ -48,12 +48,11 @@ def event_detail(request, slug):
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
 
-    return render(request, 'events/event_detail.html', {
+    return render(request, 'bsevent_detail.html', {
         'event': event,
         'is_favorite': is_favorite,
         'business': business,
         'business_slug': business_slug,
-        
     })
 
 def business_detail(request, slug):
@@ -77,7 +76,7 @@ def business_detail(request, slug):
    
 
 
-   return render(request, 'business/business_detail.html', {
+   return render(request, 'bsbusiness_detail.html', {
        'business': business,
        'events': events,
        'form': form,
@@ -111,7 +110,7 @@ def get_user_profile(request):
     reviews = LeaveReview.objects.filter(reviewer=user)
     favorite_event = user.favorite.all()
 
-    return render(request, 'user_account.html', {
+    return render(request, 'bsuser_account.html', {
         'reviews': reviews,
         'favorite_event': favorite_event,
     })
