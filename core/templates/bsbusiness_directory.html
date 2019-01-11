@@ -1,0 +1,238 @@
+{% extends 'base.html' %} 
+{% block title %}
+Homepage - {{ block.super }} 
+{% endblock title %}
+
+{% block content %}
+
+<!-- SECONDARY NAV AREA -->
+
+<section class="page-search">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Advance Search -->
+				<div class="advance-search">
+					
+<div class="row">
+			<div class="col-md-12">
+				<div class="section-title">
+				<!-- Secodnary Nav -->
+				<nav >
+					<a  class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
+					<a  class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
+					<a  class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewd</a>
+					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="#">
+	<div class="container">
+	<h2>Map option</h2>
+
+		
+	</div>
+</section>
+
+<!-- Title Bar -->
+<section class="section-sm">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="search-result bg-gray">
+					<h2>Business Directory</h2>
+					<p> 1234 Businesses in the area </p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="category-sidebar">
+					<div class="widget category-list">
+	<h4 class="widget-header">City</h4>
+	<ul class="category-list">
+		<li><a href="category.html"> Raleigh <span>93</span></a></li>
+		<li><a href="category.html"> Durham <span>233</span></a></li>
+		<li><a href="category.html"> Cary   <span>183</span></a></li>
+		<li><a href="category.html"> Apex <span>343</span></a></li>
+	</ul>
+</div>
+
+<div class="widget category-list">
+	<h4 class="widget-header">Category</h4>
+	<ul class="category-list">
+		<li><a href="category.html">Sports <span>93</span></a></li>
+		<li><a href="category.html">outside <span>233</span></a></li>
+		<li><a href="category.html"> Inside <span>183</span></a></li>
+		<li><a href="category.html"> Half day<span>120</span></a></li>
+		<li><a href="category.html"> Full Day <span>40</span></a></li>
+		<li><a href="category.html"> STEM <span>81</span></a></li>
+	</ul>
+</div>
+
+<div class="widget filter">
+	<h4 class="widget-header">Extra Filter #1</h4>
+	<select>
+		<option>Popularity</option>
+		<option value="1">Top rated</option>
+		<option value="2">Lowest Price</option>
+		<option value="4">Highest Price</option>
+	</select>
+</div>
+
+<div class="widget price-range">
+	<h4 class="widget-header">Extra Filter #2</h4>
+	<div class="block">
+		<b> x </b>
+		<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> 
+		<b>y </b>
+	</div>
+</div>
+
+<div class="widget product-shorting">
+	<h4 class="widget-header">Extra filter #3</h4>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    1
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    2
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    3
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    4
+	  </label>
+	</div>
+</div>
+
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="category-search-filter">
+					<div class="row">
+						<div class="col-md-6">
+							<strong>Short</strong>
+							<select>
+								<option>Most Recent</option>
+								<option value="1">Most Popular</option>
+								<option value="2">Lowest Price</option>
+								<option value="4">Highest Price</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<div class="view">
+								<strong>Views</strong>
+								<ul class="list-inline view-switcher">
+									<li class="list-inline-item">
+										<a href="javascript:void(0);"><i class="fa fa-th-large"></i></a>
+									</li>
+									<li class="list-inline-item">
+										<a href="javascript:void(0);"><i class="fa fa-reorder"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="product-grid-list">
+						
+					<div class="row mt-30">
+						<!-- Business FOR Loop  -->
+							{% for business in businesses %}	
+						<div class="col-sm-12 col-lg-4 col-md-6">																		
+<div class="product-item bg-light">
+		
+	<div class="card">
+		<div class="thumb-content">
+			<!-- <div class="price">$200</div> -->
+			<a href="">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		<div class="card-body">
+		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> Name:{{business.name}} </a></h4>
+		    <ul class="list-inline product-meta">
+		    	<li class="list-inline-item">
+		    		<p>BUSINESS RATING: {{business.average_rating}}</p>
+		    	</li>
+		    	<li class="list-inline-item">
+		    		<p>Address:{{business.address }} </p> 
+		    	</li>
+		    </ul>
+		    
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+		</div>
+	</div>
+	
+	
+</div>
+
+
+					</div>
+					{% endfor %}
+					
+						</div>
+						
+						
+					</div>
+
+					<div class="pagination justify-content-center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+										</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">1</a></li>
+									<li class="page-item active"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					
+					
+					
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock content %}

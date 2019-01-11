@@ -1,0 +1,250 @@
+{% extends 'base.html' %} 
+{% block title %}
+Homepage - {{ block.super }} 
+{% endblock title %}
+
+{% block content %}
+<!--===================================
+=            Header           =
+====================================-->
+
+
+<section class="page-search">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Advance Search -->
+				<div class="advance-search">
+					
+<div class="row">
+			<div class="col-md-12">
+				<div class="section-title">
+				<!-- Secodnary Nav -->
+				<nav >
+					<a  class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
+					<a  class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
+					<a  class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewd</a>
+					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--===================================
+=            Main Section          =
+====================================-->
+<section class="section bg-gray">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<!-- Left sidebar -->
+			<div class="col-md-8">
+				<div class="product-details">
+					<h1 class="product-title">{{business.name}}</h1>
+					<div class="product-meta">
+						<ul class="list-inline">
+							<li class="list-inline-item"><i class="fa fa-user-o"></i> {{average_score }}</li>
+							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category<a href="">Electronics</a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">{{business.address}}</a></li>
+						</ul>
+					</div>
+					<div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img class="d-block w-100" src="images/products/products-1.jpg" alt="First slide">
+							</div>
+							<div class="carousel-item">
+								<img class="d-block w-100" src="images/products/products-2.jpg" alt="Second slide">
+							</div>
+							<div class="carousel-item">
+								<img class="d-block w-100" src="images/products/products-3.jpg" alt="Third slide">
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+					<div class="content">
+						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Upcoming Events</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Leave A Review</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								<h3 class="tab-title">Review for {{business.name}}</h3>
+								
+
+							<!-- Review For Loop -->
+                {% for review in review %}
+                        <div class="box"> 
+
+                                <p class = "subtitle"> User:  {{ user }} </p>
+                                <p class = "subtitle"> Review:  {{ review.text }} </p>
+                                <p class = "subtitle"> Rating:  {{ review.rating }} </p>
+
+                                 {% comment %} {% if user == review.reviewer or user.is_staff %} {% endcomment %}
+                                <a class="button" href="{% url 'user_delete_review' id=review.id %}" ><i class="fas fa-trash-alt"></i> &nbsp; Delete</a>
+                                {% comment %} {% endif %}  {% endcomment %}
+                        </div>
+
+                {% endfor %}
+								<!-- End Review For Loop -->
+								
+
+							</div>
+							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+							
+								<h3 class="tab-title">Upcoming Events </h3>
+
+								<!-- Event For Loop -->
+								{% for event in events %}
+									<div >
+													<h1><a href="{% url 'event_detail' slug=event.slug %}"> Event Title:{{event.title}} </a></h1>
+													<p><a href="{% url 'event_detail' slug=event.slug %}"> Event Description:{{event.description}} </a></p>
+													<p> Category: {{event.type_choice}}</p>
+													<p> Age: {{event.get_age_choice_display}}</p>
+													<p> Camp: {{event.get_class_camp_choice_display}}</p>
+													<p> City: {{event.get_cities_choice_display}}</p>    
+													<button class="#"><a href="{% url 'event_detail' slug=event.slug %}"> More information  </a></button>
+									</div>
+        				{% endfor %}
+								
+							</div>
+							<!-- End Event For Loop -->
+
+							
+
+
+
+
+							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+							
+								<h3 class="tab-title">Leave a review for  {{business.name}}</h3>
+								<div class="product-review">
+							  		
+							  		<div class="review-submission">
+							  			
+						  				<!-- Rate -->
+						  				<div class="rate">
+						  					<div class="starrr"></div>
+						  				</div>
+						  				<div class="review-submit">
+											<!-- Working Form  -->
+
+												<form role="form" action="" method="post" class= "subtitle is-4" >
+												{% csrf_token %}
+												{{ form.as_table }}
+												<br>
+												<button type="submit" class = "button hero is-outlined  form-padding">Submit</button>   
+													</form> 
+													<!-- Non Working Form  -->
+						  					<form action="#" class="row">
+						  						<div class="col-lg-6">
+						  							<input type="text" name="name" id="name" class="form-control" placeholder="Name">
+						  						</div>
+						  						<div class="col-lg-6">
+						  							<input type="email" name="email" id="email" class="form-control" placeholder="Email">
+						  						</div>
+						  						<div class="col-12">
+						  							<textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
+						  						</div>
+						  						<div class="col-12">
+						  							<button type="submit" class="btn btn-main">Sumbit</button>
+						  						</div>
+						  					</form>
+
+						  				</div>
+							  		</div>
+							  	</div>
+							</div>
+						</div>
+
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="widget price text-center">
+						<h4>Content Option </h4>
+						<ul>
+							<li> {{business.address}} </p>
+					</div>
+					<!-- User Profile widget -->
+					<div class="widget user">
+						<img class="rounded-circle" src="images/user/user-thumb.jpg" alt="">
+						<h4><a href=""> __ MAP AREA __</a></h4>
+						<p class="member-time"></p>
+						<a href=""></a>
+						<ul class="list-inline mt-20">
+							<li class="list-inline-item"><a href="" class="btn btn-contact"></a></li>
+							<li class="list-inline-item"><a href="" class="btn btn-offer"></a></li>
+						</ul>
+					</div>
+					<!-- Map Widget -->
+					<div class="widget map">
+						<div class="map">
+							<div id="map"></div>
+						</div>
+					</div>
+					<!-- Rate Widget -->
+					<div class="widget rate">
+						<!-- Heading -->
+						<h5 class="widget-header text-center">Content area #2
+						<br>
+						</h5>
+						<!-- Rate -->
+						<div class="starrr"></div>
+					</div>
+					<!-- Safety tips widget -->
+					<div class="widget disclaimer">
+						<h5 class="widget-header">Content list #3</h5>
+						<ul>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+						</ul>
+					</div>
+					<!-- Coupon Widget -->
+					<div class="widget coupon text-center">
+						<!-- Coupon description -->
+						<p>Join our mailing list
+						</p>
+						<!-- Submii button -->
+						<a href="" class="btn btn-transparent-white">Submit </a>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+
+{% endblock content %}
