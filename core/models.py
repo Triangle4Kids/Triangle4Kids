@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Profile(models.Model):
@@ -96,14 +97,42 @@ class Event(models.Model):
         return self.title
 
 
+
 class LeaveReview(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="reviews")
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500, blank=False)
-    rating = models.IntegerField(default="0") 
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5) ])
 
     class Meta:
         verbose_name_plural = "Reviews"
 
     def __str__(self):
         return self.title
+
+
+
+
+
+#class Location
+# event location
+#   
+# business location
+# search box would be a map filter
+# JS would take fields from search box to construct the map
+# have a city that is "anywhere" that is show all
+# how to get info in/out from database from JS...will need to do query against the db
+# events in the next month
+# js class map_builder
+# create rest api that allows to get event data / manipulating objects in db
+# only object that has access to python models is rest api
+# "separation of concerns"
+# 
+# 
+# 
+# 
+#
+#
+#
+#
+#

@@ -9,7 +9,11 @@
         
         <h1 class="title"> {{business.name}}</h1>
         <h3>Business Address: {{business.address}}</h3>
-        <p>Average Rating {{business.average_rating}}</p>
+
+        {% if review %}
+                <p>Average Rating {{average_score }}</p>
+        {% endif %}
+
         <p>________________________________________________</p>
         <br>
        
@@ -55,9 +59,6 @@
                                  {% comment %} {% if user == review.reviewer or user.is_staff %} {% endcomment %}
                                 <a class="button" href="{% url 'user_delete_review' id=review.id %}" ><i class="fas fa-trash-alt"></i> &nbsp; Delete</a>
                                 {% comment %} {% endif %}  {% endcomment %}
-
-
-
                         </div>
 
                 {% endfor %}

@@ -40,9 +40,7 @@ urlpatterns = [
          name="password_reset_complete"),
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-
     path('events/', views.event_list, name='event_list'),
-
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', views.business_directory, name='business_directory'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
@@ -55,7 +53,8 @@ urlpatterns = [
     path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
 
     
-
+    #MapBox
+    url(r'', views.default_map, name="default"),
 
 
 
