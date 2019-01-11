@@ -29,14 +29,6 @@ def index(request):
     })
 
 
-# def new_index(request):
-#     events = Event.objects.all()
-#     businesses = Business.objects.all()
-#     return render(request, 'bsindex.html', {
-#         "events": events,
-#         "businesses": businesses,
-#     })
-
 
 def business_directory(request):
     businesses = Business.objects.all()
