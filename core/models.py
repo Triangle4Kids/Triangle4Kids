@@ -62,7 +62,7 @@ CLASS_CAMP = (('class', 'Class'),
 CITIES = (('raleigh', 'Raleigh'),
           ('durham', 'Durham'),
           ('cary', 'Cary'),
-          ('chapel_hill', 'Chapel Hill'),
+        #   ('chapel_hill', 'Chapel Hill'),
           )
 
 class Event(models.Model):

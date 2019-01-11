@@ -7,9 +7,13 @@ class EventFilter(django_filters.FilterSet):
 
     class Meta:
         model = Event
-        fields = {
-            'title': ['icontains'],
-            'type_choice': ['icontains'],
-            'age_choice': ['icontains'], 'class_camp_choice': ['icontains'], 'cities_choice': ['icontains']
-        }
+        fields = [
+        # {
+            # 'title': ['icontains'],
+            'type_choice',
+            'age_choice',
+            'class_camp_choice',
+            'cities_choice',
+        # }
+        ]
      # test these, then add start_date, start_time, discuss what else)
