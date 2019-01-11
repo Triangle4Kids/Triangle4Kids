@@ -17,6 +17,7 @@ django-filter = "*"
 django-bootstrap-form = "*"
 
 [dev-packages]
+pylint = "*"
 "flake8" = "*"
 
 [requires]
