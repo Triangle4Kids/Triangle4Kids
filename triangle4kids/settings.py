@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'registration',
     'multiselectfield',
+    'django_filters',
+    'bootstrapform',
+
 
 ]
 
@@ -66,7 +69,9 @@ ROOT_URLCONF = 'triangle4kids.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'core/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

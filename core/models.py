@@ -6,9 +6,6 @@ from multiselectfield import MultiSelectField
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-# Create your models here.
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
@@ -66,7 +63,7 @@ CLASS_CAMP = (('class', 'Class'),
 CITIES = (('raleigh', 'Raleigh'),
           ('durham', 'Durham'),
           ('cary', 'Cary'),
-          ('chapel_hill', 'Chapel Hill'),
+        #   ('chapel_hill', 'Chapel Hill'),
           )
 
 class Event(models.Model):

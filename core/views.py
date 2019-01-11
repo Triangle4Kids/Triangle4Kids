@@ -9,9 +9,15 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .filters import EventFilter
 from django.db.models import Avg
 
-# Create your views here.
+
+
+# from django-filters docs
+def event_list(request):
+    f = EventFilter(request.GET, queryset=Event.objects.all())
+    return render(request, 'events/event_list.html', {'filter': f})
 
 
 def index(request):
