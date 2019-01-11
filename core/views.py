@@ -48,12 +48,11 @@ def event_detail(request, slug):
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
 
-    return render(request, 'events/event_detail.html', {
+    return render(request, 'bsevent_detail.html', {
         'event': event,
         'is_favorite': is_favorite,
         'business': business,
         'business_slug': business_slug,
-        
     })
 
 def business_detail(request, slug):
@@ -77,7 +76,7 @@ def business_detail(request, slug):
    
 
 
-   return render(request, 'business/business_detail.html', {
+   return render(request, 'bsbusiness_detail.html', {
        'business': business,
        'events': events,
        'form': form,
