@@ -23,6 +23,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Business(models.Model):
     name = models.CharField(max_length=255)
+    # image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, blank=True, null=True)
+    email = models.EmailField(max_length=254, null=True, blank=True)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
@@ -58,12 +60,16 @@ AGE_RANGE = (('pre_k', 'Pre-K'),
 
 CLASS_CAMP = (('class', 'Class'),
               ('camp', 'Camp'),
+              ('homeschool', 'Homeschool'),
               )
 
 CITIES = (('raleigh', 'Raleigh'),
           ('durham', 'Durham'),
           ('cary', 'Cary'),
-        #   ('chapel_hill', 'Chapel Hill'),
+          ('chapel_hill', 'Chapel Hill'),
+          ('morrisville', 'Morrisville'),
+          ('rtp', 'RTP'),
+          ('carrboro', 'Carrboro'),
           )
 
 class Event(models.Model):
@@ -80,10 +86,10 @@ class Event(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     address = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    start_time = models.CharField(max_length=255)
-    end_time = models.CharField(max_length=255)
+    city = models.CharField(max_length=25)
+    state = models.CharField(max_length=2)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     favorite = models.ManyToManyField(User, related_name='favorite', blank=True)
 
     class Meta:
@@ -91,7 +97,6 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
-
 
 
 class LeaveReview(models.Model):
