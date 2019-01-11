@@ -35,7 +35,7 @@ urlpatterns = [
          name="password_reset_complete"),
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('index', views.new_index, name='new_index'),
+    # path('index', views.new_index, name='new_index'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', views.business_directory, name='business_directory'),
     path('business/<slug>/', views.business_detail, name='business_detail'),

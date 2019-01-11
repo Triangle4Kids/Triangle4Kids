@@ -17,24 +17,24 @@ from django.db.models import Avg
 def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all()
-    return render(request, 'index.html', {
-        "events": events,
-        "businesses": businesses,
-    })
-
-
-def new_index(request):
-    events = Event.objects.all()
-    businesses = Business.objects.all()
     return render(request, 'bsindex.html', {
         "events": events,
         "businesses": businesses,
     })
 
 
+# def new_index(request):
+#     events = Event.objects.all()
+#     businesses = Business.objects.all()
+#     return render(request, 'bsindex.html', {
+#         "events": events,
+#         "businesses": businesses,
+#     })
+
+
 def business_directory(request):
     businesses = Business.objects.all()
-    return render(request, 'business/business_directory.html', {
+    return render(request, 'bsbusiness_directory.html', {
         "businesses": businesses,
     })
 
@@ -110,7 +110,7 @@ def get_user_profile(request):
     reviews = LeaveReview.objects.filter(reviewer=user)
     favorite_event = user.favorite.all()
 
-    return render(request, 'user_account.html', {
+    return render(request, 'bsuser_account.html', {
         'reviews': reviews,
         'favorite_event': favorite_event,
     })

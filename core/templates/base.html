@@ -78,7 +78,7 @@
       #map {
         top: 0;
         bottom: 0;
-        width: 40%;
+        width: 100%;
       }
 </style>
 
@@ -128,9 +128,29 @@
 						<ul class="navbar-nav ml-auto mt-10">
 							<li class="nav-item">
 								<a class="nav-link login-button" href="index.html"> Submit an Event </a>
-							</li>
+                            </li>
+                            {% if user.is_authenticated %} 
+                            <li class="nav-item">
+                            
+								<a class="nav-link login-button" href="{% url 'get_user_profile' %}"> My Account </a> </li>
 							<li class="nav-item">
-								<a class="nav-link add-button" href="#"> Login </a>
+                            
+								<a class="nav-link add-button" href="{% url 'auth_logout' %}"> Logout</a> </li>
+                             {% else %}   
+                             <li class="nav-item">
+                                    <a class="nav-link login-button" href="{% url 'registration_register' %}"> Create Account </a>
+                                </li>
+                             <li class="nav-item">
+                                    <a class="nav-link add-button" href="{% url 'auth_login' %}"> Login </a>
+                                </li>
+                                
+                            
+                             <!-- <li class="nav-item">
+                                        <a class="nav-link add-button" href="{% url 'auth_login' %}">Login</a> </li>
+                                        <li class="nav-item">
+                                        <a class="nav-link add-button" href="{% url 'registration_register' %}">Register</a>
+                                    </li> -->
+                                {% endif %}
 							</li>
 						</ul>
 					</div>
@@ -139,6 +159,12 @@
 		</div>
 	</div>
 </section>
+
+
+
+
+
+
 
 
 
@@ -157,29 +183,8 @@
 
 {% block content %}{% endblock content %}
 
-    <h1 class="title"> Triangle4kids! </h1>
-
-    <button type="button" class="btn btn-warning"><a href="{% url 'home' %}"> Home | </a></button>
-    <button type="button" class="btn btn-warning"><a href="{% url 'business_directory' %}"> BUSINESS DIRECTORY </a></button>
-    <button type="button" class="btn btn-warning"><a href="{% url 'get_user_profile' %}"> MY PROFILE </a></button>
-    <button type="button" class="btn btn-warning"><a href="{% url 'new_index' %}"> new INDEX</a></button>
-
-<br>
-
-    {% if user.is_authenticated %} 
-            
-            <br>
-            <a href="{% url 'auth_logout' %}">Logout</a>
-            <p> logged in as: < {{user}} > </p>
-            
-        {% else %}
-            <li>
-                <a href="{% url 'auth_login' %}">Login</a> </li>
-                <li>
-                <a href="{% url 'registration_register' %}">Register</a>
-            </li>
-        {% endif %}
-{% block footer %}{% endblock footer %}
+   
+{% block footer %}{% endblock footer %} 
 
 <!--============================
 =            BASE Footer            =
@@ -232,7 +237,7 @@
             <!-- Icon -->
            
           </a>
-          <p>Get the Dealsy Mobile App and Save more</p>
+           <p> logged in as: < {{user}} > </p>
         </div>
       </div>
     </div>
