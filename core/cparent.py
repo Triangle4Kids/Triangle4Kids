@@ -8,7 +8,15 @@ source = requests.get('http://www.carolinaparent.com/CP/Camp-Listings/index.php?
     
 soup = BeautifulSoup(source, 'lxml')
 
-business = soup.find('business-name')
+listing = soup.find(id="listing0")
+
+business_tag = 
+for child in 
+name = listing.h4.text
+
+#address = 
+
+#city = 
 
 # for article in soup.find_all('div', class_='business-name')
 #
