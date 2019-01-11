@@ -11,7 +11,22 @@ soup = BeautifulSoup(source, 'lxml')
 print(soup.prettify())
 
 # for article in soup.find_all('div', class_='business-name')
-
+#
+# create a function in Python class called save_business and pass in parameter of name of the 
+# business model and then make another that is called save_event
+# create a new business model object
+# once I have a name, query the db and then get back the record that matches that name
+# if no record comes back, create a new one
+# add what you have to an array
+# outside the loop where you scrape...you loop through each of business objects you created and save them
+# need query for pagination...pass me page 1 with x items per page
+# find out how many pages there are in advance and do a for loop from page 1 to page last
+# if can't, 
+# 
+#
+# 
+#
+# 
 
 # headline = article.h2.a.text
 
