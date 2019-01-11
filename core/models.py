@@ -57,12 +57,16 @@ AGE_RANGE = (('pre_k', 'Pre-K'),
 
 CLASS_CAMP = (('class', 'Class'),
               ('camp', 'Camp'),
+              ('homeschool', 'Homeschool'),
               )
 
 CITIES = (('raleigh', 'Raleigh'),
           ('durham', 'Durham'),
           ('cary', 'Cary'),
-        #   ('chapel_hill', 'Chapel Hill'),
+          ('chapel_hill', 'Chapel Hill'),
+          ('morrisville', 'Morrisville'),
+          ('rtp', 'RTP'),
+          ('carrboro', 'Carrboro'),
           )
 
 class Event(models.Model):
