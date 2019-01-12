@@ -8,12 +8,18 @@ class EventFilter(django_filters.FilterSet):
     class Meta:
         model = Event
         fields = [
-        # {
-            # 'title': ['icontains'],
             'type_choice',
             'age_choice',
             'class_camp_choice',
             'cities_choice',
-        # }
         ]
+
+class EventFilterTextSearch(django_filters.FilterSet):
+
+    class Meta:
+        model = Event
+        fields = {
+            'title': ['icontains'],
+            'description': ['icontains']
+        }
      # test these, then add start_date, start_time, discuss what else)
