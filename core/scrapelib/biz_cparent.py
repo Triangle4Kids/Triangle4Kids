@@ -10,7 +10,13 @@ class CParentBizScraper(object):
     # Main entry point to run the scraper for CParent
     def Run(self):
         # Business model objects
-        bizList = []
+        bizList = [
+            'name',
+            'address',
+            'city',
+            'phone',
+            'link',
+        ]
 
         campList = self.getCampBizList()
         for camp in campList:
