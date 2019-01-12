@@ -96,7 +96,8 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
-
+# class Event_TypeForm(forms.Form):
+#     types = MultiSelectFormField(choices=EVENT_TYPE)
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="reviews")
