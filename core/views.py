@@ -13,7 +13,6 @@ from .filters import EventFilter
 from django.db.models import Avg
 
 
-
 # from django-filters docs
 def event_list(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
@@ -27,7 +26,6 @@ def index(request):
         "events": events,
         "businesses": businesses,
     })
-
 
 
 def business_directory(request):
@@ -46,41 +44,42 @@ def event_detail(request, slug):
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
 
-    return render(request, 'bsevent_detail.html', {
-        'event': event,
-        'is_favorite': is_favorite,
-        'business': business,
-        'business_slug': business_slug,
-    })
+    return render(
+        request, 'bsevent_detail.html', {
+            'event': event,
+            'is_favorite': is_favorite,
+            'business': business,
+            'business_slug': business_slug,
+        })
+
 
 def business_detail(request, slug):
-   business = Business.objects.get(slug=slug)
-   events = business.events.all()
+    business = Business.objects.get(slug=slug)
+    events = business.events.all()
 
-   form = LeaveReviewForm()
+    form = LeaveReviewForm()
 
+    if request.method == "POST":
+        form = LeaveReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.business = business
+            review.reviewer = request.user
+            review.save()
+            return redirect('business_detail', slug=business.slug)
 
-   if request.method == "POST":
-       form = LeaveReviewForm(request.POST)
-       if form.is_valid():
-           review = form.save(commit=False)
-           review.business = business
-           review.reviewer = request.user
-           review.save()
-           return redirect('business_detail', slug=business.slug)
+    review = LeaveReview.objects.filter(business=business)
+    average_score = review.aggregate(Avg('rating'))
 
-   review = LeaveReview.objects.filter(business=business)
-   average_score = review.aggregate(Avg('rating'))
-   
+    return render(
+        request, 'bsbusiness_detail.html', {
+            'business': business,
+            'events': events,
+            'form': form,
+            'review': review,
+            'average_score': average_score,
+        })
 
-
-   return render(request, 'bsbusiness_detail.html', {
-       'business': business,
-       'events': events,
-       'form': form,
-       'review': review,
-       'average_score': average_score,
-   })
 
 # MapBox #
 def default_map(request):
@@ -88,8 +87,8 @@ def default_map(request):
     # found in the Mapbox account settings and getting started instructions
     # see https://www.mapbox.com/account/ under the "Access tokens" section
     mapbox_access_token = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'
-    return render(request, 'default.html', 
-                  { 'mapbox_access_token': mapbox_access_token })
+    return render(request, 'default.html',
+                  {'mapbox_access_token': mapbox_access_token})
 
 
 @login_required
@@ -116,12 +115,12 @@ def get_user_profile(request):
 
 def favorite_event(request, id):
     event = get_object_or_404(Event, id=id)
-    
+
     if event.favorite.filter(id=request.user.id).exists():
         event.favorite.remove(request.user)
     else:
         event.favorite.add(request.user)
-    return redirect('event_detail', slug=event.slug )
+    return redirect('event_detail', slug=event.slug)
 
 
 def change_password(request):

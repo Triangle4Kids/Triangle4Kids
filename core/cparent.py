@@ -11,7 +11,8 @@ soup = BeautifulSoup(source, 'lxml')
 listing = soup.find(id="listing0")
 
 business_tag = 
-for child in 
+for child in listing_header
+
 name = listing.h4.text
 
 #address = 
