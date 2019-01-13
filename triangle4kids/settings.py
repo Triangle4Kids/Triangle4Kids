@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.sites',
+    
+    
     # My apps
     'core',
     # Third Party Apps
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'multiselectfield',
     'django_filters',
     'bootstrapform',
+    'djgeojson',
+    'leaflet',
 
 
 ]

@@ -1,10 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.core.validators import MinValueValidator, MaxValueValidator
+from djgeojson.fields import PointField
 
+class MushroomSpot(models.Model):
+    
+    geom = PointField(blank=True)
+    address = models.CharField(max_length=50, blank=True)
+    
+
+    def __unicode__(self):
+        return self.address
+
+    @property
+    def address(self):
+        return self.address
+    
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -72,6 +87,7 @@ CITIES = (('raleigh', 'Raleigh'),
 
 class Event(models.Model):
     type_choice = MultiSelectField(choices=EVENT_TYPE, null=True, blank=False)
+    location = PointField(blank=True)
     age_choice = models.CharField(max_length=20, null=True, blank=False, choices=AGE_RANGE)
     class_camp_choice = models.CharField(max_length=10, null=True, blank=False, choices=CLASS_CAMP)
     cities_choice = models.CharField(max_length=30, null=True, blank=False, choices=CITIES)

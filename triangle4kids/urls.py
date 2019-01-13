@@ -20,10 +20,13 @@ from django.urls import path
 # from core.views import search
 from core import views
 from django.urls import path, include
+from core.models import MushroomSpot
 from django.conf.urls import url
+from djgeojson.views import GeoJSONLayerView
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
     PasswordResetConfirmView, PasswordResetCompleteView,
+
 #sibtc
 # from search import views
 )
@@ -51,10 +54,10 @@ urlpatterns = [
    
     path(r'(?P<id>\d+)/favorite_event/$', views.favorite_event, name='favorite_event'),
     path('event/<int:pk>/favorite_event/', views.favorite_event, name='favorite_event'),
+    url(r'^data.geojson$', GeoJSONLayerView.as_view(model=MushroomSpot), name='data'),
 
     
-    #MapBox
-    url(r'', views.default_map, name="default"),
+    
 
 
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
-from core.models import Event, Business, LeaveReview, Profile
+from core.models import Event, Business, LeaveReview, Profile, MushroomSpot
 from core.forms import LeaveReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -39,6 +39,7 @@ def business_directory(request):
 
 def event_detail(request, slug):
     event = Event.objects.get(slug=slug)
+    mushroom = MushroomSpot.objects.all()
     is_favorite = False
     business = event.business
     business_slug = event.business.slug
@@ -51,6 +52,7 @@ def event_detail(request, slug):
         'is_favorite': is_favorite,
         'business': business,
         'business_slug': business_slug,
+        'mushroom': mushroom,
     })
 
 def business_detail(request, slug):
@@ -82,14 +84,7 @@ def business_detail(request, slug):
        'average_score': average_score,
    })
 
-# MapBox #
-def default_map(request):
-    # TODO: move this token to Django settings from an environment variable
-    # found in the Mapbox account settings and getting started instructions
-    # see https://www.mapbox.com/account/ under the "Access tokens" section
-    mapbox_access_token = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'
-    return render(request, 'default.html', 
-                  { 'mapbox_access_token': mapbox_access_token })
+
 
 
 @login_required

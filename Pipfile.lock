@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "88611560b91802f8e25f80c577bd089da7eb145880840fd0970f17a330e14a85"
+            "sha256": "91701be4045bab0e9054b51fb107c0308dac188144a4e9784ccfa9c4ba747857"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -70,6 +70,16 @@
             "index": "pypi",
             "version": "==2.0.0"
         },
+        "django-geojson": {
+            "extras": [
+                "field"
+            ],
+            "hashes": [
+                "sha256:7a892e1f8f17f10ffbced9f737c347eae975eb340cd3f00bc9e3896ecce4135d"
+            ],
+            "index": "pypi",
+            "version": "==2.12.0"
+        },
         "django-heroku": {
             "hashes": [
                 "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762",
@@ -77,6 +87,13 @@
             ],
             "index": "pypi",
             "version": "==0.3.1"
+        },
+        "django-leaflet": {
+            "hashes": [
+                "sha256:efdf98ae0bb52f1c5e0fdceb20b870dc6a58378340366a9083f857ccea66117b"
+            ],
+            "index": "pypi",
+            "version": "==0.24.0"
         },
         "django-multiselectfield": {
             "hashes": [
@@ -105,6 +122,14 @@
             ],
             "index": "pypi",
             "version": "==19.9.0"
+        },
+        "jsonfield": {
+            "hashes": [
+                "sha256:a0a7fdee736ff049059409752b045281a225610fecbda9b9bd588ba976493c12",
+                "sha256:beb1cd4850d6d6351c32daefcb826c01757744e9c863228a642f87a1a4acb834"
+            ],
+            "markers": "extra == 'field'",
+            "version": "==2.0.2"
         },
         "psycopg2": {
             "hashes": [

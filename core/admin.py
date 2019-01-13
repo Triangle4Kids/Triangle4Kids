@@ -1,7 +1,12 @@
 
 from django.contrib import admin
-from core.models import Profile, Event, Business, LeaveReview
+from leaflet.admin import LeafletGeoAdmin
+from core.models import Profile, Event, Business, LeaveReview, MushroomSpot
 # Register your models here.
+
+class ReviewAdmin(admin.ModelAdmin):
+    model = MushroomSpot
+    list_display = ("geom", "address")
 
 class EventsInLine(admin.StackedInline):
     model = Event
@@ -20,3 +25,4 @@ class ReviewAdmin(admin.ModelAdmin):
 
 admin.site.register(Business, BusinessAdmin)
 admin.site.register(LeaveReview, ReviewAdmin)
+admin.site.register(MushroomSpot, LeafletGeoAdmin)

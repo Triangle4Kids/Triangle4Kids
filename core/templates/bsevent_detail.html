@@ -1,11 +1,51 @@
 {% extends 'base.html' %} 
+{% load leaflet_tags %}
+{% load geojson_tags %}
+
+{% block extra_assets %}
+  {% leaflet_js %}
+  {% leaflet_css %}
+{% endblock %}
+
 {% block title %}
 Homepage - {{ block.super }} 
 {% endblock title %}
 
 {% block content %}
 
+<script type="text/javascript">
+      var collection = {{ mushroom|geojsonfeature|safe }};
 
+      function map_init(map, options) {
+          L.geoJson(collection).addTo(map);
+      }
+    </script>    
+
+
+	 
+
+
+  {% comment %} <script class="control goe attemppt1" type="text/javascript">
+  
+    let collection = {{ event.address|geojsonfeature|safe }};
+	let mushroom = {{ mushroom|geojsonfeature|safe }}
+	
+	let geocoder = new L.Control.Geocoder.Nominatim();
+	  
+	geocoder.geocode(collection, function(results) {    
+	let latLng= new L.LatLng(results[0].center.lat, results[0].center.lng);
+	let marker = new L.Marker (latLng);
+	L.geoJson(marker).addTo(map)
+          })						
+
+
+     function map_init(map, options) {
+          L.geoJson(collection).addTo(map); }  
+      
+    </script>    {% endcomment %}
+
+
+    {% leaflet_map "spots" callback="window.map_init" %}
 
 <!--=================================
 =            Single Blog            =
@@ -57,6 +97,7 @@ Homepage - {{ block.super }}
 					<p> Age: {{event.get_age_choice_display}}</p>
 					<p> Camp: {{event.get_class_camp_choice_display}}</p>
 					<p> City: {{event.get_cities_choice_display}}</p>
+					<p> Address: {{event.address}}</p>
 					
 					
 					<ul class="social-circle-icons list-inline">
