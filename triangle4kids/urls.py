@@ -24,8 +24,6 @@ from django.conf.urls import url
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
     PasswordResetConfirmView, PasswordResetCompleteView,
-#sibtc
-# from search import views
 )
 
 
@@ -40,7 +38,8 @@ urlpatterns = [
          name="password_reset_complete"),
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('events/', views.event_list, name='event_list'),
+    path('events-dropdown-select', views.event_list_preset, name='event_list_preset'),
+    path('events/', views.event_list_text, name='event_list_text'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', views.business_directory, name='business_directory'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
