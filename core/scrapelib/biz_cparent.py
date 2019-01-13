@@ -34,7 +34,7 @@ class CParentBizScraper(object):
     def getCampBizList(self, url):
         campBizList = []
 
-        pageUrl = urllib.request.urlopen(campDirectoryUrl)
+        pageUrl = urllib.request.urlopen(url)
         soupdata = BeautifulSoup(pageUrl, "html.parser")
         return soupdata
     
