@@ -9,6 +9,6 @@ page_url = "http://www.carolinaparent.com/CP/Camp-Listings/"
 last_page = soup.find(
     'div', class_='pagination').find(
         'li', class_='active').a['href'].split('=')[1]
-dept_page_url = [page_url.format(i) for i in range(1, int(last_page) + 1)]
+camp_page_url = [page_url.format(i) for i in range(1, int(last_page) + 1)]
 
-print(dept_page_url)
+print(camp_page_url)
