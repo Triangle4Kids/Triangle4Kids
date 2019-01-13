@@ -1,10 +1,11 @@
+import urllib
+import urllib.request
 import requests
 from bs4 import BeautifulSoup
 from core.models import Business
 
 
 class CParentBizScraper(object):
-    campDirectoryUrl = 'http://www.carolinaparent.com/CP/Camp-Listings/index.php?'
     sportDirectoryUrl = 'http://www.carolinaparent.com/CP/Sports-Fitness/'
 
     # Main entry point to run the scraper for CParent
@@ -22,7 +23,7 @@ class CParentBizScraper(object):
         for camp in campList:
             bizList.append(camp)
 
-        # Get more biz entries from other categories if you have time...
+        # Get more biz entries from other directories if you have time...
         # sportList=self.getSportBizList()
         # for sportBiz in sportList:
         #     self.bizList.append(sportBiz)
@@ -30,15 +31,19 @@ class CParentBizScraper(object):
         # Now just call Save to commit the changes to the database
         self.Save(bizList)
 
-    def getCampBizList(self):
+    def getCampBizList(self, url):
         campBizList = []
 
-        pageUrl = self.campDirectoryUrl
+        pageUrl = urllib.request.urlopen(campDirectoryUrl)
+        soupdata = BeautifulSoup(pageUrl, "html.parser")
+        return soupdata
+    
+    soup = getCampBizList("http://www.carolinaparent.com/CP/Camp-Listings/index.php?")
 
         while pageUrl != "":
-            #get the full page source
-            pageHtml = requests.get(pageUrl).text
-
+            # get the full page source
+            # pageHtml = urllib.request.urlopen(campDirectoryUrl)
+            # soup = BeautifulSoup(thepage, "html.parser")
             pageCamps = self.ParseCampPage(pageHtml)
 
             for pageCamp in pageCamps:
@@ -94,7 +99,8 @@ class CParentBizScraper(object):
     # If the parsing fails, return a "None" (empty) Business
     def ParseCampEntry(self, entrySource):
 
-        campName = ""
+        campName = soup.find('div', {"class": "business-name"})
+
         # TODO: Parse the HTML source for the name of the camp and update campName
         #
         #
@@ -105,6 +111,7 @@ class CParentBizScraper(object):
 
         # query the db to find an existing record with the current campName
         bizModel = Business.objects.filter(Name=campName).First()
+
         if (bizModel is None):
             bizModel = Business()
             bizModel.name = campName
@@ -112,11 +119,15 @@ class CParentBizScraper(object):
         # Now get other biz info and add it to the bizModel
         # TODO: Get the current address for the biz
         # Set the address info you found
-        bizModel.address = "the address"
-        bizModel.city = "the city"
+
+        bizModel.address = soup.find('div', {"class": "contact"}).find('p')
+        bizModel.city = data.contact.city
+
+        for listings in soup.findAll('div', {"class": "contact"}):
+            listings.find('p').text
 
         # TODO: Get phone
-        bizModel.phone = ""
+        bizModel.phone = data.contact.phone
 
         # TODO: Get link
         bizModel.link = ""
