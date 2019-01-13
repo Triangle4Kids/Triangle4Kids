@@ -99,7 +99,7 @@ class CParentBizScraper(object):
     # If the parsing fails, return a "None" (empty) Business
     def ParseCampEntry(self, entrySource):
 
-        campName = soup.find('div', {"class": "business-name"})
+        campName = soup.findAll("ul", {"class": "listings"})
 
         # TODO: Parse the HTML source for the name of the camp and update campName
         #
@@ -120,14 +120,14 @@ class CParentBizScraper(object):
         # TODO: Get the current address for the biz
         # Set the address info you found
 
-        bizModel.address = soup.find('div', {"class": "contact"}).find('p')
-        bizModel.city = data.contact.city
+        bizModel.address = soup.findAll("p", {"class": "address1"})
+        bizModel.city = soup.findAll("div", {"class": "contact"})
 
-        for listings in soup.findAll('div', {"class": "contact"}):
+        for listings in soup.findAll("p", {"class": "address1"}):
             listings.find('p').text
 
         # TODO: Get phone
-        bizModel.phone = data.contact.phone
+        bizModel.phone = soup.findAll("p", {"class": "phone"})
 
         # TODO: Get link
         bizModel.link = ""
