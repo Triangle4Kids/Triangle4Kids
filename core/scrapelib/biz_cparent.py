@@ -48,8 +48,7 @@ class CParentBizScraper(object):
 
             for pageCamp in pageBizModelList:
                 campBizList.append(pageCamp)
-            #Just test with first page...
-            return
+
             # TODO: check to see if this is the last page
             pageUrl = self.GetNextPageUrl(pageHtml)
             # END OF WHILE LOOP
@@ -212,15 +211,14 @@ class CParentBizScraper(object):
             # if (country != bizModel.country):
             #     bizModel.country=country
 
-        #bizModel.slug = bizModel.name.replace(" ", "_")
-
+        bizModel.slug = bizModel.name.replace(" ", "_")
         print("[" + self.EntryName() + "]")
         print("   Name: " + bizModel.name)
         print("   Link: " + bizModel.link)
         print("   Phone: " + str(bizModel.phone))
         print("   Address: " + bizModel.address)
         print("   City: " + bizModel.city)
-        #print("   Slug: " + bizModel.slug)
+        print("   Slug: " + bizModel.slug)
         print("")
         # We are done, just return the biz object
         return bizModel

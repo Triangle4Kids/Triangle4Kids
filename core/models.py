@@ -32,14 +32,10 @@ class Business(models.Model):
     phone = PhoneField(blank=True, help_text='Contact phone number')
     average_rating = models.FloatField(default="0")
     link = models.URLField(null=True, blank=True)
-
-    #slug = models.SlugField(unique=True, max_length=255)
+    slug = models.SlugField(unique=True, max_length=255)
 
     class Meta:
         verbose_name_plural = "Businesses"
-
-    def slug(self):
-        return self.pk
 
     def __str__(self):
         return self.name
