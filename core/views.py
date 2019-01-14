@@ -81,14 +81,14 @@ def business_detail(request, slug):
         })
 
 
-# MapBox #
-def default_map(request):
-    # TODO: move this token to Django settings from an environment variable
-    # found in the Mapbox account settings and getting started instructions
-    # see https://www.mapbox.com/account/ under the "Access tokens" section
-    mapbox_access_token = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'
-    return render(request, 'default.html',
-                  {'mapbox_access_token': mapbox_access_token})
+# # MapBox #
+# def default_map(request):
+#     # TODO: move this token to Django settings from an environment variable
+#     # found in the Mapbox account settings and getting started instructions
+#     # see https://www.mapbox.com/account/ under the "Access tokens" section
+#     mapbox_access_token = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'
+#     return render(request, 'default.html',
+#                   {'mapbox_access_token': mapbox_access_token})
 
 
 @login_required

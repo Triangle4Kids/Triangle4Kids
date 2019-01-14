@@ -175,7 +175,8 @@ class CParentBizScraper(object):
             bizModel = Business()
             bizModel.name = listingName
 
-        bizLink = bizHeaderTag.a['href']
+        cpLink = bizHeaderTag.a['href']
+        bizLink = self.GetLinkFromDetailPage(cpLink)
         if (bizModel.link != bizLink):
             bizModel.link = bizLink
 
@@ -191,9 +192,18 @@ class CParentBizScraper(object):
         cityLine = str(bizDataTag.select(".city")[0].string)
         if (cityLine is not None):
             # TODO: Parse city line:
-            # City line may have one or more of "city, state zip"
-            if (cityLine != bizModel.city):
-                bizModel.city = cityLine
+            # City line may have zero, one or more of "city, state zip"
+            # split out city, state and zip from this cityLine
+            city = ""
+            state = ""
+            zipcode = ""
+
+            if (city != bizModel.city):
+                bizModel.city = city
+            if (state != bizModel.state):
+                bizModel.state = state
+            if (zipcode != bizModel.zipcode):
+                bizModel.zipcode = zipcode
 
         phone = bizDataTag.select(".phone")[0]
         if (phone is not None):
@@ -234,6 +244,30 @@ class CParentBizScraper(object):
         print("")
         # We are done, just return the biz object
         return bizModel
+
+    def GetLinkFromDetailPage(self, cpDetailLink):
+        # Go get the html for the detail page
+        # find the link and return it
+        # <a href="http://www.trianglerockclub.com/morrisville/youth/track-out-camps/"
+        # target="_new"
+        # class="geobaselink"
+        # onclick="geobase_tracker.track('58133','weblinkclick')">www.trianglerockclub.c...</a>
+        response = urllib.request.urlopen(cpDetailLink)
+        pageHtml = response.read()
+        docTag = BeautifulSoup(pageHtml, "html.parser")
+        linkElements = docTag.find_all("a", {"class": "geobaselink"})
+        linkCount = len(linkElements)
+        if (linkCount == 0):
+            # linkElements = docTag.find_all([0].strong, {"href"})
+            print("Can't find a public link for the biz")
+            return cpDetailLink
+        elif (linkCount > 1):
+            print(
+                "Got multiple elements to choose from, Norman, please compute..."
+            )
+            return cpDetailLink
+        else:
+            return str(linkElements[0]['href'])
 
     def Save(self, bizModelList):
         # Do duplicate

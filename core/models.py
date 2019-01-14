@@ -26,9 +26,10 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Business(models.Model):
     name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    zipcode = models.CharField(max_length=16, blank=True)
     phone = PhoneField(blank=True, help_text='Contact phone number')
     average_rating = models.FloatField(default="0")
     link = models.URLField(null=True, blank=True)
