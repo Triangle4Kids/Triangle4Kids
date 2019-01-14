@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
+
     # My apps
     'core',
+
     # Third Party Apps
     'django_extensions',
     'debug_toolbar',
