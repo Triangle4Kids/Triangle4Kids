@@ -1,23 +1,19 @@
 import urllib
 import urllib.request
-import requests
 from bs4 import BeautifulSoup
 from core.models import Business
 
 
 class CParentBizScraper(object):
+    campDirectoryUrl = "http://www.carolinaparent.com/CP/Camp-Listings/"
     sportDirectoryUrl = 'http://www.carolinaparent.com/CP/Sports-Fitness/'
+    pageIndex = 0  # Just a hint for debugging, not required
+    listingIndex = 0  # Just a hint for debugging, not required
 
     # Main entry point to run the scraper for CParent
     def Run(self):
         # Business model objects
-        bizList = [
-            'name',
-            'address',
-            'city',
-            'phone',
-            'link',
-        ]
+        bizList = []
 
         campList = self.getCampBizList()
         for camp in campList:
@@ -29,29 +25,33 @@ class CParentBizScraper(object):
         #     self.bizList.append(sportBiz)
 
         # Now just call Save to commit the changes to the database
-        self.Save(bizList)
+        print("Don't save to db yet...")
+        #self.Save(bizList)
 
-    def getCampBizList(self, url):
+    def getCampBizList(self):
         campBizList = []
-
-        pageUrl = urllib.request.urlopen(url)
-        soupdata = BeautifulSoup(pageUrl, "html.parser")
-        return soupdata
-    
-    soup = getCampBizList("http://www.carolinaparent.com/CP/Camp-Listings/index.php?")
+        print("[Getting CParent Camp Listings]")
+        pageUrl = self.campDirectoryUrl
 
         while pageUrl != "":
+            self.pageIndex = self.pageIndex + 1
+            print("Requesting Page " + str(self.pageIndex))
             # get the full page source
-            # pageHtml = urllib.request.urlopen(campDirectoryUrl)
-            # soup = BeautifulSoup(thepage, "html.parser")
-            pageCamps = self.ParseCampPage(pageHtml)
+            response = urllib.request.urlopen(pageUrl)
+            pageHtml = response.read()
 
-            for pageCamp in pageCamps:
+            if (pageHtml is None):
+                print("Failed to retrieve page")
+                return
+
+            pageBizModelList = self.ParseCampPage(pageHtml)
+
+            for pageCamp in pageBizModelList:
                 campBizList.append(pageCamp)
-
-                # TODO: check to see if this is the last page
-                pageUrl = self.GetNextPageUrl(pageHtml)
-
+            #Just test with first page...
+            return
+            # TODO: check to see if this is the last page
+            pageUrl = self.GetNextPageUrl(pageHtml)
             # END OF WHILE LOOP
 
         # Return the list of biz Names from all pages
@@ -60,8 +60,18 @@ class CParentBizScraper(object):
     def GetNextPageUrl(self, pageHtml):
         nextPageUrl = ""
 
-        # TODO: Parse the pageHtml for the next page url in the pagination div
-        # ...
+        #Create a new parser for the page content that was passed to us
+        soup = BeautifulSoup(pageHtml, "html.parser")
+
+        #Find the listings element (use find, there should only be one!)
+        # paginationTag = soup.find("div", {"class": "pagination"})
+        nextPageLinkTag = soup.find("a", {"class": "afteractive"})
+        if (nextPageLinkTag is None):
+            print("No pagination tag found on page " + str(self.pageIndex))
+        else:
+            nextPageUrl = str(nextPageLinkTag['href'])
+            # TODO: Parse the pageHtml for the next page url in the pagination div
+            print("TODO: implement parsing of pagination for next page url")
 
         return nextPageUrl
 
@@ -69,13 +79,19 @@ class CParentBizScraper(object):
     def ParseCampPage(self, pageHtml):
         currentCampPageBizList = []
 
-        # Get a list of the biz entry HTML on the page
-        pageEntrySourceList = self.GetPageCampEntrySources(pageHtml)
+        contentLength = len(pageHtml)
+        if (contentLength == 0):
+            print("No content provided, skipping page")
+            return currentCampPageBizList
 
+        # Get a list of the biz entry HTML on the page
+        pageCampListings = self.GetPageCampListings(pageHtml)
+        self.listingIndex = 0
         # Loop through all the entries on the page
         # and parse each one to create a business model object
-        for entrySource in pageEntrySourceList:
-            bizModel = self.ParseCampEntry(entrySource)
+        for listingTag in pageCampListings:
+            self.listingIndex = self.listingIndex + 1
+            bizModel = self.ParseListing(listingTag)
             if (bizModel is not None):
                 currentCampPageBizList.append(bizModel)
 
@@ -83,60 +99,140 @@ class CParentBizScraper(object):
         return currentCampPageBizList
 
     # This should get the HTML for each "biz entry on the page"
-    def GetPageCampEntrySources(self, pageSource):
-        pageEntrySources = []
-        # soup = BeautifulSoup(pageSource, 'lxml')
-        # listing = soup.find(id="listing0")
+    def GetPageCampListings(self, pageHtml):
+        contentLength = len(pageHtml)
+        if (contentLength == 0):
+            print("No page content provided, skipping page")
+            return []
 
-        # TODO: Parse the page source and for each biz you find, append
-        # TODO: it to pageEntrySources
+        print("Parsing camp listings from page " + str(self.pageIndex) +
+              " content: " + str(contentLength) + " bytes")
 
-        return pageEntrySources
+        #Create a new parser for the page content that was passed to us
+        soup = BeautifulSoup(pageHtml, "html.parser")
 
-    # This should get the HTML for each "biz entry on the page"
-    # It will populate a Business model object with the information
-    # and return it.
-    # If the parsing fails, return a "None" (empty) Business
-    def ParseCampEntry(self, entrySource):
+        #Reset listing to 0 since we are starting a new page
+        self.listingIndex = 0
 
-        campName = soup.findAll("ul", {"class": "listings"})
+        #Find the listings element (use find, there should only be one!)
+        listingElement = soup.find("ul", {"class": "listings"})
+        if (listingElement is None):
+            print("Listings not found on page " + self.pageIndex)
+            return []
 
-        # TODO: Parse the HTML source for the name of the camp and update campName
-        #
-        #
-        # campName="What I found"
+        listingContent = listingElement.contents
+        contentLength = len(listingContent)
+        print("[Page listing: " + str(contentLength) + " bytes")
 
-        if campName == "":
-            return None
+        listings = listingElement.find_all("li")
+        listingCount = len(listings)
+        if (listingCount == 0):
+            print("No listings found in listing container on " +
+                  self.EntryName())
+            return []
+
+        print("Found " + str(listingCount) + " listings...")
+        return listings
+
+    # Parse a listing entry and return either a new or updated database entry
+    def ParseListing(self, listingTag):
+        bizModel = None
+
+        print("[Parsing Listing]")
+        # First get the info from the element with the class "business-name":
+        # <h4 class="business-name">
+        #     <a
+        #         href="http://www.carolinaparent.com/CP/Camp-Listings/index.php/name/Biomedicine-Bots-Computing-Engineering-STEM-for-Kids/listing/58765/"
+        #         target="_top" class="geobaselink" onclick="geobase_tracker.track('58765','clickthrough')">
+        #         Biomedicine, Bots, Computing &amp; Engineering - STEM for Kids
+        #     </a>
+        # </h4>
+
+        #print(listingTag.contents)
+
+        bizHeaderTag = listingTag.select(".business-name")[0]
+        if (bizHeaderTag is None):
+            print("Can't find business header for Listing ")
+            return bizModel
+
+        bizDataTag = listingTag.select(".data")[0]
+        if (bizDataTag is None):
+            print("Can't find business data for Listing ")
+            return bizModel
+
+        if (bizHeaderTag.a is None):
+            print("Can't find business Link for Listing ")
+            return bizModel
+
+        listingName = bizHeaderTag.a.string
+        print("BusinessName: " + listingName)
 
         # query the db to find an existing record with the current campName
-        bizModel = Business.objects.filter(Name=campName).First()
+        bizModel = Business.objects.filter(name=listingName).first()
 
         if (bizModel is None):
+            print("No existing database entry found for: [" + listingName +
+                  "], creating new item")
             bizModel = Business()
-            bizModel.name = campName
+            bizModel.name = listingName
 
-        # Now get other biz info and add it to the bizModel
-        # TODO: Get the current address for the biz
-        # Set the address info you found
+        bizLink = bizHeaderTag.a['href']
+        if (bizModel.link != bizLink):
+            bizModel.link = bizLink
 
-        bizModel.address = soup.findAll("p", {"class": "address1"})
-        bizModel.city = soup.findAll("div", {"class": "contact"})
+        addressLines = bizDataTag.select(".address1")
 
-        for listings in soup.findAll("p", {"class": "address1"}):
-            listings.find('p').text
+        address = ""
+        if (addressLines is not None):
+            for addrLine in addressLines:
+                address = address + " " + str(addrLine.string)
+            if (address != bizModel.address):
+                bizModel.address = address
 
-        # TODO: Get phone
-        bizModel.phone = soup.findAll("p", {"class": "phone"})
+        cityLine = str(bizDataTag.select(".city")[0].string)
+        if (cityLine is not None):
+            # TODO: Parse city line:
+            # City line may have one or more of "city, state zip"
+            if (cityLine != bizModel.city):
+                bizModel.city = cityLine
 
-        # TODO: Get link
-        bizModel.link = ""
+        phone = bizDataTag.select(".phone")[0]
+        if (phone is not None):
+            phoneString = str(phone.string)
+            if (phoneString != bizModel.phone):
+                bizModel.phone = phoneString
 
-        # ...
+        # # todo: add country to business model
+        country = bizDataTag.select(".country")[0]
+        if (country is not None):
+            country = country.string
+            if (country == ""):
+                country = "USA"
+            # TODO: Add country to Business Model
+            # if (country != bizModel.country):
+            #     bizModel.country=country
 
+        #bizModel.slug = bizModel.name.replace(" ", "_")
+
+        print("[" + self.EntryName() + "]")
+        print("   Name: " + bizModel.name)
+        print("   Link: " + bizModel.link)
+        print("   Phone: " + str(bizModel.phone))
+        print("   Address: " + bizModel.address)
+        print("   City: " + bizModel.city)
+        #print("   Slug: " + bizModel.slug)
+        print("")
         # We are done, just return the biz object
         return bizModel
 
-    def Save(self, bizList):
-        for biz in bizList:
-            biz.Save()
+    def Save(self, bizModelList):
+        # Do duplicate
+        savedNames = []
+
+        for bizModel in bizModelList:
+            if bizModel.Name in savedNames:
+                bizModel.save()
+
+    def EntryName(self):
+        return "Entry[" + str(self.pageIndex) + "][" + str(
+            self.listingIndex) + "]"
