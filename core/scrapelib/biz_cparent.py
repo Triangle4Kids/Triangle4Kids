@@ -25,8 +25,8 @@ class CParentBizScraper(object):
         #     self.bizList.append(sportBiz)
 
         # Now just call Save to commit the changes to the database
-        print("Don't save to db yet...")
-        #self.Save(bizList)
+        # print("Don't save to db yet...")
+        self.Save(bizList)
 
     def getCampBizList(self):
         campBizList = []
@@ -228,8 +228,11 @@ class CParentBizScraper(object):
         savedNames = []
 
         for bizModel in bizModelList:
-            if bizModel.Name in savedNames:
+            if bizModel.name not in savedNames:
                 bizModel.save()
+                savedNames.append(bizModel.name)
+            else:
+                print("Skipping previously saved biz: " + bizModel.name)
 
     def EntryName(self):
         return "Entry[" + str(self.pageIndex) + "][" + str(
