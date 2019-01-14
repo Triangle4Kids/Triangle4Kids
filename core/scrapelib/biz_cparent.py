@@ -191,19 +191,24 @@ class CParentBizScraper(object):
 
         cityLine = str(bizDataTag.select(".city")[0].string)
         if (cityLine is not None):
-            # TODO: Parse city line:
-            # City line may have zero, one or more of "city, state zip"
-            # split out city, state and zip from this cityLine
-            city = ""
-            state = ""
-            zipcode = ""
+            # TODO: Parse city line???
+            # City line may have one or more of "city, state zip"
+            if (cityLine != bizModel.city):
+                bizModel.city = cityLine
 
-            if (city != bizModel.city):
-                bizModel.city = city
-            if (state != bizModel.state):
-                bizModel.state = state
-            if (zipcode != bizModel.zipcode):
-                bizModel.zipcode = zipcode
+        #     # TODO: Parse city line:
+        #     # City line may have zero, one or more of "city, state zip"
+        #     # split out city, state and zip from this cityLine
+        #     city = ""
+        #     state = ""
+        #     zipcode = ""
+
+        #     if (city != bizModel.city):
+        #         bizModel.city = city
+        #     if (state != bizModel.state):
+        #         bizModel.state = state
+        #     if (zipcode != bizModel.zipcode):
+        #         bizModel.zipcode = zipcode
 
         phone = bizDataTag.select(".phone")[0]
         if (phone is not None):
@@ -257,17 +262,28 @@ class CParentBizScraper(object):
         docTag = BeautifulSoup(pageHtml, "html.parser")
         linkElements = docTag.find_all("a", {"class": "geobaselink"})
         linkCount = len(linkElements)
-        if (linkCount == 0):
+        if (linkCount == 1):
+            return str(linkElements[0]['href'])
+        elif (linkCount > 1):
+            print("Got multiple elements to choose from please compute...")
+            return cpDetailLink
+
+        elif (linkCount == 0):
+            strongTags = docTag.find_all("strong", text="Website")
+            if len(strongTags) > 0:
+                website = strongTags[0]
+                if website:
+                    url = website.find_next_sibling("a")['href']
+                    if url:
+                        return url
+                else:
+                    return cpDetailLink
+            else:
+                return cpDetailLink
+        else:
             # linkElements = docTag.find_all([0].strong, {"href"})
             print("Can't find a public link for the biz")
             return cpDetailLink
-        elif (linkCount > 1):
-            print(
-                "Got multiple elements to choose from, Norman, please compute..."
-            )
-            return cpDetailLink
-        else:
-            return str(linkElements[0]['href'])
 
     def Save(self, bizModelList):
         # Do duplicate
