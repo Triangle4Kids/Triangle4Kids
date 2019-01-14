@@ -32,6 +32,7 @@ class Business(models.Model):
     phone = PhoneField(blank=True, help_text='Contact phone number')
     average_rating = models.FloatField(default="0")
     link = models.URLField(null=True, blank=True)
+    categories = models.CharField(max_length=1024, blank=True)
     slug = models.SlugField(unique=True, max_length=255)
 
     class Meta:

@@ -211,6 +211,17 @@ class CParentBizScraper(object):
             # if (country != bizModel.country):
             #     bizModel.country=country
 
+        categoryList = []
+        categoriesDiv = bizDataTag.select(".categories")[0]
+        if (categoriesDiv is not None):
+            catSpan = categoriesDiv.select("span")[1]
+            if (catSpan is not None):
+                categoryText = str(catSpan.string).strip()
+                categoryList = categoryText.split(",")
+            else:
+                print("No categories found for " + bizModel.name)
+        bizModel.categories = ', '.join([str(x) for x in categoryList])
+
         bizModel.slug = bizModel.name.replace(" ", "_")
         print("[" + self.EntryName() + "]")
         print("   Name: " + bizModel.name)
@@ -219,6 +230,7 @@ class CParentBizScraper(object):
         print("   Address: " + bizModel.address)
         print("   City: " + bizModel.city)
         print("   Slug: " + bizModel.slug)
+        print("   Categories: " + bizModel.categories)
         print("")
         # We are done, just return the biz object
         return bizModel
@@ -226,13 +238,25 @@ class CParentBizScraper(object):
     def Save(self, bizModelList):
         # Do duplicate
         savedNames = []
+        newItems = 0
+        updatedItems = 0
+        skippedItems = 0
 
         for bizModel in bizModelList:
             if bizModel.name not in savedNames:
+                if (bizModel.pk == 0):
+                    newItems = newItems + 1
+                else:
+                    updatedItems = updatedItems + 1
                 bizModel.save()
                 savedNames.append(bizModel.name)
             else:
                 print("Skipping previously saved biz: " + bizModel.name)
+                skippedItems = skippedItems + 1
+
+        print("New Listings: " + str(newItems))
+        print("Updated Listings: " + str(updatedItems))
+        print("Duplicate names skipped: " + str(skippedItems))
 
     def EntryName(self):
         return "Entry[" + str(self.pageIndex) + "][" + str(
