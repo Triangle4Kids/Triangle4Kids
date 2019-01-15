@@ -7,13 +7,19 @@ Homepage - {{ block.super }}
 
 
 
+    <h1 class="subtitle">-------------Businesses-------------------</h1>
+    {% for biz in businesses %}
+    
+        <div class="panel panel-default businesses">  
+            <div class="panel  business">    
+                <h1><a href="{% url 'bsbusiness_detail' slug=biz.slug %}"> Name:{{biz.name}} </a></h1>
+                <hr>
+            </div>
+        </div>
+
     <h1 class="subtitle">-------------Events-------------------</h1>
     <br>
     <br>
-    
-
-
-
     {% for event in events %}
     
         <div class="panel panel-default">  

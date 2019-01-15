@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block title %}Event List{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+
+  <form method="GET">
+    {{ filter.form|bootstrap }}
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  
+
+  <ul> 
+  {% for event in filter.qs %}
+    <li>
+     
+    {{ event.title }} - {{ event.class_camp_choice }}
+    <p>{{ event.start_date }} - {{ event.end_date }}</p>
+    <p>{{ event.start_time }} - {{ event.end_time }}</p>
+    <p>{{ event.type_choice }}</p>
+    <p>{{ event.get_age_choice_display }}</p>
+    <p>{{ event.get_cities_choice_display }}</p>
+    <p>{{ event.business }}</p>
+    <p>{{ event.link }}</p>
+    <p>{{ event.description }}</p>
+    <p>{{ event.address }}</p>
+    <!-- <p>{{ event.city }}</p> -->
+           <!-- <p>{{ event.favorite }}</p> -->
+           
+    </li>
+  {% endfor %}
+</ul>
+
+</div>
+<!-- alternatively: -->
+    <!-- <form action="" method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for event in filter.qs %}
+        {{ event.title }} - ${{ event.city }}<br />
+    {% endfor %} -->
+
+{% endblock %}

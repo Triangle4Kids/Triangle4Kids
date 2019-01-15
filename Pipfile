@@ -13,10 +13,15 @@ gunicorn = "*"
 django-heroku = "*"
 django-category = "*"
 django-multiselectfield = "*"
+django-filter = "*"
+django-bootstrap-form = "*"
+django-phone-field = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 pylint = "*"
 "flake8" = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.7"
