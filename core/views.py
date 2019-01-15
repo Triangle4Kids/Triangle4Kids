@@ -39,6 +39,7 @@ def business_directory(request):
 
 def event_detail(request, slug):
     event = Event.objects.get(slug=slug)
+    nevent = Event.objects.all()
     mushroom = MushroomSpot.objects.all()
     is_favorite = False
     business = event.business

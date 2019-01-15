@@ -105,6 +105,7 @@ class Event(models.Model):
     start_time = models.CharField(max_length=255)
     end_time = models.CharField(max_length=255)
     favorite = models.ManyToManyField(User, related_name='favorite', blank=True)
+    
 
     class Meta:
         verbose_name_plural = "Events"

@@ -10,7 +10,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
 class EventsInLine(admin.StackedInline):
     model = Event
-    list_display = ("title", "address", "link", "description", "date_of_event", "time_range", "start_date", "end_date", "city", "state", "start_time", "end_time")
+    list_display = ("title", "address", "link", "description", "date_of_event", "time_range", "start_date", "end_date", "city", "state", "start_time", "end_time", "list")
     prepopulated_fields = {'slug': ('title',)}
 
 class BusinessAdmin(admin.ModelAdmin):
@@ -26,3 +26,4 @@ class ReviewAdmin(admin.ModelAdmin):
 admin.site.register(Business, BusinessAdmin)
 admin.site.register(LeaveReview, ReviewAdmin)
 admin.site.register(MushroomSpot, LeafletGeoAdmin)
+admin.site.register(Event, LeafletGeoAdmin)
