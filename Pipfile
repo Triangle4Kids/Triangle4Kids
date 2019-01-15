@@ -15,6 +15,7 @@ django-category = "*"
 django-multiselectfield = "*"
 django-filter = "*"
 django-bootstrap-form = "*"
+django-phone-field = "*"
 
 [dev-packages]
 pylint = "*"
