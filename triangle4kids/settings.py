@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
+    # Other django apps
+    'django.contrib.postgres',
     # My apps
     'core',
     # Third Party Apps

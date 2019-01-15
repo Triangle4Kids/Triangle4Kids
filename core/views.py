@@ -13,6 +13,42 @@ from .filters import EventFilterTextSearch, EventFilter
 
 from django.db.models import Avg
 
+# from django.contrib.postgres.search import SearchQuery
+# from django.contrib.postgres.search import SearchVector
+# from .forms import SearchForm
+
+# class SearchResultsListView(ListView):
+#     model = Article
+#     template_name = 'app/article_search.html'
+
+#     def get_queryset(self):
+#         search_query = SearchQuery(
+#             self.request.GET.get('q', ''),
+#             config=settings.SEARCH_LANGS[settings.LANGUAGE_CODE],
+#         )
+
+#         vector = SearchVector(
+#             'name',
+#             'content',
+#             config=settings.SEARCH_LANGS[settings.LANGUAGE_CODE],
+#         )
+
+#         if self.request.user.is_authenticated:
+#             queryset = Article.actives.all()
+#         else:
+#             queryset = Article.publics.all()
+
+#         return queryset.annotate(search=vector,).filter(search=search_query)
+
+#     def get_context_data(self, **kwargs):
+#         context = super(SearchResultsListView, self).get_context_data(**kwargs)
+#         context['form'] = SearchForm(self.request.GET)
+#         return context
+
+
+# def def get_queryset(self):
+#     queryset = Business.average_rating.all()
+#     return super().get_queryset()
 
 
 # from django-filters docs
