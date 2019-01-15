@@ -15,20 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from django.views.generic import TemplateView
 # from core.views import EventListView
 # from core.views import search
 from core import views
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib.auth.views import (
-
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
     PasswordResetCompleteView,
-   
 )
+
+from django.views.generic import TemplateView
+
+from core.views import BusinessResultsListView
 
 urlpatterns = [
     path(
@@ -56,7 +57,7 @@ urlpatterns = [
     path('events-dropdown-select', views.event_list_preset, name='event_list_preset'),
     path('events/', views.event_list_text, name='event_list_text'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
-    path('business/', views.business_directory, name='business_directory'),
+    path('business/', BusinessResultsListView.as_view(), name='business_list'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
