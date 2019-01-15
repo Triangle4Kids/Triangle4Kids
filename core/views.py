@@ -19,6 +19,7 @@ def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
     return render(request, 'events/event_list.html', {'filter': f})
 
+
 def event_list_text(request):
     f = EventFilterTextSearch(request.GET, queryset=Event.objects.all())
     return render(request, 'events/event_list.html', {'filter': f})
@@ -28,6 +29,15 @@ def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all()
     return render(request, 'bsindex.html', {
+        "events": events,
+        "businesses": businesses,
+    })
+
+
+def mapboxTest(request):
+    events = Event.objects.all()
+    businesses = Business.objects.all()
+    return render(request, 'mapboxTest.html', {
         "events": events,
         "businesses": businesses,
     })
