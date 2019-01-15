@@ -9,13 +9,18 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .filters import EventFilter
+from .filters import EventFilterTextSearch, EventFilter
+
 from django.db.models import Avg
 
 
 # from django-filters docs
-def event_list(request):
+def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
+    return render(request, 'events/event_list.html', {'filter': f})
+
+def event_list_text(request):
+    f = EventFilterTextSearch(request.GET, queryset=Event.objects.all())
     return render(request, 'events/event_list.html', {'filter': f})
 
 

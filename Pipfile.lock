@@ -1,9 +1,7 @@
 {
     "_meta": {
         "hash": {
-django-filters-for-real
-            "sha256": "e99353bd008e543683150f9b7fae48a9f7da0410b1d5e677274d509589230645"
-
+            "sha256": "88611560b91802f8e25f80c577bd089da7eb145880840fd0970f17a330e14a85"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -269,9 +267,9 @@ django-filters-for-real
         },
         "wrapt": {
             "hashes": [
-                "sha256:d4d560d479f2c21e1b5443bbd15fe7ec4b37fe7e53d335d3b9b0a7b1226fe3c6"
+                "sha256:e03f19f64d81d0a3099518ca26b04550026f131eced2e76ced7b85c6b8d32128"
             ],
-            "version": "==1.10.11"
+            "version": "==1.11.0"
         }
     }
 }

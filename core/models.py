@@ -113,6 +113,7 @@ class Event(models.Model):
         return self.title
 
 
+
 class LeaveReview(models.Model):
     business = models.ForeignKey(
         Business, on_delete=models.CASCADE, related_name="reviews")
