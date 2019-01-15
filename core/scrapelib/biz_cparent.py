@@ -237,7 +237,7 @@ class CParentBizScraper(object):
                 print("No categories found for " + bizModel.name)
         bizModel.categories = ', '.join([str(x) for x in categoryList])
 
-        bizModel.slug = bizModel.name.replace(" ", "_")
+        bizModel.slug = bizModel.name.replace(" ", "-")
         print("[" + self.EntryName() + "]")
         print("   Name: " + bizModel.name)
         print("   Link: " + bizModel.link)
