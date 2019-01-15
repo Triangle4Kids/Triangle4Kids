@@ -44,8 +44,8 @@ class Business(models.Model):
 
 
 EVENT_TYPE = (
-    ('half_day', 'Half-Day'),
-    ('full_day', 'Full-Day'),
+    # ('half_day', 'Half-Day'),
+    # ('full_day', 'Full-Day'),
     ('academic', 'Academic'),
     ('arts_crafts', 'Arts & Crafts'),
     ('athletics', 'Athletics'),
@@ -112,7 +112,11 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+# class Category(models.Model):
+#     name = 
+   
 
+#     def __str__
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(

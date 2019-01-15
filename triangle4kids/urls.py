@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from django.views.generic import TemplateView
 # from core.views import EventListView
 # from core.views import search
 from core import views

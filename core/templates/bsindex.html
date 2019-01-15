@@ -35,6 +35,7 @@ Homepage - {{ block.super }}
 					
 				</div>
 				<!-- Advance Search -->
+				<!-- Business full text search: (This is the small text field on the top; needs styling) -->
 				<div class="advance-search">
 					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
 						<button class="searchbutton" type="submit">
@@ -43,7 +44,11 @@ Homepage - {{ block.super }}
 						<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
 					  </form>>
 						<div class="row">
+				<!-- End Business full text search: -->
 							<!-- Store Search -->
+							
+
+
 							<div class="col-lg-6 col-md-12">
 								<div class="block d-flex">
 									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">

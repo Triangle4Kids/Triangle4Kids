@@ -7,7 +7,6 @@ class EventFilter(django_filters.FilterSet):
         model = Event
         fields = [
             # 'type_choice',
-            # type_choice 
             'age_choice',
             'class_camp_choice',
             'cities_choice',
@@ -18,16 +17,21 @@ class EventFilterTextSearch(django_filters.FilterSet):
     class Meta:
         model = Event
         fields = {
-            'title': ['icontains'],
-            'description': ['icontains'],
-            # 'type_choice': ['icontains'],
+            # 'title': ['icontains'],
+            # 'description': ['icontains'],
+            'type_choice': ['icontains'],
         }
      
+    #  We want both search types on the index page:
+    # 1) Preset toggle search for the 4 choices--> leads to a new search result page of events
+    # 2) Full textfield search--> leads to a new search result page of businesses
+
+
 #Order of search priorities:
 
 # 1) Full text search on index page for every attribute in Businesses
 #   ( and Events) NOT NOW
-# and on /business page
+# and on /business page DONE
     # Can we make a text search that combines businesses and events? NO FOR NOW
 # 2) Search by type-choice categories (ideally by clicking a button with category name)
     # same for camp/class/homeschool, and cities
