@@ -13,40 +13,31 @@ from .filters import EventFilterTextSearch, EventFilter
 
 from django.db.models import Avg
 
-# from django.contrib.postgres.search import SearchQuery
-# from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.views.generic import ListView
+
 # from .forms import SearchForm
 
-# class SearchResultsListView(ListView):
-#     model = Article
-#     template_name = 'app/article_search.html'
+class BusinessResultsListView(ListView):
+    model = Business
+    template_name = 'business/business_search.html'
 
-#     def get_queryset(self):
-#         search_query = SearchQuery(
-#             self.request.GET.get('q', ''),
-#             config=settings.SEARCH_LANGS[settings.LANGUAGE_CODE],
-#         )
+    def get_queryset(self):
 
-#         vector = SearchVector(
-#             'name',
-#             'content',
-#             config=settings.SEARCH_LANGS[settings.LANGUAGE_CODE],
-#         )
+        qs = Business.objects.all()
 
-#         if self.request.user.is_authenticated:
-#             queryset = Article.actives.all()
-#         else:
-#             queryset = Article.publics.all()
-
-#         return queryset.annotate(search=vector,).filter(search=search_query)
-
-#     def get_context_data(self, **kwargs):
-#         context = super(SearchResultsListView, self).get_context_data(**kwargs)
-#         context['form'] = SearchForm(self.request.GET)
-#         return context
+        keywords = self.request.GET.get('q')
+        if keywords:
+            query = SearchQuery(keywords)
+            vector = SearchVector(
+                'name', 'address', 'city', 'state'
+            )
+            qs = qs.annotate(search=vector).filter(search=query)
+            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-average_rating')
+        return qs
 
 
-# def def get_queryset(self):
+# def get_queryset(self):
 #     queryset = Business.average_rating.all()
 #     return super().get_queryset()
 
