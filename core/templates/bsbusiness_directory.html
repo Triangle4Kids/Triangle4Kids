@@ -1,13 +1,13 @@
 {% extends 'base.html' %} 
 {% block title %}
-Homepage - {{ block.super }} 
+ Business Directory  - {{ block.super }} 
 {% endblock title %}
 
 {% block content %}
 
 <!-- SECONDARY NAV AREA -->
 
-<section class="page-search">
+{% comment %} <section class="page-search">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -31,18 +31,18 @@ Homepage - {{ block.super }}
 			</div>
 		</div>
 	</div>
-</section>
+</section> {% endcomment %}
 
-<section class="#">
+{% comment %} <section class="#">
 	<div class="container">
 	<h2>Map option</h2>
 
 		
 	</div>
-</section>
+</section> {% endcomment %}
 
 <!-- Title Bar -->
-<section class="section-sm">
+<section >
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -68,16 +68,31 @@ Homepage - {{ block.super }}
 <div class="widget category-list">
 	<h4 class="widget-header">Category</h4>
 	<ul class="category-list">
-		<li><a href="category.html">Sports <span>93</span></a></li>
-		<li><a href="category.html">outside <span>233</span></a></li>
-		<li><a href="category.html"> Inside <span>183</span></a></li>
+		<li><a href="category.html"> Day Camps <span>93</span></a></li>
+		<li><a href="category.html"> Residential Camps <span>233</span></a></li>
+		<li><a href="category.html"> Track-Out-Camps <span>183</span></a></li>
 		<li><a href="category.html"> Half day<span>120</span></a></li>
 		<li><a href="category.html"> Full Day <span>40</span></a></li>
-		<li><a href="category.html"> STEM <span>81</span></a></li>
+		<li><a href="category.html"> All Ages <span>81</span></a></li>
+		<li><a href="category.html"> Preschool <span>93</span></a></li>
+		<li><a href="category.html"> K-5 <span>233</span></a></li>
+		<li><a href="category.html"> Middel School <span>183</span></a></li>
+		<li><a href="category.html"> High School <span>120</span></a></li>
+		<li><a href="category.html"> Academics <span>40</span></a></li>
+		<li><a href="category.html"> Animal Care <span>81</span></a></li>
+		<li><a href="category.html"> Arts and Crafts <span>93</span></a></li>
+		<li><a href="category.html"> Cooking <span>233</span></a></li>
+		<li><a href="category.html"> Games<span>183</span></a></li>
+		<li><a href="category.html"> Health/Fitness <span>120</span></a></li>
+		<li><a href="category.html"> Outdoor Play/ Nature <span>40</span></a></li>
+		<li><a href="category.html"> Performing Arts <span>81</span></a></li>
+		<li><a href="category.html"> Sports <span>40</span></a></li>
+		<li><a href="category.html"> Technology <span>81</span></a></li>
+		
 	</ul>
 </div>
 
-<div class="widget filter">
+{% comment %} <div class="widget filter">
 	<h4 class="widget-header">Extra Filter #1</h4>
 	<select>
 		<option>Popularity</option>
@@ -85,16 +100,16 @@ Homepage - {{ block.super }}
 		<option value="2">Lowest Price</option>
 		<option value="4">Highest Price</option>
 	</select>
-</div>
+</div> {% endcomment %}
 
-<div class="widget price-range">
+{% comment %} <div class="widget price-range">
 	<h4 class="widget-header">Extra Filter #2</h4>
 	<div class="block">
 		<b> x </b>
 		<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> 
 		<b>y </b>
 	</div>
-</div>
+</div> {% endcomment %}
 
 <div class="widget product-shorting">
 	<h4 class="widget-header">Extra filter #3</h4>
@@ -122,6 +137,83 @@ Homepage - {{ block.super }}
 	    4
 	  </label>
 	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    1
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    2
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    3
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    4
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    1
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    2
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    3
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    4
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    1
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    2
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    3
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <input class="form-check-input" type="checkbox" value="">
+	    4
+	  </label>
+	</div>
+
+
+
+
+
 </div>
 
 				</div>
@@ -130,12 +222,10 @@ Homepage - {{ block.super }}
 				<div class="category-search-filter">
 					<div class="row">
 						<div class="col-md-6">
-							<strong>Short</strong>
+							<strong>Sort</strong>
 							<select>
 								<option>Most Recent</option>
 								<option value="1">Most Popular</option>
-								<option value="2">Lowest Price</option>
-								<option value="4">Highest Price</option>
 							</select>
 						</div>
 						<div class="col-md-6">
@@ -143,10 +233,10 @@ Homepage - {{ block.super }}
 								<strong>Views</strong>
 								<ul class="list-inline view-switcher">
 									<li class="list-inline-item">
-										<a href="javascript:void(0);"><i class="fa fa-th-large"></i></a>
+										<a href="#"><i class="fa fa-th-large"></i></a>
 									</li>
 									<li class="list-inline-item">
-										<a href="javascript:void(0);"><i class="fa fa-reorder"></i></a>
+										
 									</li>
 								</ul>
 							</div>
@@ -166,7 +256,8 @@ Homepage - {{ block.super }}
 		<div class="thumb-content">
 			<!-- <div class="price">$200</div> -->
 			<a href="">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+				
+				<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
 			</a>
 		</div>
 		<div class="card-body">
@@ -177,6 +268,9 @@ Homepage - {{ block.super }}
 		    	</li>
 		    	<li class="list-inline-item">
 		    		<p>Address:{{business.address }} </p> 
+		    	</li>
+				<li class="list-inline-item">
+		    		<p>categories:{{ business.categories }} </p> 
 		    	</li>
 		    </ul>
 		    
