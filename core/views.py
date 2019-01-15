@@ -20,7 +20,8 @@ from django.views.generic import ListView
 
 class BusinessResultsListView(ListView):
     model = Business
-    template_name = 'business/business_search.html'
+    context_object_name = 'business_list'
+    template_name = 'business/business_list.html'
 
     def get_queryset(self):
 

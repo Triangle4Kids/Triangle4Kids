@@ -36,7 +36,12 @@ Homepage - {{ block.super }}
 				</div>
 				<!-- Advance Search -->
 				<div class="advance-search">
-					<form action="#">
+					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
+						<button class="searchbutton" type="submit">
+						  <i class="fa fa-search"></i>
+						</button>
+						<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+					  </form>>
 						<div class="row">
 							<!-- Store Search -->
 							<div class="col-lg-6 col-md-12">
