@@ -2,6 +2,7 @@
 {% block title %}
  Event Directory  - {{ block.super }} 
 {% endblock title %}
+{% load bootstrap %}
 
 {% block content %}
 
@@ -54,25 +55,44 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				
+			
 				<div class="search-result bg-gray">
+
+
 					<h2>Event Directory</h2>
 					<p> 1234 Events in the area </p>
+					
+					
 
 				</div>
+				
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="category-sidebar">
 					<div class="widget category-list">
-	<h4 class="widget-header">City</h4>
+	{% comment %} <h4 class="widget-header">Search</h4> {% endcomment %}
 	<ul class="category-list">
-		<li><a href="category.html"> Raleigh <span>93</span></a></li>
+
+	<form method="GET">
+    {{ filter.form|bootstrap }}
+    <button type="submit" class="btn btn-primary">Search</button>
+	</form>
+	
+
+
+
+
+
+		{% comment %} <li><a href="category.html"> Raleigh <span>93</span></a></li>
 		<li><a href="category.html"> Durham <span>233</span></a></li>
 		<li><a href="category.html"> Cary   <span>183</span></a></li>
-		<li><a href="category.html"> Apex <span>343</span></a></li>
+		<li><a href="category.html"> Apex <span>343</span></a></li> {% endcomment %}
 	</ul>
 </div>
+
 
 <div class="widget category-list">
 	<h4 class="widget-header">Category</h4>
@@ -225,10 +245,39 @@
 
 </div>
 
+<div class="container">
+
+  
+
+  
+{% comment %} 
+  <ul> 
+  {% for event in filter.qs %}
+    <li>
+     
+    {{ event.title }} - {{ event.class_camp_choice }}
+    <p>{{ event.start_date }} - {{ event.end_date }}</p>
+    <p>{{ event.start_time }} - {{ event.end_time }}</p>
+    <p>{{ event.type_choice }}</p>
+    <p>{{ event.get_age_choice_display }}</p>
+    <p>{{ event.get_cities_choice_display }}</p>
+    <p>{{ event.business }}</p>
+    <p>{{ event.link }}</p>
+    <p>{{ event.description }}</p>
+    <p>{{ event.address }}</p>
+    <!-- <p>{{ event.city }}</p> -->
+           <!-- <p>{{ event.favorite }}</p> -->
+           
+    </li>
+  {% endfor %}
+</ul> {% endcomment %}
+
+</div>
+
 				</div>
 			</div>
 			<div class="col-md-9">
-				<div class="category-search-filter">
+				<!-- <div class="category-search-filter">
 					<div class="row">
 						<div class="col-md-6">
 							<strong>Sort</strong>
@@ -247,6 +296,7 @@
 									<li class="list-inline-item">
 
 									<form id="searchform" action="{% url 'event_list' %}" method="get" accept-charset="utf-8">
+									
 										<button class="searchbutton" type="submit">
 										<i class="fa fa-search"></i>
 										</button>
@@ -257,26 +307,26 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="product-grid-list">
+						<a href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i>  See All Listings  </a>
+						
 						
 					<div class="row mt-30">
 
 					<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
 
-					{% for event in event_list %}	
+					{% for event in filter.qs  %}	
 						<div class="col-sm-12 col-lg-4 col-md-6">																		
 <div class="product-item bg-light">
 		
 	<div class="card">
+	{% if event.image %}
 		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				
-				<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-			</a>
+				<img class="mr-3" height="50" width="75" src="{{ event.image.url }}" alt="Generic placeholder image">
 		</div>
+		{% endif %}
 		<div class="card-body">
 		    <h4><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h4>
 		    <ul class="list-inline product-meta">
@@ -356,13 +406,11 @@
 <div class="product-item bg-light">
 		
 	<div class="card">
+	{% if event.image %}
 		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				
-				<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-			</a>
+				<img class="mr-3" height="50" width="75" src="{{ event.image.url }}" alt="Generic placeholder image">
 		</div>
+		{% endif %}
 		<div class="card-body">
 		    <h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
 		    <ul class="list-inline product-meta">
