@@ -60,7 +60,10 @@ urlpatterns = [
         name="password_reset_complete"),
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('events-dropdown-select', views.event_list_preset, name='event_list_preset'),
+    path(
+        'events-dropdown-select',
+        views.event_list_preset,
+        name='event_list_preset'),
     path('events/', views.event_list_text, name='event_list_text'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', BusinessResultsListView.as_view(), name='business_list'),
@@ -80,6 +83,10 @@ urlpatterns = [
         'event/<int:pk>/favorite_event/',
         views.favorite_event,
         name='favorite_event'),
+
+    path('mapboxTest', views.mapboxTest, name='mapboxTest'),
+    path('mapBoxPlotTest', views.mapBoxPlotTest, name='mapBoxPlotTest'),
+
     
 ]
 
