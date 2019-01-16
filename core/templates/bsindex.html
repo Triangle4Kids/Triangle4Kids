@@ -13,7 +13,7 @@ Homepage - {{ block.super }}
 =            Hero Area            =
 ================================-->
 
-<section class="hero-area bg-1 text-center">
+<section class="hero-area bg-1 text-center ">
 	<!-- Container Start -->
 	<div class="container">
 		<div class="row">
@@ -37,12 +37,7 @@ Homepage - {{ block.super }}
 				<!-- Advance Search -->
 				<!-- Business full text search: (This is the small text field on the top; needs styling) -->
 				<div class="advance-search">
-					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
-						<button class="searchbutton" type="submit">
-						  <i class="fa fa-search"></i>
-						</button>
-						<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-					  </form>>
+					
 						<div class="row">
 				<!-- End Business full text search: -->
 							<!-- Store Search -->
@@ -51,18 +46,22 @@ Homepage - {{ block.super }}
 									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
 								</div>
 							</div> {% endcomment %}
+							
 							<div class="col-lg-20 col-md-12">
+							<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
 								<div class="block d-flex">
-									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for businesses, camps, and events in the Tirangle!">
+								
+									<input type="text" class="searchbox form-control mb-2 mr-sm-2 mb-sm-0" id="searchform" method="get" name="q" placeholder="Search for businesses, camps, and events in the Tirangle!">
 									<!-- Search Button -->
-									<button class="btn-sm btn-main">SEARCH</button>
+									<button class="btn-sm btn-main" type="submit" >SEARCH</button>
+									</form>
 								</div>
+							
+								</div>
+								
 							</div>
-						</div>
-					</form>
-					
-				</div>
-				
+						</div>				
+				</div>				
 			</div>
 		</div>
 	</div>
@@ -113,16 +112,97 @@ Homepage - {{ block.super }}
 				<div class="section-title">
 				<!-- Secodnary Nav -->
 				<nav >
-					<a  class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
-					<a  class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
-					<a  class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewd</a>
-					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
+					<a  class="navtwo" href="#" title="Home"><i style="color:#F5F56F;" class="fas fa-map-marker-alt fa-2x"></i> Search upcoming events</a>
+					<a  class="navtwo" href="#" title="Home"><i style="color:#D01C2E;" class="fas fa-futbol fa-2x"></i> Categories</a>
+					<a  class="navtwo" href="#" title="About"><i style="color:#31B91C;" class="fas fa-check fa-2x"></i> Best Reviewd</a>
+					<a  class="navtwo" href="#" title="Store"><i style="color:#1C76D0;" class="fas fa-search fa-2x"></i> See Business Directory</a>
 					</nav>
 				</div>
 			</div>
 		</div> 
-		<h1> Upcoming Events in the Triangle</h1>
+		
 
+		<div class="section-title">
+			<h2>Top Rated Camps and Businesses</h2>
+			
+		</div>
+		
+		<div class="row">
+			<!-- offer 01 -->
+			<div class="col-sm-12 col-lg-4">
+			{% for business in businesses|slice:":6" %}
+				<!-- product card -->
+			<div class="product-item bg-light">
+				<div class="card">
+					<div class="thumb-content">
+						<!-- <div class="price">$200</div> -->
+						<a href="">
+							
+						</a>
+					</div>
+					<div class="card-body">
+							<ul class="list-inline ">
+						
+						
+							<li class="list-inline-item">
+							<img class="mr-3" height="50" width="75" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
+								
+							</li>
+							<li class="list-inline-item">
+							<br>
+								<h3><a > {{business.name}} </a></h3>
+							</li>
+						</ul>
+
+
+						<ul class="list-inline product-meta">
+						<br>
+
+							<li class="list-inline-item">
+							<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> Location<a href="">{{business.address}}</a></li>
+							</li>
+						
+						
+							
+							{% if business.categories %}
+							<li class="list-inline-item">
+								<a href="#"><i style="color:#1C76D0;" class="fas fa-globe-americas"></i> Catagories: {{business.categories}}</a>
+							{% endif %}
+								
+							</li>
+							
+							
+						</ul>
+						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> {{business.average_rating}}  user rated</a>
+						
+						
+						<div class="product-ratings">
+						
+						<br>
+						<a href="{% url 'business_detail' slug=business.slug %}"><i style="color:#31B91C;" class="fas fa-reply "></i> See this Business </a>
+						
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+						</div>
+						<div class="col-sm-12 col-lg-4">
+						{% endfor %}
+
+						<p> See All Businesses > </p>
+						<br>
+						<br>
+		    	</ul>
+		    </div>	
+		</div>
+
+		
+		<div class="section-title">
+			<h2>Upcoming Events in the Triangle</h2>
+			
+		</div>
 		
 		<div class="row">
 			<!-- offer 01 -->
@@ -132,7 +212,7 @@ Homepage - {{ block.super }}
 			<div class="product-item bg-light">
 				<div class="card">
 					<div class="thumb-content">
-						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="50" width="50" alt="article-01">
+						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="150" width="50" alt="article-01">
 						
 						<a href="">
 							
@@ -176,52 +256,7 @@ Homepage - {{ block.super }}
 		<br>
 
 
-		<h1>Top Rated camps and businesses</h1>
 		
-		<div class="row">
-			<!-- offer 01 -->
-			<div class="col-sm-12 col-lg-4">
-			{% for business in businesses|slice:":6" %}
-				<!-- product card -->
-			<div class="product-item bg-light">
-				<div class="card">
-					<div class="thumb-content">
-						<!-- <div class="price">$200</div> -->
-						<a href="">
-							
-						</a>
-					</div>
-		
-					<div class="card-body">
-						<h2><a > {{business.name}} </a></h2>
-						<ul class="list-inline product-meta">
-							<li class="list-inline-item">
-								<h3> Average {{business.average_rating}} </h3>
-							</li>
-							<li class="list-inline-item">
-								<a href=""><i class="fa fa-calendar"></i>Business</a>
-							</li>
-						</ul>
-						
-						
-						<div class="product-ratings">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-
-						</div>
-						<div class="col-sm-12 col-lg-4">
-						{% endfor %}
-
-						<p> See All Businesses > </p>
-						<br>
-						<br>
-		    	</ul>
-		    </div>	
-		</div>
-
 
 
 
@@ -380,7 +415,12 @@ Homepage - {{ block.super }}
 					<!-- End of Catagory grid -->
 
 
-					
+					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
+			<button class="searchbutton" type="submit">
+			  <i class="fa fa-search"></i>
+			</button>
+			<input class="searchbox" id="searchbox" name="q" type="text" placeholder="Search">
+</form>
 
 
 

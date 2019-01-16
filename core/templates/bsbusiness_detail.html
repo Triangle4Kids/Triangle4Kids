@@ -47,12 +47,12 @@ Homepage - {{ block.super }}
 					<h1 class="product-title">{{business.name}}</h1>
 					<div class="product-meta">
 						<ul class="list-inline">
-							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> {{average_score }}</li>
-							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Category<a href="">Electronics</a></li>
-							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">{{business.address}}</a></li>
+							<li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> {{ average_score }}</li>
+							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Category<a href="">{{business.categories}}</a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i> Location<a href="">{{business.address}}</a></li>
 						</ul>
 					</div>
-					<div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
+					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
 							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -78,7 +78,7 @@ Homepage - {{ block.super }}
 							<span class="carousel-control-next-icon" aria-hidden="true"></span>
 							<span class="sr-only">Next</span>
 						</a>
-					</div>
+					</div> {% endcomment %}
 					<div class="content">
 						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
 							<li class="nav-item">
@@ -192,20 +192,15 @@ Homepage - {{ block.super }}
 				<div class="sidebar">
 					
 					<!-- User Profile widget -->
-					<div class="widget user">
-						<img class="rounded-circle" src="images/user/user-thumb.jpg" alt="">
-						<h4><a href=""> __ MAP AREA __</a></h4>
-						<p class="member-time"></p>
-						<a href=""></a>
-						<ul class="list-inline mt-20">
-							<li class="list-inline-item"><a href="" class="btn btn-contact"></a></li>
-							<li class="list-inline-item"><a href="" class="btn btn-offer"></a></li>
-						</ul>
+					<div class="widget map" >
+						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="200" width="200" alt="article-01">
+						
 					</div>
 					<!-- Map Widget -->
 					<div class="widget map">
 						<div class="map">
-							<div id="map"></div>
+						<img class="d-block w-100" src="https://i.stack.imgur.com/yEshb.gif" height="300" width="300" alt="article-01">
+							
 						</div>
 					</div>
 					<!-- Rate Widget -->

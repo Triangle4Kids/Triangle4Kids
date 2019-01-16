@@ -59,6 +59,7 @@ urlpatterns = [
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', BusinessResultsListView.as_view(), name='business_list'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
+    path('directory/', views.business_directory, name='business_directory'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
     path(
