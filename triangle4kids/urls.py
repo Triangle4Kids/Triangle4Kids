@@ -29,7 +29,10 @@ from django.contrib.auth.views import (
 )
 
 from django.views.generic import TemplateView
-from core.views import BusinessResultsListView
+
+
+from core.views import BusinessResultsListView, EventResultsListView
+
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -74,8 +77,10 @@ urlpatterns = [
     path('events/', views.event_list_text, name='event_list_text'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
     path('business/', BusinessResultsListView.as_view(), name='business_list'),
+    path('event/', EventResultsListView.as_view(), name='event_list'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
     path('directory/', views.business_directory, name='business_directory'),
+    path('events_directory/', views.event_directory, name='event_directory'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('my-profile/', views.get_user_profile, name="get_user_profile"),
     path(
