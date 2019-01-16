@@ -41,9 +41,14 @@ from django.contrib.auth.models import User
 from rest_framework import routers
 from api import views as api_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 router = routers.DefaultRouter()
 router.register('businesses', api_views.BusinessViewset, api_views.BusinessLatLongViewset)
 router.register('businesseslocation', api_views.BusinessLatLongViewset)
+
+
 
 
 urlpatterns = [
@@ -98,5 +103,6 @@ urlpatterns = [
 
     path(r'^api/', include('rest_framework.urls')),
     path('api/', include((router.urls, 'core'),namespace="api")),
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -51,6 +51,7 @@ class BusinessLatLong(models.Model):
     relevance = models.FloatField(default=0)
     latitude = models.FloatField(blank=True)
     longitude = models.FloatField(blank=True)
+    
 
 
 EVENT_TYPE = (
@@ -121,6 +122,7 @@ class Event(models.Model):
     end_time = models.CharField(max_length=255)
     favorite = models.ManyToManyField(
         User, related_name='favorite', blank=True)
+    image = models.ImageField(upload_to='test_image', blank=True)
 
     class Meta:
         verbose_name_plural = "Events"

@@ -192,10 +192,14 @@ Homepage - {{ block.super }}
 				<div class="sidebar">
 					
 					<!-- User Profile widget -->
+					{% if business.image %}
 					<div class="widget map" >
-						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="200" width="200" alt="article-01">
-						
+					
+						<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+
 					</div>
+					{% endif %}
+					
 					<!-- Map Widget -->
 					<div class="widget map">
 						<div class="map">

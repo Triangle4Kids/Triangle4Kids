@@ -77,13 +77,6 @@ Homepage - {{ block.super }}
 =            Popular deals section            =
 ============================================-->
 
-
-
-
-
-
-
-
 <section class="popular-deals section bg-gray">
 	<div class="container">
 		<div class="row">
@@ -99,11 +92,7 @@ Homepage - {{ block.super }}
 					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
 					
 					
-				</nav> -->
-
-
-					
-					
+				</nav> -->	
 				</div>
 			</div>
 		</div>
@@ -144,10 +133,10 @@ Homepage - {{ block.super }}
 							<ul class="list-inline ">
 						
 						
-							<li class="list-inline-item">
-							<img class="mr-3" height="50" width="75" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
-								
-							</li>
+							{% if business.image %}
+								<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+							{% endif %} 
+
 							<li class="list-inline-item">
 							<br>
 								<h3><a > {{business.name}} </a></h3>
@@ -207,17 +196,15 @@ Homepage - {{ block.super }}
 		<div class="row">
 			<!-- offer 01 -->
 			<div class="col-sm-12 col-lg-4">
-			{% for event in events|slice:":3" %}
+			{% for event in events|slice:":6" %}
 				<!-- product card -->
 			<div class="product-item bg-light">
 				<div class="card">
-					<div class="thumb-content">
-						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="150" width="50" alt="article-01">
-						
-						<a href="">
-							
-						</a>
-					</div>
+				{% if event.image %}
+						<div class="thumb-content">
+							<img class="mr-3" height="50" width="75" src="{{ event.image.url }}" alt="Generic placeholder image">
+						</div>
+					{% endif %} 
 		
 					<div class="card-body">
 						<h3><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h3>
