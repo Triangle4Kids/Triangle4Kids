@@ -24,10 +24,23 @@
     </style>
 </head>
 <body>
+{% comment %} TO DO: add to business detail page {% endcomment %}
+<label bizId="{pk}" class="bizinfo hidden" visible=false>
 
-<div id='map'></div>
+<div id='map' class="this taht"></div>
 
 <script>
+  // TODO: RESTAPI:
+  // http://localhost:8000/api/business/latlong/id/{pk}
+  // return JSON: { "id"="74", "name"="BIZ 1" "address"="" "latitude": 34.32, "longitude": -84.2 }
+
+  // http://localhost:8000/api/business/latlong/name/{name}
+  // return JSON: { "id"="74", "name"="BIZ 1" "address"="" "latitude": 34.32, "longitude": -84.2 }
+
+  // http://localhost:8000/api/business/latlong/name/all
+  // return JSON: { [ "entries": [
+  //        { "id"="74", "name"="BIZ 1" "address"="" "latitude": 34.32, "longitude": -83.22 },
+  //        { "id"="12", "name"="BIZ 2" "address"="" "latitude": 34.33, "longitude": -84.25 },
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow';
 
@@ -37,7 +50,7 @@ var map = new mapboxgl.Map({
   center: [-96, 37.8],
   zoom: 3
 });
-
+{% comment %} 
 // code from the next step will go here!
 var geojson = {
   type: 'FeatureCollection',
@@ -63,20 +76,48 @@ var geojson = {
       description: 'San Francisco, California'
     }
   }]
-};
+}; {% endcomment %}
 
-// add markers to map
+geojson.features.forEach(function(entry) {
+  addLatLongMarker(entry.geometry.coordinates[1],entry.geometry.coordinates[0])
+  });
+
+
+addLatLongMarker(35.90, -79.01)
+{% comment %} use jquery to get the biz pk we need
+ {% endcomment %}
+
+
+{% comment %} // add markers to map
 geojson.features.forEach(function(marker) {
 
   // create a HTML element for each feature
   var el = document.createElement('div');
   el.className = 'marker';
 
+
+
   // make a marker for each feature and add to the map
   new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
     .addTo(map);
-});
+}); {% endcomment %}
+
+function addLatLongMarker(latitude, longitude) {
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // TODO: RESTAPI:
+  // http://localhost:8000/api/business/{pk}/latlong
+  // return JSON: { "latitude": 34.32, "longitude": -84.2.232 }
+
+  coords= [longitude, latitude]
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(coords)
+    .addTo(map);
+}
 </script>
 
 </body>
