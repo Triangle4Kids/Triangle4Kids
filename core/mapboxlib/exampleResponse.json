@@ -1,0 +1,474 @@
+{
+    "examples": [
+        {
+            "type": "FeatureCollection",
+            "query": [
+                "1515",
+                "5th",
+                "ave",
+                "nashville",
+                "tn",
+                "37208"
+            ],
+            "features": [
+                {
+                    "id": "address.2508326093002538",
+                    "type": "Feature",
+                    "place_type": [
+                        "address"
+                    ],
+                    "relevance": 1,
+                    "properties": {},
+                    "text": "5th Avenue North",
+                    "place_name": "1515 5th Avenue North, Nashville, Tennessee 37208, United States",
+                    "matching_text": "5th Ave",
+                    "matching_place_name": "1515 5th Ave, Nashville, Tennessee 37208, United States",
+                    "center": [
+                        -86.791933,
+                        36.179891
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -86.791933,
+                            36.179891
+                        ]
+                    },
+                    "address": "1515",
+                    "context": [
+                        {
+                            "id": "neighborhood.2103232",
+                            "text": "Germantown"
+                        },
+                        {
+                            "id": "postcode.14779793679541250",
+                            "text": "37208"
+                        },
+                        {
+                            "id": "place.9062839717462680",
+                            "wikidata": "Q23197",
+                            "text": "Nashville"
+                        },
+                        {
+                            "id": "region.2676861226990480",
+                            "short_code": "US-TN",
+                            "wikidata": "Q1509",
+                            "text": "Tennessee"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "postcode.14779793679541250",
+                    "type": "Feature",
+                    "place_type": [
+                        "postcode"
+                    ],
+                    "relevance": 0.75,
+                    "properties": {},
+                    "text": "37208",
+                    "place_name": "Nashville, Tennessee 37208, United States",
+                    "bbox": [
+                        -86.8377668178785,
+                        36.1584320010565,
+                        -86.7805893069012,
+                        36.2142478683115
+                    ],
+                    "center": [
+                        -86.82,
+                        36.17
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -86.82,
+                            36.17
+                        ]
+                    },
+                    "context": [
+                        {
+                            "id": "place.9062839717462680",
+                            "wikidata": "Q23197",
+                            "text": "Nashville"
+                        },
+                        {
+                            "id": "region.2676861226990480",
+                            "short_code": "US-TN",
+                            "wikidata": "Q1509",
+                            "text": "Tennessee"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "place.9062839717462680",
+                    "type": "Feature",
+                    "place_type": [
+                        "place"
+                    ],
+                    "relevance": 0.5,
+                    "properties": {
+                        "wikidata": "Q23197"
+                    },
+                    "text": "Nashville",
+                    "place_name": "Nashville, Tennessee, United States",
+                    "bbox": [
+                        -87.054768012723,
+                        35.9862720538875,
+                        -86.5861940377905,
+                        36.29387700843
+                    ],
+                    "center": [
+                        -86.7744,
+                        36.1622
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -86.7744,
+                            36.1622
+                        ]
+                    },
+                    "context": [
+                        {
+                            "id": "region.2676861226990480",
+                            "short_code": "US-TN",
+                            "wikidata": "Q1509",
+                            "text": "Tennessee"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "address.5444701078740064",
+                    "type": "Feature",
+                    "place_type": [
+                        "address"
+                    ],
+                    "relevance": 0.36000000000000004,
+                    "properties": {},
+                    "text": "5th Avenue",
+                    "place_name": "1515 5th Avenue, Lawrenceburg, Tennessee 38464, United States",
+                    "center": [
+                        -87.313747,
+                        35.249671
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -87.313747,
+                            35.249671
+                        ],
+                        "interpolated": true
+                    },
+                    "address": "1515",
+                    "context": [
+                        {
+                            "id": "postcode.11804340364503100",
+                            "text": "38464"
+                        },
+                        {
+                            "id": "place.7934942724312090",
+                            "wikidata": "Q2472594",
+                            "text": "Lawrenceburg"
+                        },
+                        {
+                            "id": "region.2676861226990480",
+                            "short_code": "US-TN",
+                            "wikidata": "Q1509",
+                            "text": "Tennessee"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "address.2334444787821556",
+                    "type": "Feature",
+                    "place_type": [
+                        "address"
+                    ],
+                    "relevance": 0.36000000000000004,
+                    "properties": {},
+                    "text": "5th Street",
+                    "place_name": "1515 5th Street, Bristol, Tennessee 37620, United States",
+                    "center": [
+                        -82.171007,
+                        36.57682
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -82.171007,
+                            36.57682
+                        ],
+                        "interpolated": true
+                    },
+                    "address": "1515",
+                    "context": [
+                        {
+                            "id": "neighborhood.270908",
+                            "text": "Fairmount"
+                        },
+                        {
+                            "id": "postcode.8762168254657780",
+                            "text": "37620"
+                        },
+                        {
+                            "id": "place.4140734459852400",
+                            "wikidata": "Q917821",
+                            "text": "Bristol"
+                        },
+                        {
+                            "id": "region.2676861226990480",
+                            "short_code": "US-TN",
+                            "wikidata": "Q1509",
+                            "text": "Tennessee"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                }
+            ],
+            "attribution": "NOTICE: © 2018 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+        },
+        {
+            "type": "FeatureCollection",
+            "query": [
+                "8",
+                "blackwood",
+                "st",
+                "durham",
+                "nc"
+            ],
+            "features": [
+                {
+                    "id": "place.16019777446509110",
+                    "type": "Feature",
+                    "place_type": [
+                        "place"
+                    ],
+                    "relevance": 0.6666666666666666,
+                    "properties": {
+                        "wikidata": "Q49229"
+                    },
+                    "text": "Durham",
+                    "place_name": "Durham, North Carolina, United States",
+                    "bbox": [
+                        -79.0539819798141,
+                        35.8284990315214,
+                        -78.697928362056,
+                        36.1426649562232
+                    ],
+                    "center": [
+                        -78.8986,
+                        35.994
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -78.8986,
+                            35.994
+                        ]
+                    },
+                    "context": [
+                        {
+                            "id": "region.2248353445854480",
+                            "short_code": "US-NC",
+                            "wikidata": "Q1454",
+                            "text": "North Carolina"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "region.2248353445854480",
+                    "type": "Feature",
+                    "place_type": [
+                        "region"
+                    ],
+                    "relevance": 0.3333333333333333,
+                    "properties": {
+                        "short_code": "US-NC",
+                        "wikidata": "Q1454"
+                    },
+                    "text": "North Carolina",
+                    "place_name": "North Carolina, United States",
+                    "bbox": [
+                        -84.321869,
+                        33.65288,
+                        -75.300613,
+                        36.588157
+                    ],
+                    "center": [
+                        -80,
+                        35.5
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -80,
+                            35.5
+                        ]
+                    },
+                    "context": [
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "country.10287356663057190",
+                    "type": "Feature",
+                    "place_type": [
+                        "country"
+                    ],
+                    "relevance": 0.3333333333333333,
+                    "properties": {
+                        "short_code": "nc",
+                        "wikidata": "Q33788"
+                    },
+                    "text": "New Caledonia",
+                    "place_name": "New Caledonia",
+                    "bbox": [
+                        158.145427,
+                        -22.986217,
+                        172.157445,
+                        -17.770446
+                    ],
+                    "center": [
+                        165.3,
+                        -21.25
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            165.3,
+                            -21.25
+                        ]
+                    }
+                },
+                {
+                    "id": "place.7181100614509110",
+                    "type": "Feature",
+                    "place_type": [
+                        "place"
+                    ],
+                    "relevance": 0.3333333333333333,
+                    "properties": {
+                        "wikidata": "Q2003309"
+                    },
+                    "text": "Durham",
+                    "place_name": "Durham, New Hampshire, United States",
+                    "bbox": [
+                        -70.9810565918191,
+                        43.0804550614065,
+                        -70.8471269853619,
+                        43.1628860186549
+                    ],
+                    "center": [
+                        -70.9265,
+                        43.1341
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -70.9265,
+                            43.1341
+                        ]
+                    },
+                    "context": [
+                        {
+                            "id": "region.13324575150309770",
+                            "short_code": "US-NH",
+                            "wikidata": "Q759",
+                            "text": "New Hampshire"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                },
+                {
+                    "id": "place.9252087393509110",
+                    "type": "Feature",
+                    "place_type": [
+                        "place"
+                    ],
+                    "relevance": 0.3333333333333333,
+                    "properties": {
+                        "wikidata": "Q753859"
+                    },
+                    "text": "Durham",
+                    "place_name": "Durham, Connecticut, United States",
+                    "bbox": [
+                        -72.746141782407,
+                        41.4232951400502,
+                        -72.6089579910113,
+                        41.5002030086891
+                    ],
+                    "center": [
+                        -72.6812,
+                        41.4818
+                    ],
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -72.6812,
+                            41.4818
+                        ]
+                    },
+                    "context": [
+                        {
+                            "id": "region.11501501426180480",
+                            "short_code": "US-CT",
+                            "wikidata": "Q779",
+                            "text": "Connecticut"
+                        },
+                        {
+                            "id": "country.9053006287256050",
+                            "short_code": "us",
+                            "wikidata": "Q30",
+                            "text": "United States"
+                        }
+                    ]
+                }
+            ],
+            "attribution":"NOTICE: \xc2\xa9 2018 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+        }
+    ]
+}

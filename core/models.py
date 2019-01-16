@@ -43,6 +43,14 @@ class Business(models.Model):
         return self.name
 
 
+class BusinessLatLong(models.Model):
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    location_name = models.CharField(max_length=512, blank=True)
+    relevance = models.FloatField(default=0)
+    latitude = models.FloatField(blank=True)
+    longitude = models.FloatField(blank=True)
+
+
 EVENT_TYPE = (
     ('half_day', 'Half-Day'),
     ('full_day', 'Full-Day'),
@@ -111,7 +119,6 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
-
 
 
 class LeaveReview(models.Model):
