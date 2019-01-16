@@ -33,8 +33,6 @@ from core.views import BusinessResultsListView
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-
-
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 
@@ -42,9 +40,9 @@ from rest_framework import routers
 from api import views as api_views
 
 router = routers.DefaultRouter()
-router.register('businesses', api_views.BusinessViewset, api_views.BusinessLatLongViewset)
+router.register('businesses', api_views.BusinessViewset,
+                api_views.BusinessLatLongViewset)
 router.register('businesseslocation', api_views.BusinessLatLongViewset)
-
 
 urlpatterns = [
     path(
@@ -84,19 +82,15 @@ urlpatterns = [
         'review/<id>/delete',
         views.user_delete_review,
         name="user_delete_review"),
-    path(
-        r'(?P<id>\d+)/favorite_event/$',
+    url(r'(?P<id>\d+)/favorite_event/$',
         views.favorite_event,
         name='favorite_event'),
     path(
         'event/<int:pk>/favorite_event/',
         views.favorite_event,
         name='favorite_event'),
-
     path('mapboxTest', views.mapboxTest, name='mapboxTest'),
     path('mapBoxPlotTest', views.mapBoxPlotTest, name='mapBoxPlotTest'),
-
-    path(r'^api/', include('rest_framework.urls')),
-    path('api/', include((router.urls, 'core'),namespace="api")),
+    path('api/', include('rest_framework.urls')),
+    path('api/', include((router.urls, 'core'), namespace="api")),
 ]
-
