@@ -18,6 +18,7 @@ django-bootstrap-form = "*"
 django-phone-field = "*"
 beautifulsoup4 = "*"
 pillow = "*"
+djangorestframework = "*"
 
 [dev-packages]
 pylint = "*"
