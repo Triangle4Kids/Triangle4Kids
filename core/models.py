@@ -54,24 +54,30 @@ class BusinessLatLong(models.Model):
 
 
 EVENT_TYPE = (
-    # ('half_day', 'Half-Day'),
-    # ('full_day', 'Full-Day'),
-    ('academic', 'Academic'),
+    ('day_camps', 'Day Camps'),
+    ('residential_camps', 'Residential Camps'),
+    ('track_out_program', 'Track-Out Programs'),
+    ('half_day', 'Half-Day'),
+    ('full_day', 'Full-Day'),
+    ('academics', 'Academics'),
+    ('animal_care', 'Animal Care'),
     ('arts_crafts', 'Arts & Crafts'),
-    ('athletics', 'Athletics'),
+    ('cooking_baking', 'Cooking & Baking'),
     ('games', 'Games'),
-    ('language', 'Language'),
-    ('nature_outdoor', 'Nature/Outdoor'),
-    ('performance', 'Performance'),
-    ('stem', 'STEM'),
+    ('health_fitness', 'Health & Fitness'),
+    ('outdoor_play_nature', 'Outdoor & Nature'),
+    ('performing_arts', 'Performing Arts'),
+    ('sports', 'Sports'),
+    ('technology', 'Technology'),
     ('other', 'Other'),
 )
 
 AGE_RANGE = (
-    ('pre_k', 'Pre-K'),
-    ('elementary', 'Elementary'),
-    ('middle', 'Middle'),
-    ('high', 'High'),
+    ('all_ages', 'All Ages'),
+    ('preschool', 'Pre-K'),
+    ('k_5', 'Elementary'),
+    ('middle_school', 'Middle School'),
+    ('high_school', 'High School'),
 )
 
 CLASS_CAMP = (
@@ -122,9 +128,9 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+
 # class Category(models.Model):
-#     name = 
-   
+#     name =
 
 
 class LeaveReview(models.Model):
