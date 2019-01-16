@@ -13,7 +13,7 @@ Homepage - {{ block.super }}
 =            Hero Area            =
 ================================-->
 
-<section class="hero-area bg-1 text-center overly">
+<section class="hero-area bg-1 text-center ">
 	<!-- Container Start -->
 	<div class="container">
 		<div class="row">
@@ -37,35 +37,31 @@ Homepage - {{ block.super }}
 				<!-- Advance Search -->
 				<!-- Business full text search: (This is the small text field on the top; needs styling) -->
 				<div class="advance-search">
-					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
-						<button class="searchbutton" type="submit">
-						  <i class="fa fa-search"></i>
-						</button>
-						<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-					  </form>>
+					
 						<div class="row">
 				<!-- End Business full text search: -->
 							<!-- Store Search -->
+							{% comment %} <div class="col-lg-6 col-md-12">
+								<div class="block d-flex">
+									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
+								</div>
+							</div> {% endcomment %}
 							
-
-
-							<div class="col-lg-6 col-md-12">
+							<div class="col-lg-20 col-md-12">
+							<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
 								<div class="block d-flex">
-									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-12">
-								<div class="block d-flex">
-									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
+								
+									<input type="text" class="searchbox form-control mb-2 mr-sm-2 mb-sm-0" id="searchform" method="get" name="q" placeholder="Search for businesses, camps, and events in the Tirangle!">
 									<!-- Search Button -->
-									<button class="btn-sm btn-main">SEARCH</button>
+									<button class="btn-sm btn-main" type="submit" >SEARCH</button>
+									</form>
 								</div>
+							
+								</div>
+								
 							</div>
-						</div>
-					</form>
-					
-				</div>
-				
+						</div>				
+				</div>				
 			</div>
 		</div>
 	</div>
@@ -91,17 +87,19 @@ Homepage - {{ block.super }}
 <section class="popular-deals section bg-gray">
 	<div class="container">
 		<div class="row">
+		
 			<div class="col-md-12">
+			
 				<div class="section-title">
 				<!-- Secodnary Nav -->
-				<nav >
+				<!-- <nav >
 					<a  class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
 					<a  class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
 					<a  class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewd</a>
 					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
 					
 					
-				</nav>
+				</nav> -->
 
 
 					
@@ -109,12 +107,30 @@ Homepage - {{ block.super }}
 				</div>
 			</div>
 		</div>
-		<p>Top Events in your Area</p>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title">
+				<!-- Secodnary Nav -->
+				<nav >
+					<a  class="navtwo" href="#" title="Home"><i style="color:#F5F56F;" class="fas fa-map-marker-alt fa-2x"></i> Search upcoming events</a>
+					<a  class="navtwo" href="#" title="Home"><i style="color:#D01C2E;" class="fas fa-futbol fa-2x"></i> Categories</a>
+					<a  class="navtwo" href="#" title="About"><i style="color:#31B91C;" class="fas fa-check fa-2x"></i> Best Reviewd</a>
+					<a  class="navtwo" href="#" title="Store"><i style="color:#1C76D0;" class="fas fa-search fa-2x"></i> See Business Directory</a>
+					</nav>
+				</div>
+			</div>
+		</div> 
+		
+
+		<div class="section-title">
+			<h2>Top Rated Camps and Businesses</h2>
+			
+		</div>
 		
 		<div class="row">
 			<!-- offer 01 -->
 			<div class="col-sm-12 col-lg-4">
-			{% for event in events %}
+			{% for business in businesses|slice:":6" %}
 				<!-- product card -->
 			<div class="product-item bg-light">
 				<div class="card">
@@ -124,20 +140,47 @@ Homepage - {{ block.super }}
 							
 						</a>
 					</div>
-		
 					<div class="card-body">
-						<h2><a href="{% url 'event_detail' slug=event.slug %}"> Event Title:{{event.title}} </a></h2>
-						<ul class="list-inline product-meta">
+							<ul class="list-inline ">
+						
+						
 							<li class="list-inline-item">
-								<h3>Business:{{event.business }} </h3>
+							<img class="mr-3" height="50" width="75" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
+								
 							</li>
 							<li class="list-inline-item">
-								<a href=""><i class="fa fa-calendar"></i>26th December</a>
+							<br>
+								<h3><a > {{business.name}} </a></h3>
 							</li>
 						</ul>
-						<p>Description: {{event.description}}</p>
+
+
+						<ul class="list-inline product-meta">
+						<br>
+
+							<li class="list-inline-item">
+							<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> Location<a href="">{{business.address}}</a></li>
+							</li>
+						
+						
+							
+							{% if business.categories %}
+							<li class="list-inline-item">
+								<a href="#"><i style="color:#1C76D0;" class="fas fa-globe-americas"></i> Catagories: {{business.categories}}</a>
+							{% endif %}
+								
+							</li>
+							
+							
+						</ul>
+						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> {{business.average_rating}}  user rated</a>
+						
 						
 						<div class="product-ratings">
+						
+						<br>
+						<a href="{% url 'business_detail' slug=business.slug %}"><i style="color:#31B91C;" class="fas fa-reply "></i> See this Business </a>
+						
 							
 						</div>
 					</div>
@@ -148,23 +191,80 @@ Homepage - {{ block.super }}
 						<div class="col-sm-12 col-lg-4">
 						{% endfor %}
 
-
-
-
-				
+						<p> See All Businesses > </p>
+						<br>
+						<br>
 		    	</ul>
-		    </div>
+		    </div>	
+		</div>
 
-			
-
-
-
-
-
-
-
+		
+		<div class="section-title">
+			<h2>Upcoming Events in the Triangle</h2>
 			
 		</div>
+		
+		<div class="row">
+			<!-- offer 01 -->
+			<div class="col-sm-12 col-lg-4">
+			{% for event in events|slice:":3" %}
+				<!-- product card -->
+			<div class="product-item bg-light">
+				<div class="card">
+					<div class="thumb-content">
+						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="150" width="50" alt="article-01">
+						
+						<a href="">
+							
+						</a>
+					</div>
+		
+					<div class="card-body">
+						<h3><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h3>
+						<ul class="list-inline product-meta">
+							<li class="list-inline-item">
+								<p><b>{{event.business }} </b> <p>
+							</li>
+							<li class="list-inline-item">
+								<a href=""><i class="fa fa-calendar"></i> {{event.start_date }}</a>
+							</li>
+							<li class="list-inline-item">
+								<a href=""><i class="fa fa-user"></i> {{event.age_choice}}</a>
+							</li>
+						</ul>
+						<p> {{event.description}}</p>
+						<p>Catagories: {{event.type_choice}}</p>
+						
+						<div class="product-ratings">
+						<a href="{% url 'event_detail' slug=event.slug %}"><i class="fas fa-reply "></i> See this Event </a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+						</div>
+						<div class="col-sm-12 col-lg-4">
+						{% endfor %}
+
+						<p> See All Events > </p>
+
+		    	</ul>
+		    </div>	
+		</div>
+		<br> 
+		<br>
+
+
+		
+
+
+
+
+
+
+
+
 	</div>
 </div>
 
@@ -194,7 +294,7 @@ Homepage - {{ block.super }}
 			<div class="col-12">
 				<!-- Section title -->
 				<div class="section-title">
-					<h2>Browse By Category</h2>
+					<h2>Browse Events By Categories</h2>
 					
 				</div>
 				<div class="row">
@@ -202,8 +302,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-laptop icon-bg-1"></i> 
-								<h4>Electronics</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Camps</h4>
 							</div>
 							
 						</div>
@@ -212,8 +312,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-apple icon-bg-2"></i> 
-								<h4>Restaurants</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Academics</h4>
 							</div>
 							
 						</div>
@@ -222,8 +322,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-home icon-bg-3"></i> 
-								<h4>Real Estate</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Animal Care</h4>
 							</div>
 						</div>
 					</div> <!-- /Category List -->
@@ -231,8 +331,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-shopping-basket icon-bg-4"></i> 
-								<h4>Shoppings</h4>
+								<i class="fas fa-search fa-3x"></i> 
+								<h4>Arts and Crafts</h4>
 							</div>
 						</div>
 					</div> <!-- /Category List -->
@@ -240,8 +340,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-briefcase icon-bg-5"></i> 
-								<h4>Jobs</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Cooking</h4>
 							</div>
 						</div>
 					</div> <!-- /Category List -->
@@ -249,8 +349,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-car icon-bg-6"></i> 
-								<h4>Vehicles</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Games</h4>
 							</div>
 						</div>
 					</div> <!-- /Category List -->
@@ -258,8 +358,8 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-paw icon-bg-7"></i> 
-								<h4>Pets</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Fitness</h4>
 							</div>
 						</div>
 					</div> <!-- /Category List -->
@@ -267,11 +367,67 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fa fa-laptop icon-bg-8"></i> 
-								<h4>Services</h4>
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Outdoor</h4>
 							</div>
 						</div>
 					</div> <!-- /Category List -->
+
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Performing Arts</h4>
+							</div>
+							
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Sports</h4>
+							</div>
+							
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fas fa-search fa-3x"></i>
+								<h4>Technology</h4>
+							</div>
+						</div>
+					</div> 
+
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fas fa-search fa-3x"></i>
+								<h4>K-5</h4>
+							</div>
+						</div>
+					</div> 
+
+					<!-- End of Catagory grid -->
+
+
+					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
+			<button class="searchbutton" type="submit">
+			  <i class="fa fa-search"></i>
+			</button>
+			<input class="searchbox" id="searchbox" name="q" type="text" placeholder="Search">
+</form>
+
+
+
+
+
+
+
 					
 					
 				</div>

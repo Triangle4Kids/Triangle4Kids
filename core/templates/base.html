@@ -9,20 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!-- Mapbox meta-->
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    
     <!-- PLUGINS CSS STYLE -->
-    <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href=" {% static ' plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet ' %}"/>
     <!-- Bootstrap -->
-    <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet' %}"/>
     <!-- Font Awesome -->
-    <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href=" {% static ' plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet' %}"/>
     <!-- Owl Carousel -->
-    <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-    <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+    <link href="{% static 'plugins/slick-carousel/slick/slick.css" rel="stylesheet ' %}"/>
+    <link href="{% static 'plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet ' %}"/>
     <!-- CUSTOM CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
     <!-- FAVICON -->
-    <link href="img/favicon.png" rel="shortcut icon">
+    <link href=" {% static 'img/favicon.png" rel="shortcut icon' %}"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +30,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
+    
 
     <!-- MAPBOX -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
@@ -55,7 +54,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
 
@@ -220,13 +219,11 @@
         <div class="block">
           <h4>Admin Pages</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="#">Terms of Services</a></li>
-            <a class="nav-link login-button" href="{% url 'event_list_preset' %}"> Event Search From Preset Choices </a> </li>
-            <a class="nav-link login-button" href="{% url 'event_list_text' %}"> Event List Text Field Search </a> </li>
+            <li><a href="{% url 'event_list_preset' %}"> Event Search From Preset Choices </a></li>
+            <li><a href="{% url 'event_list_text' %}"> Event List Text Field Search </a></li>
+            <li><a href="{% url 'business_directory' %}"> Event List Text Field Search </a></li>
+            
+        
           </ul>
         </div>
       </div>
@@ -280,18 +277,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-  <script src="plugins/tether/js/tether.min.js"></script>
-  <script src="plugins/raty/jquery.raty-fa.js"></script>
-  <script src="plugins/bootstrap/dist/js/popper.min.js"></script>
-  <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
-  <script src="plugins/slick-carousel/slick/slick.min.js"></script>
-  <script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-  <script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-  <script src="js/scripts.js"></script>
+  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'plugins/tether/js/tether.min.js' %}"></script>
+  <script src="{% static 'plugins/raty/jquery.raty-fa.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap/dist/js/popper.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+  <script src="{% static 'plugins/slick-carousel/slick/slick.min.js' %}"></script>
+  <script src="{% static 'plugins/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'plugins/smoothscroll/SmoothScroll.min.js' %}"></script>
+  {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script> {% endcomment %}
+  <script src= "js/scripts.js"></script>
 
 </body>
 

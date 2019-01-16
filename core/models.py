@@ -35,6 +35,7 @@ class Business(models.Model):
     link = models.URLField(null=True, blank=True)
     categories = models.CharField(max_length=1024, blank=True)
     slug = models.SlugField(unique=True, max_length=255)
+    image = models.ImageField(upload_to='test_image', blank=True)
 
     class Meta:
         verbose_name_plural = "Businesses"
