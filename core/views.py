@@ -38,6 +38,26 @@ class BusinessResultsListView(ListView):
         return qs
 
 
+class EventResultsListView(ListView):
+    model = Event
+    context_object_name = 'event_list'
+    template_name = 'bsevent_directory.html'
+
+    def get_queryset(self):
+
+        qs = Event.objects.all()
+
+        keywords = self.request.GET.get('q')
+        if keywords:
+            query = SearchQuery(keywords)
+            vector = SearchVector(
+                'title', 'address', 'city', 'state'
+            )
+            qs = qs.annotate(search=vector).filter(search=query)
+            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('start_date')
+        return qs
+
+
 # def get_queryset(self):
 #     queryset = Business.average_rating.all()
 #     return super().get_queryset()
@@ -84,6 +104,13 @@ def business_directory(request):
     businesses = Business.objects.all()
     return render(request, 'bsbusiness_directory.html', {
         "businesses": businesses,
+    })
+
+
+def event_directory(request):
+    events = Event.objects.all()
+    return render(request, 'bsevent_directory.html', {
+        "events": events,
     })
 
 

@@ -129,9 +129,6 @@ class Event(models.Model):
         return self.title
 
 
-# class Category(models.Model):
-#     name =
-
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(
