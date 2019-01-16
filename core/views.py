@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
 from core.models import Event, Business, LeaveReview, Profile
-from core.forms import LeaveReviewForm
+from core.forms import LeaveReviewForm, CViewerForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -16,7 +16,25 @@ from django.db.models import Avg
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.views.generic import ListView
 
-# from .forms import SearchForm
+# Trying to get City selection working
+def get_city(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = CViewerForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = CViewerForm()
+
+    return render(request, '##.html', {'form': form})
+
 
 class BusinessResultsListView(ListView):
     model = Business
@@ -42,7 +60,7 @@ class BusinessResultsListView(ListView):
 #     queryset = Business.average_rating.all()
 #     return super().get_queryset()
 
-# from django-filters docs
+
 def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
     return render(request, 'events/event_list.html', {'filter': f})
@@ -52,6 +70,13 @@ def event_list_text(request):
     f = EventFilterTextSearch(request.GET, queryset=Event.objects.all())
     return render(request, 'events/event_list.html', {'filter': f})
 
+
+# Testing Filter Buttons
+# class CityForm(forms.Form):
+#     do = forms.ChoiceField(
+#         widget=MultipleSubmitButton,
+#         choices=CITIES,
+#     )
 
 def index(request):
     events = Event.objects.all()
