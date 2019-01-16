@@ -122,10 +122,6 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
-# class Category(models.Model):
-#     name = 
-   
-
 
 class LeaveReview(models.Model):
     business = models.ForeignKey(
