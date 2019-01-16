@@ -30,11 +30,23 @@ from django.contrib.auth.views import (
 
 from django.views.generic import TemplateView
 
+
 from core.views import BusinessResultsListView, EventResultsListView
+
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
- 
 
+
+
+from django.conf.urls import url, include
+from django.contrib.auth.models import User
+
+from rest_framework import routers
+from api import views as api_views
+
+router = routers.DefaultRouter()
+router.register('businesses', api_views.BusinessViewset, api_views.BusinessLatLongViewset)
+router.register('businesseslocation', api_views.BusinessLatLongViewset)
 
 
 urlpatterns = [
@@ -89,6 +101,7 @@ urlpatterns = [
     path('mapboxTest', views.mapboxTest, name='mapboxTest'),
     path('mapBoxPlotTest', views.mapBoxPlotTest, name='mapBoxPlotTest'),
 
-    
+    path(r'^api/', include('rest_framework.urls')),
+    path('api/', include((router.urls, 'core'),namespace="api")),
 ]
 
