@@ -44,7 +44,8 @@ class Business(models.Model):
 
 
 class BusinessLatLong(models.Model):
-    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    business = models.ForeignKey(
+        Business, on_delete=models.CASCADE, unique=True)
     location_name = models.CharField(max_length=512, blank=True)
     relevance = models.FloatField(default=0)
     latitude = models.FloatField(blank=True)
