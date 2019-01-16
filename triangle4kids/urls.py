@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 # from core.views import EventListView
 # from core.views import search
+from . import settings
 from core import views
 from django.urls import path, include
 from django.conf.urls import url
@@ -30,6 +31,11 @@ from django.contrib.auth.views import (
 from django.views.generic import TemplateView
 
 from core.views import BusinessResultsListView
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+ 
+
+
 
 urlpatterns = [
     path(
@@ -74,4 +80,6 @@ urlpatterns = [
         'event/<int:pk>/favorite_event/',
         views.favorite_event,
         name='favorite_event'),
+    
 ]
+
