@@ -43,6 +43,15 @@ def mapboxTest(request):
     })
 
 
+def mapBoxPlotTest(request):
+    events = Event.objects.all()
+    businesses = Business.objects.all()
+    return render(request, 'mapBoxPlotTest.html', {
+        "events": events,
+        "businesses": businesses,
+    })
+
+
 def business_directory(request):
     businesses = Business.objects.all()
     return render(request, 'bsbusiness_directory.html', {

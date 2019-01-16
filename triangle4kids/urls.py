@@ -74,4 +74,5 @@ urlpatterns = [
         views.favorite_event,
         name='favorite_event'),
     path('mapboxTest', views.mapboxTest, name='mapboxTest'),
+    path('mapBoxPlotTest', views.mapBoxPlotTest, name='mapBoxPlotTest'),
 ]

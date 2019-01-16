@@ -14,6 +14,7 @@ class BizLatLong(object):
     maxLongitude = -78.3
     minLongitude = -79.1
     minRelevance = .8
+    #https://www.mapbox.com/help/tutorials/markers-js
 
     #Raleigh: -78.6391,35.7804
     pageIndex = 0  # Just a hint for debugging, not required
