@@ -332,7 +332,7 @@
     <div >    
         <h1><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h1>
         <h2>Address:{{event.address }} </h2> 
-         <p>EVENT RATING: {{event.average_rating}}</p>
+         <!-- <p>EVENT RATING: {{event.average_rating}}</p> -->
          <p> ______________________________________________ <p>
    </div>
    </div>
@@ -356,23 +356,28 @@
 			</a>
 		</div>
 		<div class="card-body">
-		    <h4><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h4>
+		    <h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
 		    <ul class="list-inline product-meta">
-		    	<!-- <li class="list-inline-item">
-		    		<p>BUSINESS RATING: {{business.average_rating}}</p>
-		    	</li> -->
+					<li class="list-inline-item">
+							<p>{{ event.get_class_camp_choice_display }} </p> 
+					</li>
+					<li class="list-inline-item">
+							<p> {{event.description }} </p> 
+						</li>
 		    	<li class="list-inline-item">
-		    		<p>Address:{{event.address }} </p> 
-		    	</li>
-				<li class="list-inline-item">
-		    		<p>categories:{{ event.type_choice }} </p> 
-                </li>
-                <li class="list-inline-item">
-                        <p>age range:{{ event.age_choice }} </p> 
-                    </li>
-                <li class="list-inline-item">
-                        <p>{{ event.class_camp_choice }} </p> 
-                    </li>
+		    		<p> {{event.address }} </p> 
+					</li>
+					<li class="list-inline-item">
+							<p> {{ event.city }} </p> 
+						</li>
+					
+					<li class="list-inline-item">
+		    		<p>{{ event.type_choice }} </p> 
+            </li>
+          <li class="list-inline-item">
+              <p>Age Range: {{ event.get_age_choice_display }} </p> 
+          </li>
+                
 		    </ul>
 		    
 		    <div class="product-ratings">
