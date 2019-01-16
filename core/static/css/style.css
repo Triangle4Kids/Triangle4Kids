@@ -12,6 +12,7 @@ body {
   padding-left: 35px;
 }
 
+
 .marker {
   background-image: url('../images/mapbox-icon.png');
   background-size: cover;
@@ -19,6 +20,12 @@ body {
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.fixbox{
+  width:250px; 
+  height:250px; 
+  display: inline-block;
 }
 
 
@@ -340,11 +347,11 @@ button {
 }
 
 .section {
-  padding: 100px 0;
+  padding: 20px 0;
 }
 
 .section-sm {
-  padding: 70px 0;
+  padding: 20px 0;
 }
 
 .section-title {
@@ -2280,7 +2287,7 @@ article .btn {
 }
 
 .single-blog {
-  padding-top: 50px !important;
+  padding-top: 10px !important;
 }
 
 article.single-post img {

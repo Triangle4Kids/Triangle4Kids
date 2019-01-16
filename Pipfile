@@ -17,6 +17,7 @@ django-filter = "*"
 django-bootstrap-form = "*"
 django-phone-field = "*"
 beautifulsoup4 = "*"
+pillow = "*"
 
 [dev-packages]
 pylint = "*"

@@ -6,8 +6,16 @@ Homepage - {{ block.super }}
 {% block content %}
 <h1>---------------BUSINESS DIRECTORY-------------------</h1>
 
+<div class="advance-search">
+    <form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
+        <button class="searchbutton" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+        <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+      </form>>
+<div class="row">
     
-{% for business in businesses %}
+{% for business in business_list %}
 
 <div >       
     <div >    

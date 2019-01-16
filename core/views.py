@@ -13,6 +13,34 @@ from .filters import EventFilterTextSearch, EventFilter
 
 from django.db.models import Avg
 
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.views.generic import ListView
+
+# from .forms import SearchForm
+
+class BusinessResultsListView(ListView):
+    model = Business
+    context_object_name = 'business_list'
+    template_name = 'bsbusiness_directory.html'
+
+    def get_queryset(self):
+
+        qs = Business.objects.all()
+
+        keywords = self.request.GET.get('q')
+        if keywords:
+            query = SearchQuery(keywords)
+            vector = SearchVector(
+                'name', 'address', 'city', 'state'
+            )
+            qs = qs.annotate(search=vector).filter(search=query)
+            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-average_rating')
+        return qs
+
+
+# def get_queryset(self):
+#     queryset = Business.average_rating.all()
+#     return super().get_queryset()
 
 # from django-filters docs
 def event_list_preset(request):

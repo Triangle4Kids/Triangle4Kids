@@ -35,6 +35,7 @@ class Business(models.Model):
     link = models.URLField(null=True, blank=True)
     categories = models.CharField(max_length=1024, blank=True)
     slug = models.SlugField(unique=True, max_length=255)
+    image = models.ImageField(upload_to='test_image', blank=True)
 
     class Meta:
         verbose_name_plural = "Businesses"
@@ -53,8 +54,8 @@ class BusinessLatLong(models.Model):
 
 
 EVENT_TYPE = (
-    ('half_day', 'Half-Day'),
-    ('full_day', 'Full-Day'),
+    # ('half_day', 'Half-Day'),
+    # ('full_day', 'Full-Day'),
     ('academic', 'Academic'),
     ('arts_crafts', 'Arts & Crafts'),
     ('athletics', 'Athletics'),
@@ -120,6 +121,10 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+# class Category(models.Model):
+#     name = 
+   
 
 
 class LeaveReview(models.Model):
