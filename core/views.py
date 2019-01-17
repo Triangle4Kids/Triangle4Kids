@@ -65,7 +65,7 @@ class EventResultsListView(ListView):
 # from django-filters docs
 def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
-    return render(request, 'events/event_list.html', {'filter': f})
+    return render(request, 'bsevent_directory.html', {'filter': f})
 
 
 def event_list_text(request):

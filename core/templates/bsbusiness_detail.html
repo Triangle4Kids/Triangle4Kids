@@ -9,12 +9,12 @@ Homepage - {{ block.super }}
 ====================================-->
 
 
-<section >
+{% comment %} <section >
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<!-- Advance Search -->
-				<div class="advance-search">
+				<div class="advance-search"> {% endcomment %}
 					
 {% comment %} <div class="row">
 			<div class="col-md-12">
@@ -29,11 +29,11 @@ Homepage - {{ block.super }}
 				</div>
 			</div>
 		</div> {% endcomment %}
-				</div>
+				{% comment %} </div>
 			</div>
 		</div>
 	</div>
-</section>
+</section> {% endcomment %}
 <!--===================================
 =            Main Section          =
 ====================================-->
@@ -46,10 +46,11 @@ Homepage - {{ block.super }}
 				<div class="product-details">
 					<h1 class="product-title">{{business.name}}</h1>
 					<div class="product-meta">
-						<ul class="list-inline">
-							<li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> {{ average_score }}</li>
-							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Category<a href="">{{business.categories}}</a></li>
-							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i> Location<a href="">{{business.address}}</a></li>
+						<ul class="list">
+							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> User Score:{{average_score }}</li> 
+							
+							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Categories:<a href="">{{business.categories}}</a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i> Location: <a href="">{{business.address}}</a></li>
 						</ul>
 					</div>
 					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
@@ -98,16 +99,33 @@ Homepage - {{ block.super }}
 
 							<!-- Review For Loop -->
                 {% for review in review %}
-                        <div class="box"> 
 
-                                <p class = "subtitle"> User:  {{ user }} </p>
-                                <p class = "subtitle"> Review:  {{ review.text }} </p>
-                                <p class = "subtitle"> Rating:  {{ review.rating }} </p>
+				<div class="card border-secondary mb-10" style="max-width: 50rem;">
+					<div class="card-header">
+					<ul class="list">
+							
+							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> {{ review.rating }} / 5.0 </li> 
+							 <li class="list-inline-item"> <b> "Awesome" </b></li> 
+							
+							{% comment %} <li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Categories:<a href=""></a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i> Location: <a href="">/a></li> {% endcomment %}
+						</ul>
 
-                                 {% comment %} {% if user == review.reviewer or user.is_staff %} {% endcomment %}
-                                <a class="button" href="{% url 'user_delete_review' id=review.id %}" ><i class="fas fa-trash-alt"></i> &nbsp; Delete</a>
+					</div>
+					<div class="card-body text-secondary">
+
+							<li class="list-inline-item"><i class="fas fa-user" style="color:#0000ff;"></i> {{ user }} </li>
+
+						<p class="card-text">"{{ review.text }}"</p>
+					</div>
+					</div>
+					<br> 
+
+
+                                 {% comment %} Delete Comment Section  {% if user == review.reviewer or user.is_staff %} {% endcomment %}
+                                {% comment %} <a class="button" href="{% url 'user_delete_review' id=review.id %}" ><i class="fas fa-trash-alt"></i> &nbsp; Delete</a> {% endcomment %}
                                 {% comment %} {% endif %}  {% endcomment %}
-                        </div>
+                        
 
                 {% endfor %}
 								<!-- End Review For Loop -->
@@ -120,15 +138,35 @@ Homepage - {{ block.super }}
 
 								<!-- Event For Loop -->
 								{% for event in events %}
+
+								<div class="media">
+									{% if event.image %}
+										<img class="mr-3" height="120" width="120" src="{{ event.image.url }}" alt="Generic placeholder image">
+									{% else %}
+										<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
+									{% endif %}
+								<div class="media-body">
+									<h5 class="mt-0"><a href="{% url 'event_detail' slug=event.slug %}">{{event.title}}</h5>
+									<ul class="list-inline product-meta">
+												<li class="list-inline-item">
+													<p> {{event.business}}</p></li>
+												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}  </li>
+												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;" ></i> {{ event.start_date }}  </li>
+												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;" ></i> {{ event.start_time }} - {{ event.end_time }}   </li>
+											</ul>
+											<p> {{event.description}}</p> 
+											
+											<button class="btn "><i style="color:#31B91C;" class="fa fa-reply">  </i><a href="{% url 'event_detail' slug=event.slug %}"> More information  </a></button>
+								</div>
+								</div>
 									<div >
-													<h1><a href="{% url 'event_detail' slug=event.slug %}"> Event Title:{{event.title}} </a></h1>
-													<p><a href="{% url 'event_detail' slug=event.slug %}"> Event Description:{{event.description}} </a></p>
-													<p> Category: {{event.type_choice}}</p>
-													<p> Age: {{event.get_age_choice_display}}</p>
-													<p> Camp: {{event.get_class_camp_choice_display}}</p>
-													<p> City: {{event.get_cities_choice_display}}</p>    
-													<button class="#"><a href="{% url 'event_detail' slug=event.slug %}"> More information  </a></button>
+													
+													
 									</div>
+									<br> 
+									<br> 
+
+									
         				{% endfor %}
 								
 							</div>
@@ -147,20 +185,18 @@ Homepage - {{ block.super }}
 							  		<div class="review-submission">
 							  			
 						  				<!-- Rate -->
-						  				<div class="rate">
-						  					<div class="starrr"></div>
-						  				</div>
+						  				
 						  				<div class="review-submit">
 											<!-- Working Form  -->
 
 												<form role="form" action="" method="post" class= "subtitle is-4" >
 												{% csrf_token %}
-												{{ form.as_table }}
+												{{ form.as_p }}
 												<br>
 												<button type="submit" class = "button hero is-outlined  form-padding">Submit</button>   
 													</form> 
 													<!-- Non Working Form  -->
-						  					<form action="#" class="row">
+						  					{% comment %} <form action="#" class="row">
 						  						<div class="col-lg-6">
 						  							<input type="text" name="name" id="name" class="form-control" placeholder="Name">
 						  						</div>
@@ -173,7 +209,7 @@ Homepage - {{ block.super }}
 						  						<div class="col-12">
 						  							<button type="submit" class="btn btn-main">Sumbit</button>
 						  						</div>
-						  					</form>
+						  					</form> {% endcomment %}
 
 						  				</div>
 							  		</div>
@@ -196,6 +232,12 @@ Homepage - {{ block.super }}
 					<div class="widget map" >
 					
 						<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+
+					</div>
+					{% else %}
+					<div class="widget map" >
+					
+						<img class="mr-3" height="200px" width="100%" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
 
 					</div>
 					{% endif %}

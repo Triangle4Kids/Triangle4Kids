@@ -220,7 +220,41 @@
 				</div>
 			</div>
 			<div class="col-md-9">
-				<div class="category-search-filter">
+
+					{% comment %} <div class="col-md-6">
+							<div class="view">
+								<ul class="list-inline view-switcher">
+									<li class="list-inline-item">
+										<a href="{% url 'business_directory' %}"><i class="fa fa-th-large"></i> See All Listings</a>
+									</li>
+									
+									<li class="list-inline-item"> {% endcomment %}
+
+									{% comment %} <form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
+										<button class="searchbutton" type="submit">
+										<i class="fa fa-search"></i>
+										</button>
+										<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+									</form>				
+									</li> {% endcomment %}
+
+									
+								{% comment %} </ul>
+								
+							</div>
+						</div> {% endcomment %}
+
+
+						<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
+								<div class="block d-flex">
+								<a href="{% url 'business_directory' %}"><i class="fa fa-th-large"></i> See  All  Listings</a>
+									<input type="text" class="searchbox form-control mb-2 mr-sm-2 mb-sm-0" id="searchform" method="get" name="q" placeholder="Search for businesses, camps, and events in the Triangle!">
+									<!-- Search Button -->
+									<button class="btn-sm btn-main" type="submit" >SEARCH</button>
+									</form>
+								</div>
+							
+				<!-- <div class="category-search-filter">
 					<div class="row">
 						<div class="col-md-6">
 							<strong>Sort</strong>
@@ -249,7 +283,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="product-grid-list">
 						
@@ -257,39 +291,37 @@
 
 					<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
 
-					{% for business in business_list %}	
+						{% for business in business_list %}	
 						<div class="col-sm-12 col-lg-4 col-md-6">																		
 <div class="product-item bg-light">
 		
 	<div class="card">
-		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				
-				<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-			</a>
-		</div>
+		{% if business.image %}
+				<div class="thumb-content">
+				<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+				</div>
+		{% else %}
+
+				<div class="thumb-content">
+					<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
+				</div>
+		{% endif%}
+
+
+	
 		<div class="card-body">
 		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> Name:{{business.name}} </a></h4>
 		    <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<p>BUSINESS RATING: {{business.average_rating}}</p>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<p>Address:{{business.address }} </p> 
-		    	</li>
-				<li class="list-inline-item">
-		    		<p>categories:{{ business.categories }} </p> 
-		    	</li>
+		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
+					<li class="list-inline-item"> <i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{business.city}}</li>
+					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> <b> Categories:</b>  {{ business.categories }}</li>
+		    		
 		    </ul>
 		    
 		    <div class="product-ratings">
 		    	<ul class="list-inline">
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    		
+		    		<li class="list-inline-item"><i style="color:#31B91C;" class="fas fa-reply "> <a href="{% url 'business_detail' slug=business.slug %}"></i> See this Business </li>
 		    	</ul>
 		    </div>
 		</div>
@@ -329,41 +361,39 @@
 
 
 
-<!-- REAL Business FOR Loop  -->
+<!-- THIS LOOP RETURN THE "ALL" OBJECTS PARAMETR   -->
 
 							{% for business in businesses %}	
 						<div class="col-sm-12 col-lg-4 col-md-6">																		
 <div class="product-item bg-light">
 		
 	<div class="card">
-		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				
-				<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-			</a>
-		</div>
+		{% if business.image %}
+				<div class="thumb-content">
+				<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+				</div>
+		{% else %}
+
+				<div class="thumb-content">
+					<img class="card-img-top img-fluid" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
+				</div>
+		{% endif%}
+
+
+	
 		<div class="card-body">
 		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> Name:{{business.name}} </a></h4>
 		    <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<p>BUSINESS RATING: {{business.average_rating}}</p>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<p>Address:{{business.address }} </p> 
-		    	</li>
-				<li class="list-inline-item">
-		    		<p>categories:{{ business.categories }} </p> 
-		    	</li>
+		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
+					<li class="list-inline-item"> <i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{business.city}}</li>
+					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> <b> Categories:</b>  {{ business.categories }}</li>
+		    		
 		    </ul>
 		    
 		    <div class="product-ratings">
 		    	<ul class="list-inline">
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    		
+		    		<li class="list-inline-item"><i style="color:#31B91C;" class="fas fa-reply "> <a href="{% url 'business_detail' slug=business.slug %}"></i> See this Business </li>
 		    	</ul>
 		    </div>
 		</div>
