@@ -135,7 +135,9 @@ class LeaveReview(models.Model):
         Business, on_delete=models.CASCADE, related_name="reviews")
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500, blank=False)
-
+    title = models.CharField(max_length=75, blank=True)
+    event = models.CharField(max_length=75, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     rating = models.PositiveIntegerField(
         validators=[MinValueValidator(1),
                     MaxValueValidator(5)])
