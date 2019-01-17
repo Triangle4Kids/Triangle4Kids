@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -72,9 +73,7 @@ ROOT_URLCONF = 'triangle4kids.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'core/templates',
-        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request', ## For EL-pagination
             ],
         },
     },
