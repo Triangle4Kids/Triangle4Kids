@@ -310,11 +310,11 @@
 
 	
 		<div class="card-body">
-		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> Name:{{business.name}} </a></h4>
+		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> {{business.name}} </a></h4>
 		    <ul class="list-inline product-meta">
 		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
 					<li class="list-inline-item"> <i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{business.city}}</li>
-					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> <b> Categories:</b>  {{ business.categories }}</li>
+					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i>   {{ business.categories }}</li>
 		    		
 		    </ul>
 		    
@@ -382,11 +382,11 @@
 
 	
 		<div class="card-body">
-		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> Name:{{business.name}} </a></h4>
+		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> {{business.name}} </a></h4>
 		    <ul class="list-inline product-meta">
 		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
 					<li class="list-inline-item"> <i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{business.city}}</li>
-					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> <b> Categories:</b>  {{ business.categories }}</li>
+					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i>   {{ business.categories }}</li>
 		    		
 		    </ul>
 		    
