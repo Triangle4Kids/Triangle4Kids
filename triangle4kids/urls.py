@@ -49,12 +49,6 @@ router.register('businesses', api_views.BusinessViewset,
                 api_views.BusinessLatLongViewset)
 router.register('businesseslocation', api_views.BusinessLatLongViewset)
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> master
 urlpatterns = [
     path(
         'accounts/password/reset/',
