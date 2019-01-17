@@ -318,55 +318,52 @@
 					<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
 
 					{% for event in filter.qs  %}	
-						<div class="col-sm-12 col-lg-4 col-md-6">																		
-<div class="product-item bg-light">
-		
-	<div class="card">
-	{% if event.image %}
-		<div class="thumb-content">
-				<img class="mr-3" height="50" width="75" src="{{ event.image.url }}" alt="Generic placeholder image">
-		</div>
-		{% endif %}
-		<div class="card-body">
-		    <h4><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h4>
-		    <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<p>EVENT DESCRIPTION: {{event.description}}</p>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<p>Address:{{event.address }} </p> 
-		    	</li>
-				<li class="list-inline-item">
-		    		<p>start date:{{ event.start_date }} </p> 
-                </li>
-                <li class="list-inline-item">
-                        <p>end date:{{ event.end_date }} </p> 
-                    </li>
-                <li class="list-inline-item">
-                        <p>start time:{{ event.start_time }} </p> 
-                    </li>
-                <li class="list-inline-item">
-                        <p>end time:{{ event.end_time }} </p> 
-                    </li>
-                <li class="list-inline-item">
-                        <p>favorite:{{ event.favorite }} </p> 
-                    </li>
-		    </ul>
-		
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-		</div>
-	</div>
-	
-	
-</div>
+							<div class="col-sm-12 col-lg-4 col-md-6">		
+								
+								
+
+
+								
+							<div class="product-item bg-light">
+
+
+
+									
+								<div class="card">
+								
+								{% if event.image %}
+									<div class="thumb-content">
+											<img class="mr-3" height="150" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image">
+									</div>
+									{% else %}
+
+									<div class="thumb-content">
+											<img class="mr-3" height="150" width="100%" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg" alt="Generic placeholder image">
+									</div>
+									{% endif %}
+									<div class="card-body">
+											<h4><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h4>
+											<ul class="list-inline product-meta">
+												<li class="list-inline-item">
+													<p>EVENT DESCRIPTION: {{event.business}}</p></li>
+												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}  </li>
+												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;" ></i> {{ event.start_date }}  </li>
+												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;" ></i> {{ event.start_time }} - {{ event.end_time }}   </li>
+													
+											
+											</ul>
+									
+											<div class="product-ratings">
+												<ul class="list-inline">
+													<li class="list-inline-item selected"><a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;" class="fa fa-reply">  </i> See this event </li>
+													
+												</ul>
+											</div>
+									</div>
+								</div>
+								
+								
+							</div>
 
 
 					</div>
@@ -402,54 +399,56 @@
 <!-- REAL Event FOR Loop  -->
 
 							{% for event in events %}	
-						<div class="col-sm-12 col-lg-4 col-md-6">																		
-<div class="product-item bg-light">
-		
-	<div class="card">
-	{% if event.image %}
-		<div class="thumb-content">
-				<img class="mr-3" height="50" width="75" src="{{ event.image.url }}" alt="Generic placeholder image">
-		</div>
-		{% endif %}
-		<div class="card-body">
-		    <h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
-		    <ul class="list-inline product-meta">
-					<li class="list-inline-item">
-							<p>{{ event.get_class_camp_choice_display }} </p> 
-					</li>
-					<li class="list-inline-item">
-							<p> {{event.description }} </p> 
-						</li>
-		    	<li class="list-inline-item">
-		    		<p> {{event.address }} </p> 
-					</li>
-					<li class="list-inline-item">
-							<p> {{ event.city }} </p> 
-						</li>
-					
-					<li class="list-inline-item">
-		    		<p>{{ event.type_choice }} </p> 
-            </li>
-          <li class="list-inline-item">
-              <p>Age Range: {{ event.get_age_choice_display }} </p> 
-          </li>
-                
-		    </ul>
-		    
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-		</div>
-	</div>
-	
-	
-</div>
+												<div class="col-sm-12 col-lg-4 col-md-6">			
+												
+																											
+						<div class="product-item bg-light">
+								
+							<div class="card">
+							{% if event.image %}
+								<div class="thumb-content">
+										<img class="mr-3" height="100" width="100" src="{{ event.image.url }}" alt="Generic placeholder image">
+								</div>
+								{% endif %}
+								<div class="card-body">
+										<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item">
+													<p>{{ event.get_class_camp_choice_display }} </p> 
+											</li>
+											<li class="list-inline-item">
+													<p> {{event.description }} </p> 
+												</li>
+											<li class="list-inline-item">
+												<p> {{event.address }} </p> 
+											</li>
+											<li class="list-inline-item">
+													<p> {{ event.city }} </p> 
+												</li>
+											
+											<li class="list-inline-item">
+												<p>{{ event.type_choice }} </p> 
+												</li>
+											<li class="list-inline-item">
+													<p>Age Range: {{ event.get_age_choice_display }} </p> 
+											</li>
+														
+										</ul>
+										
+										<div class="product-ratings">
+											<ul class="list-inline">
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+								</div>
+							</div>
+							
+							
+						</div>
 
 
 					</div>
