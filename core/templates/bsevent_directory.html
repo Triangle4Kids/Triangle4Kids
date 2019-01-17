@@ -318,17 +318,9 @@
 					<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
 
 					{% for event in filter.qs  %}	
-							<div class="col-sm-12 col-lg-4 col-md-6">		
-								
-								
-
-
-								
+							<div class="col-sm-12 col-lg-4 col-md-6">			
 							<div class="product-item bg-light">
 
-
-
-									
 								<div class="card">
 								
 								{% if event.image %}
@@ -342,21 +334,21 @@
 									</div>
 									{% endif %}
 									<div class="card-body">
-											<h4><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h4>
+											<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
 											<ul class="list-inline product-meta">
 												<li class="list-inline-item">
-													<p>EVENT DESCRIPTION: {{event.business}}</p></li>
+													<p> {{event.business}}</p></li>
 												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}  </li>
 												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;" ></i> {{ event.start_date }}  </li>
 												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;" ></i> {{ event.start_time }} - {{ event.end_time }}   </li>
 													
 											
 											</ul>
+											<li class="list-inline-item selected"> {{event.description|slice:":75"  }} ...  </li>
 									
 											<div class="product-ratings">
-												<ul class="list-inline">
+												<br>
 													<li class="list-inline-item selected"><a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;" class="fa fa-reply">  </i> See this event </li>
-													
 												</ul>
 											</div>
 									</div>
