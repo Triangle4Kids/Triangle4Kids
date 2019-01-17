@@ -30,7 +30,6 @@ from django.contrib.auth.views import (
 
 from django.views.generic import TemplateView
 
-
 from core.views import BusinessResultsListView, EventResultsListView
 
 from django.contrib.staticfiles.urls import static

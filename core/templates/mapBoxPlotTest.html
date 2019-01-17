@@ -79,9 +79,9 @@ var geojson = {
   }]
 }; {% endcomment %}
 
-geojson.features.forEach(function(entry) {
+{% comment %} geojson.features.forEach(function(entry) {
   addLatLongMarker(entry.geometry.coordinates[1],entry.geometry.coordinates[0])
-  });
+  }); {% endcomment %}
 
 
 addLatLongMarker(35.90, -79.01)
