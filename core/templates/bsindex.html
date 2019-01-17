@@ -134,9 +134,9 @@ Homepage - {{ block.super }}
 						
 						
 							{% if business.image %}
-								<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+								<img class="mr-3" height="150" width="300" src="{{ business.image.url }}" alt="Generic placeholder image">
 								{% else %}
-								<img class="mr-3" height="50" width="75" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
+								<img class="mr-3" height="150" width="300" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
 							{% endif %} 
 
 							<li class="list-inline-item">
@@ -150,14 +150,14 @@ Homepage - {{ block.super }}
 						<br>
 
 							<li class="list-inline-item">
-							<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> Location: <a href="">{{business.address}}</a></li>
+							<i class="fa fa-location-arrow" style="color:#D01C2E;"></i>  <a href="">{{business.city}}</a></li>
 							<br>
 							</li>
 							
 							{% if business.categories %}
 							<br>
 							<li class="list-inline-item">
-								<a href="#"><i style="color:#1C76D0;" class="fas fa-globe-americas"></i> Catagories: {{business.categories}}</a>
+								<a href="#"><i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{ business.categories }} </a>
 							</li>
 
 							{% endif %}
@@ -173,7 +173,7 @@ Homepage - {{ block.super }}
 						<div class="product-ratings">
 						
 						<br>
-						<a href="{% url 'business_detail' slug=business.slug %}"><i style="color:#31B91C;" class="fas fa-reply "></i> See this Business </a>
+						<a href="{% url 'business_detail' slug=business.slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i>  See this Business </a>
 						
 							
 						</div>
@@ -235,16 +235,16 @@ Homepage - {{ block.super }}
 								<a href=""><i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} </a>
 							</li>
 							<li class="list-inline-item">
-								<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.age_choice}} </a>
+								<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} </a>
 							</li>
 							<li class="list-inline-item">
 								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 							</li>
 						</ul>
 						<p> {{event.description}}</p>
-						
-						<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> Catagories: {{business.categories}}</a></p>
-							
+						{% if event.type_choice %}
+							<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
+						{% endif %}
 						
 						<div class="product-ratings">
 						<a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;" class="fas fa-reply "></i> Learn More! </a>

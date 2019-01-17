@@ -49,9 +49,12 @@ Homepage - {{ block.super }}
 						<ul class="list">
 							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> User Score:{{average_score }}</li> 
 							
-							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Categories:<a href="">{{business.categories}}</a></li>
-							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i> Location: <a href="">{{business.address}}</a></li>
+							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business.categories}}</a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  <a href="">{{business.address}}</a></li>
+							<li class="list-inline-item"><i class="fa fa-phone" style="color:#9933ff;"></i>  {{business.phone}}</li>
+						<li class="list-inline-item"><i class="fa fa-laptop" style="color:#ff9933;"></i> <a href="{{business.link}}" target="_blank" > Visit this webpage </a> </li>
 						</ul>
+						
 					</div>
 					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
