@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
-from core.models import Event, Business, LeaveReview, Profile
+from core.models import Event, Business, LeaveReview, Profile, EVENT_TYPE, AGE_RANGE, CLASS_CAMP, CITIES
 from core.forms import LeaveReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -44,17 +44,7 @@ class EventResultsListView(ListView):
     template_name = 'bsevent_directory.html'
 
     def get_queryset(self):
-
-        qs = Event.objects.all()
-
-        keywords = self.request.GET.get('q')
-        if keywords:
-            query = SearchQuery(keywords)
-            vector = SearchVector(
-                'title', 'address', 'city', 'state'
-            )
-            qs = qs.annotate(search=vector).filter(search=query)
-            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('start_date')
+        qs = Event.objects.all().order_by('start_date')
         return qs
 
 
@@ -65,7 +55,7 @@ class EventResultsListView(ListView):
 # from django-filters docs
 def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
-    return render(request, 'bsevent_directory.html', {'filter': f})
+    return render(request, 'bsevent_directory.html', {'filter': f, 'type_choices': EVENT_TYPE, 'age_choices': AGE_RANGE, 'class_camp_choices': CLASS_CAMP, 'cities_choices': CITIES})
 
 
 def event_list_text(request):

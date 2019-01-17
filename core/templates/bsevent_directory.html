@@ -1,9 +1,9 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block title %}
- Event Directory  - {{ block.super }} 
+Event Directory - {{ block.super }}
 {% endblock title %}
 {% load bootstrap %}
-
+{% load urls %}
 {% block content %}
 
 <!-- SECONDARY NAV AREA -->
@@ -14,7 +14,7 @@
         views.event_list_preset,
         name='event_list_preset'),
     path('events/', views.event_list_text, name='event_list_text'), -->
-							
+
 
 {% comment %} <section class="page-search">
 	<div class="container">
@@ -22,20 +22,20 @@
 			<div class="col-md-12">
 				<!-- Advance Search -->
 				<div class="advance-search">
-					
-<div class="row">
-			<div class="col-md-12">
-				<div class="section-title">
-				<!-- Secodnary Nav -->
-				<nav >
-					<a  class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
-					<a  class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
-					<a  class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewed</a>
-					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
-					</nav>
-				</div>
-			</div>
-		</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<!-- Secodnary Nav -->
+								<nav>
+									<a class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
+									<a class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
+									<a class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewed</a>
+									<a class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
+								</nav>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -44,240 +44,274 @@
 
 {% comment %} <section class="#">
 	<div class="container">
-	<h2>Map option</h2>
+		<h2>Map option</h2>
 
-		
+
 	</div>
 </section> {% endcomment %}
 
 <!-- Title Bar -->
-<section >
+<section>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				
-			
+
+
 				<div class="search-result bg-gray">
 
 
 					<h2>Event Directory</h2>
 					<p> 1234 Events in the area </p>
-					
-					
+
+
 
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="category-sidebar">
 					<div class="widget category-list">
-	{% comment %} <h4 class="widget-header">Search</h4> {% endcomment %}
-	<ul class="category-list">
+						{% comment %} <h4 class="widget-header">Search</h4> {% endcomment %}
+						<ul class="category-list">
 
-	<form method="GET">
-    {{ filter.form|bootstrap }}
-    <button type="submit" class="btn btn-primary">Search</button>
-	</form>
-	
-
-
-
-
-
-		{% comment %} <li><a href="category.html"> Raleigh <span>93</span></a></li>
-		<li><a href="category.html"> Durham <span>233</span></a></li>
-		<li><a href="category.html"> Cary   <span>183</span></a></li>
-		<li><a href="category.html"> Apex <span>343</span></a></li> {% endcomment %}
-	</ul>
-</div>
-
-
-<div class="widget category-list">
-	<h4 class="widget-header">Category</h4>
-	<ul class="category-list">
-		<li><a href="category.html"> Day Camps <span>93</span></a></li>
-		<li><a href="category.html"> Residential Camps <span>233</span></a></li>
-		<li><a href="category.html"> Track-Out-Camps <span>183</span></a></li>
-		<li><a href="category.html"> Half day<span>120</span></a></li>
-		<li><a href="category.html"> Full Day <span>40</span></a></li>
-		<li><a href="category.html"> All Ages <span>81</span></a></li>
-		<li><a href="category.html"> Preschool <span>93</span></a></li>
-		<li><a href="category.html"> K-5 <span>233</span></a></li>
-		<li><a href="category.html"> Middle School <span>183</span></a></li>
-		<li><a href="category.html"> High School <span>120</span></a></li>
-		<li><a href="category.html"> Academics <span>40</span></a></li>
-		<li><a href="category.html"> Animal Care <span>81</span></a></li>
-		<li><a href="category.html"> Arts and Crafts <span>93</span></a></li>
-		<li><a href="category.html"> Cooking <span>233</span></a></li>
-		<li><a href="category.html"> Games<span>183</span></a></li>
-		<li><a href="category.html"> Health/Fitness <span>120</span></a></li>
-		<li><a href="category.html"> Outdoor Play/ Nature <span>40</span></a></li>
-		<li><a href="category.html"> Performing Arts <span>81</span></a></li>
-		<li><a href="category.html"> Sports <span>40</span></a></li>
-		<li><a href="category.html"> Technology <span>81</span></a></li>
-		
-	</ul>
-</div>
-
-{% comment %} <div class="widget filter">
-	<h4 class="widget-header">Extra Filter #1</h4>
-	<select>
-		<option>Popularity</option>
-		<option value="1">Top rated</option>
-		<option value="2">Lowest Price</option>
-		<option value="4">Highest Price</option>
-	</select>
-</div> {% endcomment %}
-
-{% comment %} <div class="widget price-range">
-	<h4 class="widget-header">Extra Filter #2</h4>
-	<div class="block">
-		<b> x </b>
-		<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> 
-		<b>y </b>
-	</div>
-</div> {% endcomment %}
-
-<div class="widget product-shorting">
-	<h4 class="widget-header">Extra filter #3</h4>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    1
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    2
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    3
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    4
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    1
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    2
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    3
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    4
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    1
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    2
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    3
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    4
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    1
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    2
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    3
-	  </label>
-	</div>
-	<div class="form-check">
-	  <label class="form-check-label">
-	    <input class="form-check-input" type="checkbox" value="">
-	    4
-	  </label>
-	</div>
+							<form method="GET">
+								{{ filter.form|bootstrap }}
+								<button type="submit" class="btn btn-primary">Search</button>
+							</form>
 
 
 
 
 
-</div>
+							{% for cities_choice in cities_choices %}
+							<li>
+								{% if filter.data.cities_choice__exact == cities_choice.0 %}
+								{{ cities_choice.1 }}
+								{% else %}
+								<a href="{% replace_query_param url=request.get_full_path param='cities_choice__exact' value=cities_choice.0 %}">
+									{{ cities_choice.1 }}
+									<span>93</span></a>
+								{% endif %}
+							</li>
+							{% endfor %}</li>
 
-<div class="container">
+						</ul>
+						<div class="widget category-list">
+							<h4 class="widget-header">Ages</h4>
+							<ul class="category-list">
 
-  
+								{% for age_choice in age_choices %}
+								<li>
+									{% if filter.data.age_choice__exact == age_choice.0 %}
+									{{ age_choice.1 }}
+									{% else %}
+									<a href="{% replace_query_param url=request.get_full_path param='age_choice__exact' value=age_choice.0 %}">
+										{{ age_choice.1 }}
+										<span>93</span></a>
+									{% endif %}
+								</li>
+								{% endfor %}</li>
 
-  
-{% comment %} 
-  <ul> 
-  {% for event in filter.qs %}
-    <li>
-     
-    {{ event.title }} - {{ event.class_camp_choice }}
-    <p>{{ event.start_date }} - {{ event.end_date }}</p>
-    <p>{{ event.start_time }} - {{ event.end_time }}</p>
-    <p>{{ event.type_choice }}</p>
-    <p>{{ event.get_age_choice_display }}</p>
-    <p>{{ event.get_cities_choice_display }}</p>
-    <p>{{ event.business }}</p>
-    <p>{{ event.link }}</p>
-    <p>{{ event.description }}</p>
-    <p>{{ event.address }}</p>
-    <!-- <p>{{ event.city }}</p> -->
-           <!-- <p>{{ event.favorite }}</p> -->
-           
-    </li>
-  {% endfor %}
-</ul> {% endcomment %}
+							</ul>
+						</div>
 
-</div>
+						<div class="widget category-list">
+							<h4 class="widget-header">Type</h4>
+							<ul class="category-list">
+								{% for class_camp_choice in class_camp_choices %}
+								<li>
+									{% if filter.data.class_camp_choice__exact == class_camp_choice.0 %}
+									{{ class_camp_choice.1 }}
+									{% else %}
+									<a href="{% replace_query_param url=request.get_full_path param='class_camp_choice__exact' value=class_camp_choice.0 %}">
+										{{ class_camp_choice.1 }}
+										<span>93</span></a>
+									{% endif %}
+								</li>
+								{% endfor %}</li>
 
+							</ul>
+
+						</div>
+
+
+						<div class="widget category-list">
+							<h4 class="widget-header">Category</h4>
+							<ul class="category-list">
+								{% for type_choice in type_choices %}
+								<li>
+									{% if filter.data.type_choice__icontains == type_choice.0 %}
+									{{ type_choice.1 }}
+									{% else %}
+									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
+										{{ type_choice.1 }}
+										<span>93</span></a>
+									{% endif %}
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+
+						{% comment %} <div class="widget filter">
+							<h4 class="widget-header">Extra Filter #1</h4>
+							<select>
+								<option>Popularity</option>
+								<option value="1">Top rated</option>
+								<option value="2">Lowest Price</option>
+								<option value="4">Highest Price</option>
+							</select>
+						</div> {% endcomment %}
+
+						{% comment %} <div class="widget price-range">
+							<h4 class="widget-header">Extra Filter #2</h4>
+							<div class="block">
+								<b> x </b>
+								<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5"
+								 data-slider-value="[250,450]" />
+								<b>y </b>
+							</div>
+						</div> {% endcomment %}
+
+						<div class="widget product-shorting">
+							<h4 class="widget-header">Extra filter #3</h4>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									1
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									2
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									3
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									4
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									1
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									2
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									3
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									4
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									1
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									2
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									3
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									4
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									1
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									2
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									3
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label">
+									<input class="form-check-input" type="checkbox" value="">
+									4
+								</label>
+							</div>
+
+
+
+
+
+						</div>
+
+						<div class="container">
+
+
+
+
+							{% comment %}
+							<ul>
+								{% for event in filter.qs %}
+								<li>
+
+									{{ event.title }} - {{ event.class_camp_choice }}
+									<p>{{ event.start_date }} - {{ event.end_date }}</p>
+									<p>{{ event.start_time }} - {{ event.end_time }}</p>
+									<p>{{ event.type_choice }}</p>
+									<p>{{ event.get_age_choice_display }}</p>
+									<p>{{ event.get_cities_choice_display }}</p>
+									<p>{{ event.business }}</p>
+									<p>{{ event.link }}</p>
+									<p>{{ event.description }}</p>
+									<p>{{ event.address }}</p>
+									<!-- <p>{{ event.city }}</p> -->
+									<!-- <p>{{ event.favorite }}</p> -->
+
+								</li>
+								{% endfor %}
+							</ul> {% endcomment %}
+
+						</div>
+
+					</div>
 				</div>
-			</div>
-			<div class="col-md-9">
-				<!-- <div class="category-search-filter">
+				<div class="col-md-9">
+					<!-- <div class="category-search-filter">
 					<div class="row">
 						<div class="col-md-6">
 							<strong>Sort</strong>
@@ -308,155 +342,160 @@
 						</div>
 					</div>
 				</div> -->
-				
-				<div class="product-grid-list">
-						<a href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i>  See All Listings  </a>
-						
-						
-					<div class="row mt-30">
 
-					<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
+					<div class="product-grid-list">
+						<a href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
 
-					{% for event in filter.qs  %}	
-							<div class="col-sm-12 col-lg-4 col-md-6">			
-							<div class="product-item bg-light">
 
-								<div class="card">
-								
-								{% if event.image %}
-									<div class="thumb-content">
+						<div class="row mt-30">
+							<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
+
+							{% for event in filter.qs %}
+							<div class="col-sm-12 col-lg-4 col-md-6">
+								<div class="product-item bg-light">
+
+									<div class="card">
+
+										{% if event.image %}
+										<div class="thumb-content">
 											<img class="mr-3" height="150" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image">
-									</div>
-									{% else %}
+										</div>
+										{% else %}
 
-									<div class="thumb-content">
-											<img class="mr-3" height="150" width="100%" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg" alt="Generic placeholder image">
-									</div>
-									{% endif %}
-									<div class="card-body">
+										<div class="thumb-content">
+											<img class="mr-3" height="150" width="100%" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg"
+											 alt="Generic placeholder image">
+										</div>
+										{% endif %}
+										<div class="card-body">
 											<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
 											<ul class="list-inline product-meta">
 												<li class="list-inline-item">
-													<p> {{event.business}}</p></li>
-												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}  </li>
-												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;" ></i> {{ event.start_date }}  </li>
-												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;" ></i> {{ event.start_time }} - {{ event.end_time }}   </li>
-													
-											
+													<p> {{event.business}}</p>
+												</li>
+												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}
+												</li>
+												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;"></i> {{ event.start_date }}
+												</li>
+												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;"></i> {{ event.start_time }} - {{
+													event.end_time }} </li>
+
+
 											</ul>
-											<li class="list-inline-item selected"> {{event.description|slice:":75"  }} ...  </li>
-									
+											<li class="list-inline-item selected"> {{event.description|slice:":75" }} ... </li>
+
 											<div class="product-ratings">
 												<br>
-													<li class="list-inline-item selected"><a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;" class="fa fa-reply">  </i> See this event </li>
+												<li class="list-inline-item selected"><a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;"
+														 class="fa fa-reply"> </i> See this event </li>
 												</ul>
 											</div>
-									</div>
-								</div>
-								
-								
-							</div>
-
-
-					</div>
-					{% endfor %}
-
-
-
-
-
-
-						<!-- junk Event FOR Loop  -->
-
-
-						<div class="advance-search">
-    
-<div class="row">
-    
-{% comment %} {% for event in event_list %}
-
-<div >       
-    <div >    
-        <h1><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h1>
-        <h2>Address:{{event.address }} </h2> 
-         <!-- <p>EVENT RATING: {{event.average_rating}}</p> -->
-         <p> ______________________________________________ <p>
-   </div>
-   </div>
-    {% endfor %} {% endcomment %}
-
-
-
-
-<!-- REAL Event FOR Loop  -->
-
-							{% for event in events %}	
-												<div class="col-sm-12 col-lg-4 col-md-6">			
-												
-																											
-						<div class="product-item bg-light">
-								
-							<div class="card">
-							{% if event.image %}
-								<div class="thumb-content">
-										<img class="mr-3" height="100" width="100" src="{{ event.image.url }}" alt="Generic placeholder image">
-								</div>
-								{% endif %}
-								<div class="card-body">
-										<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
-										<ul class="list-inline product-meta">
-											<li class="list-inline-item">
-													<p>{{ event.get_class_camp_choice_display }} </p> 
-											</li>
-											<li class="list-inline-item">
-													<p> {{event.description }} </p> 
-												</li>
-											<li class="list-inline-item">
-												<p> {{event.address }} </p> 
-											</li>
-											<li class="list-inline-item">
-													<p> {{ event.city }} </p> 
-												</li>
-											
-											<li class="list-inline-item">
-												<p>{{ event.type_choice }} </p> 
-												</li>
-											<li class="list-inline-item">
-													<p>Age Range: {{ event.get_age_choice_display }} </p> 
-											</li>
-														
-										</ul>
-										
-										<div class="product-ratings">
-											<ul class="list-inline">
-												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-												<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											</ul>
 										</div>
+									</div>
+
+
 								</div>
+
+
 							</div>
-							
-							
+							{% endfor %}
+
+
+
+
+
+
+							<!-- junk Event FOR Loop  -->
+
+
+							<div class="advance-search">
+
+								<div class="row">
+
+									{% comment %} {% for event in event_list %}
+
+									<div>
+										<div>
+											<h1><a href="{% url 'event_detail' slug=event.slug %}"> Name:{{event.title}} </a></h1>
+											<h2>Address:{{event.address }} </h2>
+											<!-- <p>EVENT RATING: {{event.average_rating}}</p> -->
+											<p> ______________________________________________ <p>
+										</div>
+									</div>
+									{% endfor %} {% endcomment %}
+
+
+
+
+									<!-- REAL Event FOR Loop  -->
+
+									{% for event in events %}
+									<div class="col-sm-12 col-lg-4 col-md-6">
+
+
+										<div class="product-item bg-light">
+
+											<div class="card">
+												{% if event.image %}
+												<div class="thumb-content">
+													<img class="mr-3" height="100" width="100" src="{{ event.image.url }}" alt="Generic placeholder image">
+												</div>
+												{% endif %}
+												<div class="card-body">
+													<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
+													<ul class="list-inline product-meta">
+														<li class="list-inline-item">
+															<p>{{ event.get_class_camp_choice_display }} </p>
+														</li>
+														<li class="list-inline-item">
+															<p> {{event.description }} </p>
+														</li>
+														<li class="list-inline-item">
+															<p> {{event.address }} </p>
+														</li>
+														<li class="list-inline-item">
+															<p> {{ event.city }} </p>
+														</li>
+
+														<li class="list-inline-item">
+															<p>{{ event.type_choice }} </p>
+														</li>
+														<li class="list-inline-item">
+															<p>Age Range: {{ event.get_age_choice_display }} </p>
+														</li>
+
+													</ul>
+
+													<div class="product-ratings">
+														<ul class="list-inline">
+															<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+															<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+															<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+															<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+															<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+
+
+										</div>
+
+
+									</div>
+									{% endfor %}
+
+								</div>
+
+
+							</div>
+
+
+
+
+
 						</div>
-
-
-					</div>
-					{% endfor %}
-					
-						</div>
-						
-						
-					</div>
-
-					
-					
-					
-					
-				</div>
-				<!-- <div class="pagination justify-content-center">
+						<!-- <div class="pagination justify-content-center">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<li class="page-item">
@@ -477,10 +516,10 @@
 						</ul>
 					</nav>
 				</div> -->
-				
-				
+
+
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 </section>
 {% endblock content %}
