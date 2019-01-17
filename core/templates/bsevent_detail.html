@@ -32,13 +32,10 @@ Homepage - {{ block.super }}
 			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
 			
 				<article class="single-post">
+				
 					<h1> {{event.title}} </h1>
-					<li class="list-inline-item"> <a href="{% url 'business_detail' slug=business_slug %}"> {{event.business}}</li>
-					{% if event.image %}
-					<div class="col-md-3   ">
-					<img class="mr-3" height="50" width="75" src="{{ event.image.url }}" alt="Generic placeholder image">
-					</div>
-					{% endif %}
+					<h3 class="list-inline-item"> <a href="{% url 'business_detail' slug=business_slug %}"> {{event.business}}</h3>
+					
 					
 					<ul class="list-inline">
 					
@@ -64,40 +61,70 @@ Homepage - {{ block.super }}
 						
 					</ul>
 					
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt  labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip.ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. 
-					sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+					<p>{{event.description}}</p> 
 
-					<p> Category: {{event.type_choice}}</p>
-					<p> Age: {{event.get_age_choice_display}}</p>
-					<p> Camp: {{event.get_class_camp_choice_display}}</p>
-					<p> City: {{event.get_cities_choice_display}}</p>
+					<ul class="list-inline product-meta">
+							
+							<li class="list-inline-item">
+								<i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }}
+							</li>
+							<li class="list-inline-item">
+								<i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} 
+							</li>
+							<li class="list-inline-item">
+								<i class="fa fa-clock" style="color:#66ff99;" ></i> {{event.start_time}} - {{event.end_time}}
+							</li>
+							<li class="list-inline-item">
+								<i class="fa fa-chalkboard-teacher" style="color:#9933ff;" ></i> {{event.get_class_camp_choice_display}} 
+							</li>
+							<li class="list-inline-item">
+								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
+							</li>
+						</ul>
+						{% if event.type_choice %}
+							<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
+						{% endif %}
+
+						
 					
 					
-					<ul class="social-circle-icons list-inline">
-				  		<li class="list-inline-item text-center"><a class="fas fa-check" href=""></a></li>
-				  		<li class="list-inline-item text-center"><a class="fas fa-check" href=""></a></li>
-				  		<li class="list-inline-item text-center"><a class="fas fa-check" href=""></a></li>
-				  		<li class="list-inline-item text-center"><a class="fas fa-check" href=""></a></li>
-				  	</ul>
+					 <ul class="social-circle-icons list-inline">
+				  		<a href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> More from this business </a>
+						
+				  	</ul> 
+
+
 				</article>
-				<div class="block comment">
+				{% comment %} <div class="block comment">
 					<h4>Related Content goes here </h4>
 					<h4>Possibly related events... </h4>
-				</div>
+				</div> {% endcomment %}
 			</div>
 			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
 				<div class="sidebar">
 					<!-- Search Widget -->
-					<div class="widget search p-0">
+					{% comment %} <div class="widget search p-0">
 						<div class="input-group">
 						    <input type="text" class="form-control" id="expire" placeholder="Search...">
 						    <span class="input-group-addon"><i class="fa fa-search"></i></span>
 					    </div>
-					</div>
+					</div> {% endcomment %}
 					<!-- Category Widget -->
-					<div class="widget category">
+					<div >
 						<!-- Widget Header -->
-						<h5 class="widget-header">Map Goes Here</h5>
+						
+						{% if event.image %}
+						<div class="col-md-20   ">
+						
+						<img class="mr-3" height="100%" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image">
+						</div>
+						{% endif %}
+
+						
+
+
+
+
 						{% comment %} <ul class="category-list">
 							<li><a href="">Appearel <span class="float-right">(2)</span></a></li>
 							<li><a href="">Accesories <span class="float-right">(5)</span></a></li>
@@ -108,32 +135,19 @@ Homepage - {{ block.super }}
 					</div>
 					<!-- Store Widget -->
 					<div class="widget related-store">
+					
 						<!-- Widget Header -->
-						<h5 class="widget-header">Related Store</h5>
-						<ul class="store-list md list-inline">
+						
+						{% comment %} <ul class="store-list md list-inline">
 							<li class="list-inline-item">
 								
 							</li>
-							<li class="list-inline-item">
 							
-								
-							</li>
-							<li class="list-inline-item">
-								
-							</li>
-							<li class="list-inline-item">
-								
-							</li>
-							<li class="list-inline-item">
-								
-							</li>
-								<li class="list-inline-item">
-								<p> inline item </p>
-							</li>
-						</ul>
+						</ul> {% endcomment %}
 					</div>
 					<!-- Archive Widget -->
-					<div class="widget archive">
+					<div >
+					<img class="d-block w-100" src="https://i.stack.imgur.com/yEshb.gif" height="300" width="300" alt="article-01">
 						<!-- Widget Header -->
 						{% comment %} <h5 class="widget-header">Archives</h5>
 						<ul class="archive-list">
