@@ -5,6 +5,8 @@ from core.models import LeaveReview
 class LeaveReviewForm(ModelForm):
    class Meta:
        model = LeaveReview
-       fields = [ 'text', 'rating']
-
+       fields = [ 'title', 'event', 'rating', 'text'   ]
+       
+       
+            
        
