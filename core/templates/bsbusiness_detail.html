@@ -43,7 +43,7 @@ Homepage - {{ block.super }}
 		<div class="row">
 			<!-- Left sidebar -->
 			<div class="col-md-8">
-				<div class="product-details">
+				<div id = "business" data-business-id = "{{ business.pk }}" class="product-details">
 					<h1 class="product-title">{{business.name}}</h1>
 					<div class="product-meta">
 						<ul class="list">
@@ -251,10 +251,9 @@ Homepage - {{ block.super }}
 					{% endif %}
 					
 					<!-- Map Widget -->
-					<div class="widget map">
-						<div class="map">
-						<img class="d-block w-100" src="https://i.stack.imgur.com/yEshb.gif" height="300" width="300" alt="article-01">
-							
+					<div id = "map" class="d-block w-100" height="300" width="300">
+
+						
 						</div>
 					</div>
 					<!-- Rate Widget -->
@@ -277,5 +276,55 @@ Homepage - {{ block.super }}
 	</div>
 	<!-- Container End -->
 </section>
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow';
+
+// TO DO: get ID from HTML 
+bizId = 212
+{% comment %} $("#business").data("businessId") {% endcomment %}
+
+// TO DO: call /api/businesseslocation/{pk}
+{% comment %} $.getJSON( "ajax/test.json", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<li id='" + key + "'>" + val + "</li>" );
+  }); {% endcomment %}
+
+// TO DO: get results
+
+
+// TO DO: parse json results
+{% comment %} $.parseJSON() {% endcomment %}
+
+// TO DO: find businesslatlong matching bizid above
+
+
+// TO DO: get latlong from matching entry
+bizLat = 35.81
+bizLong = -78.81
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v9',
+  center: [bizLong, bizLat],
+  zoom: 12
+});
+
+addLatLongMarker(bizLat, bizLong)
+
+function addLatLongMarker(latitude, longitude) {
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  coords= [longitude, latitude]
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(coords)
+    .addTo(map);
+}
+</script>
 
 {% endblock content %}
+

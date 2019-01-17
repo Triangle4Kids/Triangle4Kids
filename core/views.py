@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
-from core.models import Event, Business, LeaveReview, Profile
+from core.models import Event, Business, LeaveReview, Profile, BusinessLatLong
 from core.forms import LeaveReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -13,10 +13,15 @@ from .filters import EventFilterTextSearch, EventFilter
 
 from django.db.models import Avg
 
-from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.contrib.postgres.search import SearchQuery, \
+SearchRank, SearchVector
 from django.views.generic import ListView
+from rest_framework import viewsets, filters
+from rest_framework.response import Response
+from api.serializers import BusinessSerializer, BusinessLatLongSerializer
 
 # from .forms import SearchForm
+
 
 class BusinessResultsListView(ListView):
     model = Business
@@ -30,12 +35,18 @@ class BusinessResultsListView(ListView):
         keywords = self.request.GET.get('q')
         if keywords:
             query = SearchQuery(keywords)
-            vector = SearchVector(
-                'name', 'address', 'city', 'state'
-            )
+            vector = SearchVector('name', 'address', 'city', 'state')
             qs = qs.annotate(search=vector).filter(search=query)
-            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('-average_rating')
+            qs = qs.annotate(
+                rank=SearchRank(vector, query)).order_by('-average_rating')
         return qs
+
+
+# class BusinessDetailViewset(viewsets.ModelViewSet):
+#     def get(self, request, pk):
+#         biz = get_object_or_404(BusinessLatLong, pk=pk)
+#         serializer_class = BusinessLatLongSerializer(biz)
+#         return Response(serializer_class.data)
 
 
 class EventResultsListView(ListView):
@@ -50,17 +61,17 @@ class EventResultsListView(ListView):
         keywords = self.request.GET.get('q')
         if keywords:
             query = SearchQuery(keywords)
-            vector = SearchVector(
-                'title', 'address', 'city', 'state'
-            )
+            vector = SearchVector('title', 'address', 'city', 'state')
             qs = qs.annotate(search=vector).filter(search=query)
-            qs = qs.annotate(rank=SearchRank(vector, query)).order_by('start_date')
+            qs = qs.annotate(
+                rank=SearchRank(vector, query)).order_by('start_date')
         return qs
 
 
 # def get_queryset(self):
 #     queryset = Business.average_rating.all()
 #     return super().get_queryset()
+
 
 # from django-filters docs
 def event_list_preset(request):
@@ -76,7 +87,7 @@ def event_list_text(request):
 def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all()
-    
+
     return render(request, 'bsindex.html', {
         "events": events,
         "businesses": businesses,
@@ -150,7 +161,6 @@ def business_detail(request, slug):
 
     review = LeaveReview.objects.filter(business=business)
     average_score = review.aggregate(Avg('rating'))
-    
 
     return render(
         request, 'bsbusiness_detail.html', {

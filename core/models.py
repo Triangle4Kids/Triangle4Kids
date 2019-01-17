@@ -45,13 +45,12 @@ class Business(models.Model):
 
 
 class BusinessLatLong(models.Model):
-    business = models.ForeignKey(
-        Business, on_delete=models.CASCADE, unique=True)
+    business = models.OneToOneField(
+        Business, on_delete=models.CASCADE, related_name='location')
     location_name = models.CharField(max_length=512, blank=True)
     relevance = models.FloatField(default=0)
     latitude = models.FloatField(blank=True)
     longitude = models.FloatField(blank=True)
-    
 
 
 EVENT_TYPE = (
@@ -131,7 +130,6 @@ class Event(models.Model):
         return self.title
 
 
-
 class LeaveReview(models.Model):
     business = models.ForeignKey(
         Business, on_delete=models.CASCADE, related_name="reviews")
@@ -140,9 +138,6 @@ class LeaveReview(models.Model):
     title = models.CharField(max_length=75, blank=True)
     event = models.CharField(max_length=75, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    
-    
-
     rating = models.PositiveIntegerField(
         validators=[MinValueValidator(1),
                     MaxValueValidator(5)])

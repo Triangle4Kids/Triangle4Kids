@@ -30,13 +30,10 @@ from django.contrib.auth.views import (
 
 from django.views.generic import TemplateView
 
-
 from core.views import BusinessResultsListView, EventResultsListView
 
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-
 
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
@@ -48,11 +45,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
-router.register('businesses', api_views.BusinessViewset, api_views.BusinessLatLongViewset)
+router.register('businesses', api_views.BusinessViewset,
+                api_views.BusinessLatLongViewset)
 router.register('businesseslocation', api_views.BusinessLatLongViewset)
-
-
-
 
 urlpatterns = [
     path(
@@ -94,20 +89,16 @@ urlpatterns = [
         'review/<id>/delete',
         views.user_delete_review,
         name="user_delete_review"),
-    path(
-        r'(?P<id>\d+)/favorite_event/$',
+    url(r'(?P<id>\d+)/favorite_event/$',
         views.favorite_event,
         name='favorite_event'),
     path(
         'event/<int:pk>/favorite_event/',
         views.favorite_event,
         name='favorite_event'),
-
     path('mapboxTest', views.mapboxTest, name='mapboxTest'),
     path('mapBoxPlotTest', views.mapBoxPlotTest, name='mapBoxPlotTest'),
-
-    path(r'^api/', include('rest_framework.urls')),
-    path('api/', include((router.urls, 'core'),namespace="api")),
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+    path('api/', include('rest_framework.urls')),
+    path('api/', include((router.urls, 'core'), namespace="api")),
+    url(r'^api/(?P<pk>[0-9]+)/$', api_views.BusinessDetailViewset)
+]
