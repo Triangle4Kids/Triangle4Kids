@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'triangle4kids.wsgi.application'
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

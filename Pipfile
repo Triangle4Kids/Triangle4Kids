@@ -19,6 +19,7 @@ django-phone-field = "*"
 beautifulsoup4 = "*"
 pillow = "*"
 djangorestframework = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 pylint = "*"
