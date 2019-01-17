@@ -47,7 +47,7 @@
         position: absolute;
         top: 0;
         bottom: 0;
-        width: 100%;
+        width: 50%;
       }
     </style>
   
@@ -92,7 +92,7 @@
       #map {
         top: 0;
         bottom: 0;
-        width: 100%;
+        width: 50%;
       }
 </style>
 
@@ -221,11 +221,9 @@
         <div class="block">
           <h4>Site Pages</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="#">Terms of Services</a></li>
+            <li><a href="{% url 'business_directory' %}">Business Directory</a></li>
+            <li><a href="{% url 'event_list_preset' %}"> Events </a></li>
+            <li><a href="{% url 'get_user_profile' %}"> My Account </a></li>
           </ul>
         </div>
       </div>
@@ -262,7 +260,7 @@
         <div class="col-sm-6 col-12">
           <!-- Copyright -->
           <div class="copyright">
-            <p>Copyright © 2016. All Rights Reserved</p>
+            <p>Copyright © 2019 TeamKids All Rights Reserved.</p>
           </div>
         </div>
         <div class="col-sm-6 col-12">
