@@ -41,11 +41,20 @@ from django.contrib.auth.models import User
 from rest_framework import routers
 from api import views as api_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 router = routers.DefaultRouter()
 router.register('businesses', api_views.BusinessViewset,
                 api_views.BusinessLatLongViewset)
 router.register('businesseslocation', api_views.BusinessLatLongViewset)
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> master
 urlpatterns = [
     path(
         'accounts/password/reset/',

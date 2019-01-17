@@ -77,13 +77,6 @@ Homepage - {{ block.super }}
 =            Popular deals section            =
 ============================================-->
 
-
-
-
-
-
-
-
 <section class="popular-deals section bg-gray">
 	<div class="container">
 		<div class="row">
@@ -99,11 +92,7 @@ Homepage - {{ block.super }}
 					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
 					
 					
-				</nav> -->
-
-
-					
-					
+				</nav> -->	
 				</div>
 			</div>
 		</div>
@@ -112,10 +101,10 @@ Homepage - {{ block.super }}
 				<div class="section-title">
 				<!-- Secodnary Nav -->
 				<nav >
-					<a  class="navtwo" href="{% url 'event_directory' %}"><i style="color:#F5F56F;" class="fas fa-map-marker-alt fa-2x"></i> Search upcoming events</a>
+					<a  class="navtwo" href="{% url 'event_list_preset' %}"><i style="color:#F5F56F;" class="fas fa-map-marker-alt fa-2x"></i> Search upcoming events</a>
 					<a  class="navtwo" href="#" title="Home"><i style="color:#D01C2E;" class="fas fa-futbol fa-2x"></i> Categories</a>
 					<a  class="navtwo" href="#" title="About"><i style="color:#31B91C;" class="fas fa-check fa-2x"></i> Best Reviewd</a>
-					<a  class="navtwo" href="#" title="Store"><i style="color:#1C76D0;" class="fas fa-search fa-2x"></i> See Business Directory</a>
+					<a  class="navtwo" href="{% url 'business_directory' %}" title="Store"><i style="color:#1C76D0;" class="fas fa-search fa-2x"></i> See Business Directory</a>
 					</nav>
 				</div>
 			</div>
@@ -144,13 +133,15 @@ Homepage - {{ block.super }}
 							<ul class="list-inline ">
 						
 						
-							<li class="list-inline-item">
-							<img class="mr-3" height="50" width="75" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
-								
-							</li>
+							{% if business.image %}
+								<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+								{% else %}
+								<img class="mr-3" height="50" width="75" src="https://www.laxymca.org/files/2413/5731/6057/laxymca-logo-colorschemeA.png" alt="Generic placeholder image">
+							{% endif %} 
+
 							<li class="list-inline-item">
 							<br>
-								<h3><a > {{business.name}} </a></h3>
+								<h3><a href="{% url 'business_detail' slug=business.slug %}" > {{business.name}} </a></h3>
 							</li>
 						</ul>
 
@@ -159,21 +150,24 @@ Homepage - {{ block.super }}
 						<br>
 
 							<li class="list-inline-item">
-							<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> Location<a href="">{{business.address}}</a></li>
+							<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> Location: <a href="">{{business.address}}</a></li>
+							<br>
 							</li>
-						
-						
 							
 							{% if business.categories %}
+							<br>
 							<li class="list-inline-item">
 								<a href="#"><i style="color:#1C76D0;" class="fas fa-globe-americas"></i> Catagories: {{business.categories}}</a>
+							</li>
+
 							{% endif %}
 								
-							</li>
+							
 							
 							
 						</ul>
-						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> {{business.average_rating}}  user rated</a>
+						
+						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
 						
 						
 						<div class="product-ratings">
@@ -191,7 +185,7 @@ Homepage - {{ block.super }}
 						<div class="col-sm-12 col-lg-4">
 						{% endfor %}
 
-						<p> See All Businesses > </p>
+						<p> <a href="{% url 'business_directory' %}"> See All Businesses > </p>
 						<br>
 						<br>
 		    	</ul>
@@ -207,36 +201,53 @@ Homepage - {{ block.super }}
 		<div class="row">
 			<!-- offer 01 -->
 			<div class="col-sm-12 col-lg-4">
-			{% for event in events|slice:":3" %}
+			{% for event in events|slice:":6" %}
 				<!-- product card -->
 			<div class="product-item bg-light">
+
+			
+			
 				<div class="card">
-					<div class="thumb-content">
-						<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="150" width="50" alt="article-01">
-						
-						<a href="">
-							
-						</a>
-					</div>
+				
+				
 		
 					<div class="card-body">
+
+					{% if event.image %}
+						<div class="thumb-content">
+							<img class="mr-3" height="150" width="300" src="{{ event.image.url }}" alt="Generic placeholder image">
+						</div>
+						{% else %}
+						<div class="thumb-content">
+						<img class="mr-3" height="150" width="300" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg" alt="Generic placeholder image">
+						</div>
+
+					{% endif %} 
+					
+					<br>
+
 						<h3><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h3>
 						<ul class="list-inline product-meta">
 							<li class="list-inline-item">
 								<p><b>{{event.business }} </b> <p>
 							</li>
 							<li class="list-inline-item">
-								<a href=""><i class="fa fa-calendar"></i> {{event.start_date }}</a>
+								<a href=""><i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} </a>
 							</li>
 							<li class="list-inline-item">
-								<a href=""><i class="fa fa-user"></i> {{event.age_choice}}</a>
+								<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.age_choice}} </a>
+							</li>
+							<li class="list-inline-item">
+								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 							</li>
 						</ul>
 						<p> {{event.description}}</p>
-						<p>Catagories: {{event.type_choice}}</p>
+						
+						<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> Catagories: {{business.categories}}</a></p>
+							
 						
 						<div class="product-ratings">
-						<a href="{% url 'event_detail' slug=event.slug %}"><i class="fas fa-reply "></i> See this Event </a>
+						<a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;" class="fas fa-reply "></i> Learn More! </a>
 							
 						</div>
 					</div>
@@ -247,7 +258,7 @@ Homepage - {{ block.super }}
 						<div class="col-sm-12 col-lg-4">
 						{% endfor %}
 
-						<p> See All Events > </p>
+						<p> <a  class="navtwo" href="{% url 'event_list_preset' %}"> See All Events > </p></a>
 
 		    	</ul>
 		    </div>	
@@ -302,7 +313,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="far fa-compass fa-3x"></i>
 								<h4>Camps</h4>
 							</div>
 							
@@ -312,7 +323,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-graduation-cap fa-3x"></i>
 								<h4>Academics</h4>
 							</div>
 							
@@ -322,7 +333,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-paw fa-3x"></i>
 								<h4>Animal Care</h4>
 							</div>
 						</div>
@@ -331,7 +342,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i> 
+								<i class="fas fa-paint-brush fa-3x"></i>
 								<h4>Arts and Crafts</h4>
 							</div>
 						</div>
@@ -340,7 +351,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-utensils fa-3x"></i>
 								<h4>Cooking</h4>
 							</div>
 						</div>
@@ -349,7 +360,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-basketball-ball fa-3x"></i>
 								<h4>Games</h4>
 							</div>
 						</div>
@@ -358,7 +369,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-dumbbell fa-3x"></i>
 								<h4>Fitness</h4>
 							</div>
 						</div>
@@ -367,7 +378,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fab fa-pagelines fa-3x"></i>
 								<h4>Outdoor</h4>
 							</div>
 						</div>
@@ -377,7 +388,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-drum fa-3x"></i>
 								<h4>Performing Arts</h4>
 							</div>
 							
@@ -387,7 +398,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="far fa-futbol fa-3x"></i>
 								<h4>Sports</h4>
 							</div>
 							
@@ -397,7 +408,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="fas fa-laptop fa-3x"></i>
 								<h4>Technology</h4>
 							</div>
 						</div>
@@ -406,7 +417,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="fas fa-search fa-3x"></i>
+								<i class="far fa-user fa-3x"></i>
 								<h4>K-5</h4>
 							</div>
 						</div>
@@ -415,12 +426,16 @@ Homepage - {{ block.super }}
 					<!-- End of Catagory grid -->
 
 
+
+
+				<!-- Original Business Search  -->
+				{% comment %} 
 					<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
 			<button class="searchbutton" type="submit">
 			  <i class="fa fa-search"></i>
 			</button>
 			<input class="searchbox" id="searchbox" name="q" type="text" placeholder="Search">
-</form>
+				</form> {% endcomment %}
 
 
 
@@ -438,7 +453,7 @@ Homepage - {{ block.super }}
 </section>
 
 
-<div id='map' width="100%" style='height:400px'>
+{% comment %} <div id='map' width="100%" style='height:400px'>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'; // replace this with your access token
     var map = new mapboxgl.Map({
@@ -449,7 +464,7 @@ Homepage - {{ block.super }}
     });
     </script>
 
-	</div>
+	</div> {% endcomment %}
 	<br>
 	<br>
 
