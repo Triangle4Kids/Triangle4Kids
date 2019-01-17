@@ -82,9 +82,9 @@ Event Directory - {{ block.super }}
 							</form>
 
 
+						</div>
 
-
-
+<!-- 
 							{% for cities_choice in cities_choices %}
 							<li>
 								{% if filter.data.cities_choice__exact == cities_choice.0 %}
@@ -96,9 +96,9 @@ Event Directory - {{ block.super }}
 								{% endif %}
 							</li>
 							{% endfor %}</li>
-
-						</ul>
-						<div class="widget category-list">
+						
+						</ul> -->
+						<!-- <div class="widget category-list">
 							<h4 class="widget-header">Ages</h4>
 							<ul class="category-list">
 
@@ -115,8 +115,8 @@ Event Directory - {{ block.super }}
 								{% endfor %}</li>
 
 							</ul>
-						</div>
-
+						</div> -->
+<!-- 
 						<div class="widget category-list">
 							<h4 class="widget-header">Type</h4>
 							<ul class="category-list">
@@ -134,7 +134,7 @@ Event Directory - {{ block.super }}
 
 							</ul>
 
-						</div>
+						</div> -->
 
 
 						<div class="widget category-list">
@@ -377,8 +377,7 @@ Event Directory - {{ block.super }}
 												</li>
 												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;"></i> {{ event.start_date }}
 												</li>
-												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;"></i> {{ event.start_time }} - {{
-													event.end_time }} </li>
+												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;"></i> {{ event.start_time }} - {{ event.end_time }} </li>
 
 
 											</ul>
