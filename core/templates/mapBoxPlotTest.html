@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 {% comment %} TO DO: add to business detail page {% endcomment %}
 <label bizId="{pk}" class="bizinfo hidden" visible=false>
 
-<div id='map' class="this taht"></div>
+<div id='map' class="this that"></div>
 
 <script>
   // TODO: RESTAPI:
@@ -78,9 +79,9 @@ var geojson = {
   }]
 }; {% endcomment %}
 
-geojson.features.forEach(function(entry) {
+{% comment %} geojson.features.forEach(function(entry) {
   addLatLongMarker(entry.geometry.coordinates[1],entry.geometry.coordinates[0])
-  });
+  }); {% endcomment %}
 
 
 addLatLongMarker(35.90, -79.01)

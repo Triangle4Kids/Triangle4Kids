@@ -19,9 +19,9 @@
     <link href="{% static 'plugins/slick-carousel/slick/slick.css" rel="stylesheet ' %}"/>
     <link href="{% static 'plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet ' %}"/>
     <!-- CUSTOM CSS -->
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="{% static 'css/style.css" rel="stylesheet' %}"/>
     <!-- FAVICON -->
-    <link href=" {% static 'img/favicon.png" rel="shortcut icon' %}"/>
+    <link href="{% static 'img/favicon.png" rel="shortcut icon' %}"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,8 +33,23 @@
     
 
     <!-- MAPBOX -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+      }
+    </style>
   
   <!-- GOOGLE ANALYTICS-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -77,7 +92,7 @@
       #map {
         top: 0;
         bottom: 0;
-        width: 100%;
+        width: 50%;
       }
 </style>
 
@@ -206,11 +221,9 @@
         <div class="block">
           <h4>Site Pages</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="#">Terms of Services</a></li>
+            <li><a href="{% url 'business_directory' %}">Business Directory</a></li>
+            <li><a href="{% url 'event_list_preset' %}"> Events </a></li>
+            <li><a href="{% url 'get_user_profile' %}"> My Account </a></li>
           </ul>
         </div>
       </div>
@@ -247,7 +260,7 @@
         <div class="col-sm-6 col-12">
           <!-- Copyright -->
           <div class="copyright">
-            <p>Copyright © 2016. All Rights Reserved</p>
+            <p>Copyright © 2019 TeamKids All Rights Reserved.</p>
           </div>
         </div>
         <div class="col-sm-6 col-12">
