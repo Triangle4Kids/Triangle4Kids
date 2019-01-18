@@ -19,11 +19,14 @@ django-phone-field = "*"
 beautifulsoup4 = "*"
 pillow = "*"
 djangorestframework = "*"
+"boto3" = "*"
+django-storages = "*"
 
 [dev-packages]
 pylint = "*"
 "flake8" = "*"
 yapf = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.7"
