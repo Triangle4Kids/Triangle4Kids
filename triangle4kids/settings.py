@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -169,6 +170,8 @@ EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
 
 INTERNAL_IPS = ['127.0.0.1']
+
+# CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # Activate django_heroku
 django_heroku.settings(locals())

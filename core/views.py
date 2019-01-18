@@ -135,7 +135,7 @@ def event_detail(request, slug):
             'business_slug': business_slug,
         })
 
-# or should this go under def event_detail?
+
 def submit_event_form(request):
     if request.method == "POST":
 
@@ -143,14 +143,13 @@ def submit_event_form(request):
 
         if form.is_valid():
             event = form.save(commit=False)
-            # event.business = business
-            # event.user = request.user
+            event.user = request.user
             event.save()
-            return redirect('event_detail')
+            return redirect('event_directory')
 
-        else:
-            form = EventForm()
-        return render(request, 'submitevent.html', {'form': form})
+    else:
+        form = EventForm()
+    return render(request, 'submitevent.html', {'form': form})
 
 
 def business_detail(request, slug):
