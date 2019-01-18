@@ -134,14 +134,14 @@
 								<div class="dropdown-menu dropdown-menu-right">
 									<a class="dropdown-item" href="{% url 'business_directory' %}"> Businesses </a>
 									<a class="dropdown-item" href="{% url 'event_list_preset' %}"> Events </a>
-									<a class="dropdown-item" href="#"> Catagories </a>
+									<a class="dropdown-item" href="#"> Categories </a>
 									
 								</div>
 							</li>
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
 							<li class="nav-item">
-								<a class="nav-link login-button" href="index.html"> Submit an Event </a>
+								<a class="nav-link login-button" href="{% url 'submit_event_form' %}"> Submit an Event </a>
                             </li>
                             {% if user.is_authenticated %} 
                             <li class="nav-item">

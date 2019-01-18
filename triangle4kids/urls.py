@@ -78,6 +78,7 @@ urlpatterns = [
         name='event_list_preset'),
     path('events/', views.event_list_text, name='event_list_text'),
     path('event/<slug>/', views.event_detail, name='event_detail'),
+    path('event/submit/', views.submit_event_form, name='submit_event_form'),
     path('business/', BusinessResultsListView.as_view(), name='business_list'),
     path('event/', EventResultsListView.as_view(), name='event_list'),
     path('business/<slug>/', views.business_detail, name='business_detail'),

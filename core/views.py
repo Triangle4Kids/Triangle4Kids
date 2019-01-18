@@ -132,16 +132,6 @@ def event_detail(request, slug):
     business = event.business
     business_slug = event.business.slug
 
-    form = EventForm()
-
-    if request.method == "POST":
-        form = EventForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.business = business
-            review.reviewer = request.user
-            review.save()
-            return redirect('business_detail', slug=business.slug)
 
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
@@ -152,8 +142,24 @@ def event_detail(request, slug):
             'is_favorite': is_favorite,
             'business': business,
             'business_slug': business_slug,
-            'form': form,
         })
+
+# or should this go under def event_detail?
+def submit_event_form(request):
+    if request.method == "POST":
+
+        form = EventForm(request.POST)
+
+        if form.is_valid():
+            event = form.save(commit=False)
+            # event.business = business
+            # event.user = request.user
+            event.save()
+            return redirect('event_detail')
+
+        else:
+            form = EventForm()
+        return render(request, 'submitevent.html', {'form': form})
 
 
 def business_detail(request, slug):
