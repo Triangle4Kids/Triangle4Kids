@@ -8,13 +8,6 @@ Event Directory - {{ block.super }}
 
 <!-- SECONDARY NAV AREA -->
 
-<!-- Dropdown search filter -->
-<!-- path(
-        'events-dropdown-select',
-        views.event_list_preset,
-        name='event_list_preset'),
-    path('events/', views.event_list_text, name='event_list_text'), -->
-
 
 {% comment %} <section class="page-search">
 	<div class="container">
@@ -75,39 +68,44 @@ Event Directory - {{ block.super }}
 					<div class="widget category-list">
 						{% comment %} <h4 class="widget-header">Search</h4> {% endcomment %}
 						<ul class="category-list">
-
+<!-- 
+							This is the old, drop-down search:
 							<form method="GET">
 								{{ filter.form|bootstrap }}
 								<button type="submit" class="btn btn-primary">Search</button>
-							</form>
+							</form> -->
 
 
 						</div>
 
-<!-- 
+						<div class="widget category-list">
+								<h4 class="widget-header">City</h4>
+								<ul class="category-list">
 							{% for cities_choice in cities_choices %}
 							<li>
-								{% if filter.data.cities_choice__exact == cities_choice.0 %}
+								{% if filter.data.cities_choice == cities_choice.0 %}
 								{{ cities_choice.1 }}
 								{% else %}
-								<a href="{% replace_query_param url=request.get_full_path param='cities_choice__exact' value=cities_choice.0 %}">
+								<a href="{% replace_query_param url=request.get_full_path param='cities_choice' value=cities_choice.0 %}">
 									{{ cities_choice.1 }}
 									<span>93</span></a>
 								{% endif %}
 							</li>
 							{% endfor %}</li>
-						
-						</ul> -->
-						<!-- <div class="widget category-list">
+						</ul>
+						</div>
+
+					
+						<div class="widget category-list">
 							<h4 class="widget-header">Ages</h4>
 							<ul class="category-list">
 
 								{% for age_choice in age_choices %}
 								<li>
-									{% if filter.data.age_choice__exact == age_choice.0 %}
+									{% if filter.data.age_choice == age_choice.0 %}
 									{{ age_choice.1 }}
 									{% else %}
-									<a href="{% replace_query_param url=request.get_full_path param='age_choice__exact' value=age_choice.0 %}">
+									<a href="{% replace_query_param url=request.get_full_path param='age_choice' value=age_choice.0 %}">
 										{{ age_choice.1 }}
 										<span>93</span></a>
 									{% endif %}
@@ -115,17 +113,17 @@ Event Directory - {{ block.super }}
 								{% endfor %}</li>
 
 							</ul>
-						</div> -->
-<!-- 
+						</div>
+
 						<div class="widget category-list">
 							<h4 class="widget-header">Type</h4>
 							<ul class="category-list">
 								{% for class_camp_choice in class_camp_choices %}
 								<li>
-									{% if filter.data.class_camp_choice__exact == class_camp_choice.0 %}
+									{% if filter.data.class_camp_choice == class_camp_choice.0 %}
 									{{ class_camp_choice.1 }}
 									{% else %}
-									<a href="{% replace_query_param url=request.get_full_path param='class_camp_choice__exact' value=class_camp_choice.0 %}">
+									<a href="{% replace_query_param url=request.get_full_path param='class_camp_choice' value=class_camp_choice.0 %}">
 										{{ class_camp_choice.1 }}
 										<span>93</span></a>
 									{% endif %}
@@ -134,7 +132,7 @@ Event Directory - {{ block.super }}
 
 							</ul>
 
-						</div> -->
+						</div>
 
 
 						<div class="widget category-list">

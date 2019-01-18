@@ -113,4 +113,3 @@ if settings.DEBUG:
     path('api/', include('rest_framework.urls')),
     path('api/', include((router.urls, 'core'), namespace="api")),
     url(r'^api/(?P<pk>[0-9]+)/$', api_views.BusinessDetailViewset)
-    
