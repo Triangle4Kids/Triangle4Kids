@@ -25,6 +25,3 @@ class BusinessDetailViewset(viewsets.ModelViewSet):
         biz = get_object_or_404(BusinessLatLong, pk=pk)
         serializer_class = BusinessLatLongSerializer(biz)
         return Response(serializer_class.data)
-
-
-# Create your views here.
