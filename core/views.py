@@ -129,9 +129,9 @@ def event_detail(request, slug):
 
 
 def business_detail(request, slug):
-    business = Business.objects.get(slug=slug)
+    business = Business.objects.annotate(avg_rating=Avg("reviews__rating")).get(slug=slug)
     events = business.events.all()
-
+    
     form = LeaveReviewForm()
 
     if request.method == "POST":
@@ -152,7 +152,8 @@ def business_detail(request, slug):
             'events': events,
             'form': form,
             'review': review,
-            'average_score': average_score,
+            
+            # 'average_score': average_score,
         })
 
 
