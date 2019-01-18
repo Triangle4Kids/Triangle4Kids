@@ -277,7 +277,7 @@ Homepage - {{ block.super }}
 	<!-- Container End -->
 </section>
 <script>
-{% comment %}  
+ 
 mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow';
 
 // TO DO: get ID from HTML 
@@ -332,7 +332,7 @@ function addLatLongMarker(latitude, longitude) {
     .setLngLat(coords)
     .addTo(map);
 }
-{% endcomment %}
+
 </script>
 
 {% endblock content %}
