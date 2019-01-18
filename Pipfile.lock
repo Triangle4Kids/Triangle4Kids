@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "54d11e53afa9a6ad83c05cf7d4d6bee2d7d56d9c9bc98c7b2bc4095ccc593bbd"
+            "sha256": "0032064a42b349841a76a56bc6af09bf4619621f56a4fd2a6c496a89051aec14"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -62,6 +62,13 @@
             ],
             "index": "pypi",
             "version": "==1.11"
+        },
+        "django-el-pagination": {
+            "hashes": [
+                "sha256:4ef652f65350b754028f0c23d72dcd60461215b589f269bc23f78ee00b96d0f8"
+            ],
+            "index": "pypi",
+            "version": "==3.2.4"
         },
         "django-extensions": {
             "hashes": [
@@ -219,10 +226,10 @@
         },
         "soupsieve": {
             "hashes": [
-                "sha256:009d8865916766f7f452880d08ff94ed4c5445011a3deaac67543b82bdb0b9ee",
-                "sha256:97599c45a1ddfe9ab0a0cba889b7f214b3e310b703f176a0610c0b54e207cc04"
+                "sha256:10687fc53eeb3518e01a0ac84d3d711da623d3298a3039459d3f649927c4a270",
+                "sha256:b23a0d7da0247200fe83c67c34de9d7599ad404106367313d8e65e04174d0b4b"
             ],
-            "version": "==1.7.1"
+            "version": "==1.7.2"
         },
         "sqlparse": {
             "hashes": [
