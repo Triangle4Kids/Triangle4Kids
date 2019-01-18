@@ -70,11 +70,13 @@ def event_list_text(request):
 
 def index(request):
     events = Event.objects.all()
-    businesses = Business.objects.all()
+    businesses = Business.objects.all().annotate(avg_rating=Avg("reviews__rating"))
+   
 
     return render(request, 'bsindex.html', {
         "events": events,
         "businesses": businesses,
+        
     })
 
 
@@ -144,7 +146,7 @@ def business_detail(request, slug):
             return redirect('business_detail', slug=business.slug)
 
     review = LeaveReview.objects.filter(business=business)
-    average_score = review.aggregate(Avg('rating'))
+    # average_score = review.aggregate(Avg('rating'))
 
     return render(
         request, 'bsbusiness_detail.html', {
@@ -153,7 +155,7 @@ def business_detail(request, slug):
             'form': form,
             'review': review,
             
-            # 'average_score': average_score,
+            
         })
 
 

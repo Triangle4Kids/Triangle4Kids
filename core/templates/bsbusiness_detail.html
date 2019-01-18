@@ -47,7 +47,7 @@ Homepage - {{ block.super }}
 					<h1 class="product-title">{{business.name}}</h1>
 					<div class="product-meta">
 						<ul class="list">
-							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> User Score:{{ business.avg_rating }}</li> 
+							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> User Score: {{ business.avg_rating|floatformat:"2" }}</li> 
 							
 							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business.categories}}</a></li>
 							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  <a href="">{{business.address}}</a></li>
