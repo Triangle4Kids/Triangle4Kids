@@ -99,6 +99,10 @@ urlpatterns = [
     path('mapboxTest', views.mapboxTest, name='mapboxTest'),
     path('mapBoxPlotTest', views.mapBoxPlotTest, name='mapBoxPlotTest'),
 
+    path('api/', include('rest_framework.urls')),
+    path('api/', include((router.urls, 'core'), namespace="api")),
+    url(r'^api/(?P<pk>[0-9]+)/$', api_views.BusinessDetailViewset),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
@@ -110,8 +114,6 @@ if settings.DEBUG:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
 
     ] + urlpatterns
-    path('api/', include('rest_framework.urls')),
-    path('api/', include((router.urls, 'core'), namespace="api")),
-    url(r'^api/(?P<pk>[0-9]+)/$', api_views.BusinessDetailViewset),
-]
+    
+
 
