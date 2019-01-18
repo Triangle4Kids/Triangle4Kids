@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '52h907nm&&yp!m!c^v06)2wnc&q(19v@2*domdp^)qenu6he5m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+debug_env = os.getenv('DEBUG')
+DEBUG = debug_env != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -55,7 +55,11 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
+<<<<<<< HEAD
     'el_pagination',
+=======
+    'storages', 
+>>>>>>> master
 ]
 
 MIDDLEWARE = [
@@ -161,6 +165,12 @@ REST_FRAMEWORK = {
 
 
 
+
+
+
+
+
+
 ACCOUNT_ACTIVATION_DAYS = 7
 STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -174,4 +184,3 @@ LOGIN_REDIRECT_URL = "home"
 INTERNAL_IPS = ['127.0.0.1']
 
 # Activate django_heroku
-django_heroku.settings(locals())
