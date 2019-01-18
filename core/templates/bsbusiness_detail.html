@@ -284,42 +284,51 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjN
 var request = new XMLHttpRequest();
 
 // TO DO: call /api/businesseslocation/{pk}
-request.open('GET', 'http://www.thelittletriangle.com/api/businesses/', true);
+request.open('GET', '/api/businesses/', true);
 
 // TO DO: get results
-request.onload = function () {
-}
+request.onload = function (location) {
+	var data = JSON.parse(this.response);
+	console.log(data[100]['location']['longitude']);
+
+	if (request.status >=200 && request.status < 400) {
+		data.forEach(location => {
+		console.log(location.business);
+		console.log(location.latitude);
+		console.log(location.longitude);
+	});
+	} else {
+		console.log('error');
+	}
+} 
+
 
 request.send();
 
 // TO DO: parse json results
-var data = JSON.parse(this.response);
+
 
 // TO DO: find businesslatlong matching bizid above
-data.forEach(location => {
+
   // Log each locations's "business" aka: PK
-  console.log(location.business);
-});
+
 
 // TO DO: get latlong from matching entry
-data.forEach(location => {
-  // Log each locations's "latitude"
-  console.log(location.latitude);
-});
 
-data.forEach(location => {
+  // Log each locations's "latitude"
+ 
+
   // Log each locations's "longitude" 
-  console.log(location.longitude);
-});
+ 
 
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v9',
-  center: [bizLong, bizLat],
+  center: [-75.89, 35.98],
   zoom: 12
 });
 
-addLatLongMarker(bizLat, bizLong)
+addLatLongMarker(-75.89, 35.98)
 
 function addLatLongMarker(latitude, longitude) {
   // create a HTML element for each feature
