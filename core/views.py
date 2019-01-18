@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
 from core.models import Event, Business, LeaveReview, Profile, BusinessLatLong
-from core.forms import LeaveReviewForm
+from core.forms import LeaveReviewForm, EventForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -132,6 +132,17 @@ def event_detail(request, slug):
     business = event.business
     business_slug = event.business.slug
 
+    form = EventForm()
+
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.business = business
+            review.reviewer = request.user
+            review.save()
+            return redirect('business_detail', slug=business.slug)
+
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
 
@@ -141,6 +152,7 @@ def event_detail(request, slug):
             'is_favorite': is_favorite,
             'business': business,
             'business_slug': business_slug,
+            'form': form,
         })
 
 
