@@ -42,13 +42,6 @@ class BusinessResultsListView(ListView):
         return qs
 
 
-# class BusinessDetailViewset(viewsets.ModelViewSet):
-#     def get(self, request, pk):
-#         biz = get_object_or_404(BusinessLatLong, pk=pk)
-#         serializer_class = BusinessLatLongSerializer(biz)
-#         return Response(serializer_class.data)
-
-
 class EventResultsListView(ListView):
     model = Event
     context_object_name = 'event_list'

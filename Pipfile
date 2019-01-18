@@ -20,11 +20,14 @@ beautifulsoup4 = "*"
 pillow = "*"
 djangorestframework = "*"
 django-crispy-forms = "*"
+"boto3" = "*"
+django-storages = "*"
 
 [dev-packages]
 pylint = "*"
 "flake8" = "*"
 yapf = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.7"
