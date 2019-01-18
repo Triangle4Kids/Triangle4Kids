@@ -5,12 +5,12 @@ class EventFilter(django_filters.FilterSet):
 
     class Meta:
         model = Event
-        fields = [
-            # 'type_choice',
-            'age_choice',
-            'class_camp_choice',
-            'cities_choice',
-        ]
+        fields = {
+            'type_choice': ['icontains'],
+            'age_choice': ['exact'],
+            'class_camp_choice': ['exact'],
+            'cities_choice': ['exact'],
+        }
 
 class EventFilterTextSearch(django_filters.FilterSet):
 
