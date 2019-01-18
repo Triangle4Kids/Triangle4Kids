@@ -168,5 +168,7 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
 
+INTERNAL_IPS = ['127.0.0.1']
+
 # Activate django_heroku
 django_heroku.settings(locals())
