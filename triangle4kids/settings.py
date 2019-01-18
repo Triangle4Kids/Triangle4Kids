@@ -182,11 +182,7 @@ INTERNAL_IPS = ['127.0.0.1']
 django_heroku.settings(locals())
 
 
-if not DEBUG:
-    STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mysite/static'),
-    ]
-
+if not DEBUG:    
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
