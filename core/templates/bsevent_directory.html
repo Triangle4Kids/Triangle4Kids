@@ -141,7 +141,7 @@ Event Directory - {{ block.super }}
 								{% for type_choice in type_choices %}
 								<li>
 									{% if filter.data.type_choice__icontains == type_choice.0 %}
-									{{ type_choice.1 }}
+									<li class="widget-header">{{ type_choice.1 }}</li>
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
 										{{ type_choice.1 }}

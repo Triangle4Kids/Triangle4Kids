@@ -26,8 +26,8 @@ Homepage - {{ block.super }}
 					<br>
 					<br>
 					<br>
-					<h1></h1>
-					<p><br> </p>
+					
+					
 					<div class="short-popular-category-list text-center">
 						<h2></h2>
 						
@@ -103,7 +103,7 @@ Homepage - {{ block.super }}
 				<nav >
 					<a  class="navtwo" href="{% url 'event_list_preset' %}"><i style="color:#F5F56F;" class="fas fa-map-marker-alt fa-2x"></i> Search upcoming events</a>
 					<a  class="navtwo" href="#" title="Home"><i style="color:#D01C2E;" class="fas fa-futbol fa-2x"></i> Categories</a>
-					<a  class="navtwo" href="#" title="About"><i style="color:#31B91C;" class="fas fa-check fa-2x"></i> Best Reviewd</a>
+					<a  class="navtwo" href="#" title="About"><i style="color:#31B91C;" class="fas fa-check fa-2x "></i> Best Reviewd</a>
 					<a  class="navtwo" href="{% url 'business_directory' %}" title="Store"><i style="color:#1C76D0;" class="fas fa-search fa-2x"></i> See Business Directory</a>
 					</nav>
 				</div>
@@ -166,8 +166,15 @@ Homepage - {{ block.super }}
 							
 							
 						</ul>
+						{% if business.avg_rating %}
+						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
+						<p> of {{business.reviews.count }} reviews  </p>
+						{% else %}
+						<p> no reviews for this business </p> 
 						
-						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating}}   / 5.0 </b> user rated</a>
+
+
+						{% endif %}
 						
 						
 						<div class="product-ratings">
@@ -241,7 +248,7 @@ Homepage - {{ block.super }}
 								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 							</li>
 						</ul>
-						<p> {{event.description}}</p>
+						<p> {{event.description|slice:":100"}}...</p>
 						{% if event.type_choice %}
 							<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
 						{% endif %}
@@ -313,7 +320,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<i class="far fa-compass fa-3x"></i>
+								<a href="http://localhost:8000/events-dropdown-select?cities_choice=durham"> <i class="far fa-compass fa-3x"> </a></i>
 								<h4>Camps</h4>
 							</div>
 							

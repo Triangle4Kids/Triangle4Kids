@@ -7,6 +7,13 @@ body {
 
 /* Sam's Css Classes */
 
+.white{
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
 .navtwo {
   padding-right: 35px;
   padding-left: 35px;
@@ -22,11 +29,11 @@ body {
   cursor: pointer;
 }
 
-.fixbox{
-  width:250px; 
-  height:250px; 
-  display: inline-block;
+.text-large {
+  font-size: 110%;
 }
+
+
 
 
 /* End Sams CSS Classes */
@@ -347,7 +354,7 @@ button {
 }
 
 .section {
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 .section-sm {
@@ -687,7 +694,7 @@ ul.pagination .active a {
 }
 
 .navigation {
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .login-button {
@@ -2287,7 +2294,7 @@ article .btn {
 }
 
 .single-blog {
-  padding-top: 10px !important;
+  padding-top: 30px !important;
 }
 
 article.single-post img {
