@@ -48,7 +48,7 @@
 			<div class="col-md-12">
 				<div class="search-result bg-gray">
 					<h2>Business Directory</h2>
-					<p> 1234 Businesses in the area </p>
+					<p> Browsing {{businesses.count }}  Businesses, Camps, and Classes in the Triangle </p>
 
 				</div>
 			</div>
@@ -56,39 +56,20 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="category-sidebar">
-					<div class="widget category-list">
-	<h4 class="widget-header">City</h4>
-	<ul class="category-list">
-		<li><a href="category.html"> Raleigh <span>93</span></a></li>
-		<li><a href="category.html"> Durham <span>233</span></a></li>
-		<li><a href="category.html"> Cary   <span>183</span></a></li>
-		<li><a href="category.html"> Apex <span>343</span></a></li>
-	</ul>
-</div>
+					{% comment %} <div class="widget category-list"> {% endcomment %}
+	<img class="mr-3" height="200px" width="100%" src="https://activerain-store.s3.amazonaws.com/image_store/uploads/9/6/8/7/1/ar129164824317869.JPG" alt="Generic placeholder image">
+{% comment %} </div> {% endcomment %}
 
 <div class="widget category-list">
-	<h4 class="widget-header">Category</h4>
+	<h4 class="widget-header"> Directory </h4>
 	<ul class="category-list">
-		<li><a href="category.html"> Day Camps <span>93</span></a></li>
-		<li><a href="category.html"> Residential Camps <span>233</span></a></li>
-		<li><a href="category.html"> Track-Out-Camps <span>183</span></a></li>
-		<li><a href="category.html"> Half day<span>120</span></a></li>
-		<li><a href="category.html"> Full Day <span>40</span></a></li>
-		<li><a href="category.html"> All Ages <span>81</span></a></li>
-		<li><a href="category.html"> Preschool <span>93</span></a></li>
-		<li><a href="category.html"> K-5 <span>233</span></a></li>
-		<li><a href="category.html"> Middel School <span>183</span></a></li>
-		<li><a href="category.html"> High School <span>120</span></a></li>
-		<li><a href="category.html"> Academics <span>40</span></a></li>
-		<li><a href="category.html"> Animal Care <span>81</span></a></li>
-		<li><a href="category.html"> Arts and Crafts <span>93</span></a></li>
-		<li><a href="category.html"> Cooking <span>233</span></a></li>
-		<li><a href="category.html"> Games<span>183</span></a></li>
-		<li><a href="category.html"> Health/Fitness <span>120</span></a></li>
-		<li><a href="category.html"> Outdoor Play/ Nature <span>40</span></a></li>
-		<li><a href="category.html"> Performing Arts <span>81</span></a></li>
-		<li><a href="category.html"> Sports <span>40</span></a></li>
-		<li><a href="category.html"> Technology <span>81</span></a></li>
+	{% for business in alpha_businesses %}
+		<li><a href="{% url 'business_detail' slug=business.slug %}"> {{business.name}} <span>{{business.avg_rating|floatformat:"1"}}</span></a></li>
+		{% endfor %}
+
+		{% for business in business_list %}
+		<li><a href="{% url 'business_detail' slug=business.slug %}"> {{business.name}} <span>{{business.avg_rating|floatformat:"1"}}</span></a></li>
+		{% endfor %}
 		
 	</ul>
 </div>
@@ -312,7 +293,12 @@
 		<div class="card-body">
 		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> {{business.name}} </a></h4>
 		    <ul class="list-inline product-meta">
-		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
+				{% if business.avg_rating %}
+		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
+					{% else %}
+					<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
+
+					{% endif  %}
 					<li class="list-inline-item"> <i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{business.city}}</li>
 					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i>   {{ business.categories }}</li>
 		    		
@@ -384,7 +370,12 @@
 		<div class="card-body">
 		    <h4><a href="{% url 'business_detail' slug=business.slug %}"> {{business.name}} </a></h4>
 		    <ul class="list-inline product-meta">
-		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.average_rating}}  / 5.0 </b> user rated</a>
+				 {% if business.avg_rating %} 
+		    	<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
+					 {% else %}
+					<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
+
+					{% endif  %} 
 					<li class="list-inline-item"> <i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{business.city}}</li>
 					<li class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i>   {{ business.categories }}</li>
 		    		

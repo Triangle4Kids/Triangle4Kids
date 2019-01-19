@@ -10,9 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import EventFilterTextSearch, EventFilter
-
-from django.db.models import Avg
-
+from django.db.models import Avg, F
 from django.contrib.postgres.search import SearchQuery, \
 SearchRank, SearchVector
 from django.views.generic import ListView
@@ -30,7 +28,7 @@ class BusinessResultsListView(ListView):
 
     def get_queryset(self):
 
-        qs = Business.objects.all()
+        qs = Business.objects.all().annotate(avg_rating=Avg("reviews__rating"))
 
         keywords = self.request.GET.get('q')
         if keywords:
@@ -38,7 +36,7 @@ class BusinessResultsListView(ListView):
             vector = SearchVector('name', 'address', 'city', 'state')
             qs = qs.annotate(search=vector).filter(search=query)
             qs = qs.annotate(
-                rank=SearchRank(vector, query)).order_by('-average_rating')
+                rank=SearchRank(vector, query)).order_by('avg_rating')
         return qs
 
 
@@ -99,9 +97,12 @@ def mapBoxPlotTest(request):
 
 
 def business_directory(request):
-    businesses = Business.objects.all()
+    businesses = Business.objects.all().annotate(avg_rating=Avg("reviews__rating")).order_by(F('avg_rating').desc(nulls_last=True))
+    alpha_businesses = businesses.order_by('name')
+
     return render(request, 'bsbusiness_directory.html', {
         "businesses": businesses,
+        "alpha_businesses": alpha_businesses,
     })
 
 

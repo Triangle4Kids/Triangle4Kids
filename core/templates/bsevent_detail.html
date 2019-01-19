@@ -14,14 +14,18 @@ Homepage - {{ block.super }}
 
 
 <section class="blog single-blog section bg-gray">
+
  
 	<div class="container">
+	<p class="list"><a href=" {% url 'event_list_preset' %}"> <i class="fas fa-angle-double-left"></i>  Back to Events  </p>
+	
 
 
 
 
 	
 		<div class="row">
+		
 
 
 		
@@ -90,16 +94,19 @@ Homepage - {{ block.super }}
 						<p>
 								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 							</p>
+							<br>
 
-							<br>
-							<br>
+							
 
 						
 					
 					
-					 <ul class="social-circle-icons list-inline">
-				  		<a href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> More from this business </a>
-						
+					 <ul class="social-circle-icons list-inline ">
+				  		
+						<a href="{% url 'business_detail' slug=business_slug %}"><button class="btn btn-success btn-lg btn-block" type="submit" > SIGN UP HERE </button></a>
+						<br>
+						<br>
+						<a  href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> See more events from {{ business.name }} </a>
 				  	</ul> 
   </div>
 </div>
@@ -231,8 +238,17 @@ Homepage - {{ block.super }}
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	<br>
+<br>
+<br>
+	<br>
+
+
 </section>
+
+
 
 
 

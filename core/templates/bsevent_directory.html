@@ -54,8 +54,7 @@ Event Directory - {{ block.super }}
 
 
 					<h2>Event Directory</h2>
-					<p> {{ events.count }} Events in the area </p>
-
+					
 
 
 				</div>
@@ -375,9 +374,11 @@ Event Directory - {{ block.super }}
 						
 						<a href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
 						
+						
 
 
 						<div class="row mt-30">
+						
 							<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
 
 							{% for event in filter.qs %}
