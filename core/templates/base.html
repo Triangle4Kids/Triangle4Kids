@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!-- Mapbox meta-->
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    {% comment %} <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> {% endcomment %}
     <!-- PLUGINS CSS STYLE -->
     <link href=" {% static ' plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet ' %}"/>
     <!-- Bootstrap -->
@@ -34,7 +34,6 @@
 
     <!-- MAPBOX -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <style>
@@ -83,6 +82,8 @@
 </title>
 
 {% endblock header %}
+{% block pageheader %}
+{% endblock pageheader %}
 
 </head>
 
@@ -269,23 +270,27 @@
 
   <!-- JAVASCRIPTS -->
 {% comment %} Below are Bootstrap Tags , essential to load page  {% endcomment %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+  {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> {% endcomment %}
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+  {% comment %} <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script> {% endcomment %}
+  {% comment %} <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script> {% endcomment %}
   <script src="{% static 'plugins/tether/js/tether.min.js' %}"></script>
   <script src="{% static 'plugins/raty/jquery.raty-fa.js' %}"></script>
-  <script src="{% static 'plugins/bootstrap/dist/js/popper.min.js' %}"></script>
-  <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  {% comment %} <script src="{% static 'plugins/bootstrap/dist/js/popper.min.js' %}"></script> {% endcomment %}
+  {% comment %} <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script> {% endcomment %}
   <script src="{% static 'plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
   <script src="{% static 'plugins/slick-carousel/slick/slick.min.js' %}"></script>
   <script src="{% static 'plugins/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
   <script src="{% static 'plugins/smoothscroll/SmoothScroll.min.js' %}"></script>
   {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script> {% endcomment %}
-  <script src= "js/scripts.js"></script>
+  {% comment %} <script src= "{% static 'js/scripts.js' %}"></script> {% endcomment %}
 
+  {% block pagescripts %}
+  {% endblock pagescripts %}
 </body>
 
 </html>

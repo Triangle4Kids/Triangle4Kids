@@ -1,4 +1,10 @@
 {% extends 'base.html' %} 
+{% load staticfiles %} 
+{% block pageheader %}
+
+
+{% endblock pageheader %}
+
 {% block title %}
 Homepage - {{ block.super }} 
 {% endblock title %}
@@ -254,7 +260,7 @@ Homepage - {{ block.super }}
 					<div id = "map" class="d-block w-100" height="300" width="300">
 
 						
-						</div>
+				
 					</div>
 					<!-- Rate Widget -->
 					
@@ -276,73 +282,8 @@ Homepage - {{ block.super }}
 	</div>
 	<!-- Container End -->
 </section>
-<script>
- 
-mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow';
-
-// TO DO: get ID from HTML 
-var request = new XMLHttpRequest();
-
-// TO DO: call /api/businesseslocation/{pk}
-request.open('GET', '/api/businesses/', true);
-
-// TO DO: get results
-request.onload = function (location) {
-	var data = JSON.parse(this.response);
-	console.log(data[100]['location']['longitude']);
-
-	if (request.status >=200 && request.status < 400) {
-		data.forEach(location => {
-		console.log(location.business);
-		console.log(location.latitude);
-		console.log(location.longitude);
-	});
-	} else {
-		console.log('error');
-	}
-} 
-
-
-request.send();
-
-// TO DO: parse json results
-
-
-// TO DO: find businesslatlong matching bizid above
-
-  // Log each locations's "business" aka: PK
-
-
-// TO DO: get latlong from matching entry
-
-  // Log each locations's "latitude"
- 
-
-  // Log each locations's "longitude" 
- 
-
-var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/light-v9',
-  center: [-75.89, 35.98],
-  zoom: 12
-});
-
-addLatLongMarker(-75.89, 35.98)
-
-function addLatLongMarker(latitude, longitude) {
-  // create a HTML element for each feature
-  var el = document.createElement('div');
-  el.className = 'marker';
-
-  coords= [longitude, latitude]
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el)
-    .setLngLat(coords)
-    .addTo(map);
-}
-
-</script>
 
 {% endblock content %}
-
+{% block pagescripts %}
+	<script src= "{% static 'js/bizdetailmap.js' %}"></script>
+{% endblock pagescripts %}
