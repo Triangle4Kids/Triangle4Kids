@@ -54,11 +54,8 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
-<<<<<<< HEAD
     'crispy_forms',
-=======
     'storages', 
->>>>>>> master
 ]
 
 MIDDLEWARE = [

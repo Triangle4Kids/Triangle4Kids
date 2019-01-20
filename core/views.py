@@ -116,7 +116,6 @@ def event_detail(request, slug):
     business = event.business
     business_slug = event.business.slug
 
-
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
 
