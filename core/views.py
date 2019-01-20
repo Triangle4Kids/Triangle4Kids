@@ -27,6 +27,7 @@ class BusinessResultsListView(ListView):
     model = Business
     context_object_name = 'business_list'
     template_name = 'bsbusiness_directory.html'
+
     # paginate_by = 12
 
     def get_queryset(self):
@@ -61,7 +62,14 @@ class EventResultsListView(ListView):
 # from django-filters docs
 def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
-    return render(request, 'bsevent_directory.html', {'filter': f, 'type_choices': EVENT_TYPE, 'age_choices': AGE_RANGE, 'class_camp_choices': CLASS_CAMP, 'cities_choices': CITIES})
+    return render(
+        request, 'bsevent_directory.html', {
+            'filter': f,
+            'type_choices': EVENT_TYPE,
+            'age_choices': AGE_RANGE,
+            'class_camp_choices': CLASS_CAMP,
+            'cities_choices': CITIES
+        })
 
 
 def event_list_text(request):
