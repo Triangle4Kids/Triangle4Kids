@@ -22,8 +22,7 @@ class BusinessSerializer(serializers.ModelSerializer):
 class EventLatLongSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventLatLong
-        fields = ('latitude', 'longitude', 'relevance', 'location_name',
-                  'event')
+        fields = ('latitude', 'longitude', 'relevance', 'site_name', 'event')
 
 
 class EventSerializer(serializers.ModelSerializer):
