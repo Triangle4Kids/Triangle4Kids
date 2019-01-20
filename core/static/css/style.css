@@ -3,9 +3,84 @@
 body {
   line-height: 1.5;
   font-family: "Muli", sans-serif;
+  
 }
 
+/* Card custom css  */
+
+
+.profile-card-2 .card-img-block{
+  float:left;
+  width:100%;
+  height:150px;
+  overflow:hidden;
+}
+.profile-card-2 .card-body{
+  position:relative;
+}
+.profile-card-2 .profile {
+border-radius: 50%;
+position: absolute;
+top: -42px;
+left: 15%;
+max-width: 75px;
+border: 3px solid rgba(255, 255, 255, 1);
+-webkit-transform: translate(-50%, 0%);
+transform: translate(-50%, 0%);
+}
+.profile-card-2 h5{
+  font-weight:600;
+  color:#007bff;
+}
+.profile-card-2 .card-text{
+  font-weight:300;
+  font-size:15px;
+}
+.profile-card-2 .icon-block{
+  float:left;
+  width:100%;
+}
+.profile-card-2 .icon-block a{
+  text-decoration:none;
+}
+.profile-card-2 i {
+display: inline-block;
+  font-size: 16px;
+  color: #007bff;
+  text-align: center;
+  border: 1px solid #007bff;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  margin:0 5px;
+}
+.profile-card-2 i:hover {
+background-color:#007bff;
+color:#fff;
+}
+
+/*  End card custom css  */
+
 /* Sam's Css Classes */
+
+.fonttitle{
+  /* font-family: 'Patrick Hand', cursive; */
+  font-family: 'Waiting for the Sunrise', cursive;
+}
+
+
+.spcolor{
+  
+  
+  background-color: rgb(238, 238, 238);
+  
+  border-radius: 5px;
+}
+
+.green {
+  background: #28a745;
+}
 
 .center{
 
@@ -37,6 +112,12 @@ body {
 .text-large {
   font-size: 110%;
 }
+
+.text-small {
+  font-size: 200%;
+}
+
+
 
 
 
@@ -674,7 +755,8 @@ ul.pagination .active a {
 }
 
 .bg-gray {
-  background: #F5F5F5;
+  background: #fff;
+  
 }
 
 .bg-1 {
@@ -1499,12 +1581,12 @@ ul.pagination .active a {
 }
 
 .product-details .content .nav .nav-item .nav-link:hover {
-  background: #5672f9;
+  background: #28a745;
   color: #fff;
 }
 
 .product-details .content .nav .nav-item .nav-link.active {
-  background: #5672f9;
+  background: #28a745;
 }
 
 .product-details .content .tab-content {
@@ -2381,7 +2463,7 @@ article.single-post p {
 }
 
 .footer {
-  background: #126dc7;
+  background: #0935a5;
 }
 
 .footer .block h4 {

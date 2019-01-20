@@ -116,8 +116,10 @@ def event_directory(request):
 def event_detail(request, slug):
     event = Event.objects.get(slug=slug)
     is_favorite = False
+    
     business = event.business
     business_slug = event.business.slug
+    business1 = Business.objects.annotate(avg_rating=Avg("reviews__rating")).get(slug=business_slug)
 
     if event.favorite.filter(id=request.user.id).exists():
         is_favorite = True
@@ -128,6 +130,7 @@ def event_detail(request, slug):
             'is_favorite': is_favorite,
             'business': business,
             'business_slug': business_slug,
+            'business1': business1,
         })
 
 
@@ -154,11 +157,37 @@ def business_detail(request, slug):
             'business': business,
             'events': events,
             'form': form,
-            'review': review,
-            
-            
+            'review': review,  
         })
 
+
+
+
+def newbusiness_detail(request, slug):
+    business = Business.objects.annotate(avg_rating=Avg("reviews__rating")).get(slug=slug)
+    events = business.events.all()
+    
+    form = LeaveReviewForm()
+
+    if request.method == "POST":
+        form = LeaveReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.business = business
+            review.reviewer = request.user
+            review.save()
+            return redirect('newbusiness_detail', slug=business.slug)
+
+    review = LeaveReview.objects.filter(business=business)
+    # average_score = review.aggregate(Avg('rating'))
+
+    return render(
+        request, 'newbusinessdetail.html', {
+            'business': business,
+            'events': events,
+            'form': form,
+            'review': review,  
+        })
 
 # # MapBox #
 # def default_map(request):
@@ -185,10 +214,12 @@ def get_user_profile(request):
 
     reviews = LeaveReview.objects.filter(reviewer=user)
     favorite_event = user.favorite.all()
+    
 
     return render(request, 'bsuser_account.html', {
         'reviews': reviews,
         'favorite_event': favorite_event,
+        
     })
 
 

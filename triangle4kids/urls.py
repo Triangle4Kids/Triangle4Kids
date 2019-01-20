@@ -81,6 +81,7 @@ urlpatterns = [
     path('business/', BusinessResultsListView.as_view(), name='business_list'),
     path('event/', EventResultsListView.as_view(), name='event_list'),
     path('business/<slug>/', views.business_detail, name='business_detail'),
+    path('businessnew/<slug>/', views.newbusiness_detail, name='newbusiness_detail'),
     path('directory/', views.business_directory, name='business_directory'),
     path('events_directory/', views.event_directory, name='event_directory'),
     path('accounts/', include('registration.backends.simple.urls')),

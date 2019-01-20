@@ -30,10 +30,13 @@ Homepage - {{ block.super }}
 
 		
 			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+			
 
 			<div class="media single-post white">
   <img class="align-self-start mr-3" src="https://odyseainthedesert.com/wp-content/uploads/2019/01/OID_ConservationExpo_EventListing-300x300.jpg" alt="Generic placeholder image">
+  
   <div class="media-body">
+  
     <h2 class="list"> {{ event.title }} </h2>
 	<p class="list"> {{ event.business }} </p>
 	
@@ -103,13 +106,17 @@ Homepage - {{ block.super }}
 					
 					 <ul class="social-circle-icons list-inline ">
 				  		
-						<a href="{% url 'business_detail' slug=business_slug %}"><button class="btn btn-success btn-lg btn-block" type="submit" > SIGN UP HERE </button></a>
+						
 						<br>
-						<br>
-						<a  href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> See more events from {{ business.name }} </a>
+						
+						{% comment %} <a  href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> See more events from {{ business.name }} </a> {% endcomment %}
+						<a href="{{business.link}}" target="_blank" ><button class="btn btn-success btn-lg btn-block" type="submit" > SIGN UP HERE </button></a>
 				  	</ul> 
+					  
   </div>
+  
 </div>
+
 			
 {% comment %} OLD EVENT {% endcomment %}
 				{% comment %} <article class="single-post">
@@ -181,6 +188,11 @@ Homepage - {{ block.super }}
 			</div>
 			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
 				<div class="sidebar">
+
+				<div >
+					<img class="d-block w-100" src="https://i.stack.imgur.com/yEshb.gif" height="300" width="300" alt="article-01">
+						
+					</div>
 					<!-- Search Widget -->
 					{% comment %} <div class="widget search p-0">
 						<div class="input-group">
@@ -192,12 +204,22 @@ Homepage - {{ block.super }}
 					<div >
 						<!-- Widget Header -->
 						
-						{% if event.image %}
-						<div class="col-md-20   ">
 						
-						<img class="mr-3" height="100%" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image">
+						<div class="widget category-list">
+						<h4 class="widget-header"> {{ business.name }} </h4>
+						<ul class="category-list">
+						
+						<li><a > Average Rating <span class = "text-large">  <b> {{business1.avg_rating|floatformat:"1"}} </b> <i class="fa fa-star" style="color:#FFFF00;"></i></span></a></li>
+						<li ><a > Total Reviews <span> {{business.reviews.count}} </span></a></li>
+						<br>
+						<a href="{% url 'business_detail' slug=business_slug %}"><button class="btn btn-primary btn-lg btn-block" type="submit" > See all Reviews </button></a>
+						
+						</ul>
 						</div>
-						{% endif %}
+						
+						{% comment %} <img class="mr-3" height="100%" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image"> {% endcomment %}
+						</div>
+						
 
 						
 
@@ -211,30 +233,22 @@ Homepage - {{ block.super }}
 						</ul> {% endcomment %}
 					</div>
 					<!-- Store Widget -->
-					<div class="widget related-store">
+					{% comment %} <div class="widget related-store">
 					
 						<!-- Widget Header -->
 						
-						{% comment %} <ul class="store-list md list-inline">
-							<li class="list-inline-item">
+						 <ul class="store-list md list-inline">
+							<li class="list-inline-item">YO
 								
 							</li>
 							
-						</ul> {% endcomment %}
+						</ul> 
 					</div>
 					<!-- Archive Widget -->
 					<div >
 					<img class="d-block w-100" src="https://i.stack.imgur.com/yEshb.gif" height="300" width="300" alt="article-01">
-						<!-- Widget Header -->
-						{% comment %} <h5 class="widget-header">Archives</h5>
-						<ul class="archive-list">
-							<li><a href="">January 2017</a></li>
-							<li><a href="">February 2017</a></li>
-							<li><a href="">March 2017</a></li>
-							<li><a href="">April 2017</a></li>
-							<li><a href="">May 2017</a></li>
-						</ul> {% endcomment %}
-					</div>
+						
+					</div> {% endcomment %}
 				</div>
 			</div>
 		</div>
