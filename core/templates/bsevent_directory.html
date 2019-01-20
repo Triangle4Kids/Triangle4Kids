@@ -50,12 +50,11 @@ Event Directory - {{ block.super }}
 			<div class="col-md-12">
 
 
-				<div class="search-result bg-gray">
+				<div class="search-result spcolor">
 
 
 					<h2>Event Directory</h2>
-					<p> 1234 Events in the area </p>
-
+					
 
 
 				</div>
@@ -68,6 +67,7 @@ Event Directory - {{ block.super }}
 					<div class="widget category-list">
 						{% comment %} <h4 class="widget-header">Search</h4> {% endcomment %}
 						<ul class="category-list">
+						<img class="mr-3" height="200px" width="100%" src="https://activerain-store.s3.amazonaws.com/image_store/uploads/9/6/8/7/1/ar129164824317869.JPG" alt="Generic placeholder image">
 <!-- 
 							This is the old, drop-down search:
 							<form method="GET">
@@ -77,6 +77,34 @@ Event Directory - {{ block.super }}
 
 
 						</div>
+
+
+
+						<div id="accordion">
+					<div class="widget category-list">
+							<h4 class="widget-header " data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+									Categories
+									<span ><a href="#"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									<i class="fa fa-angle-down fa-1x" style="color:#D01C2E;"></i>  </span>
+									</h4>
+								{% for type_choice in type_choices %}
+								<div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+
+									<ul class="category-list">
+									<li >
+									{% if filter.data.type_choice__icontains == type_choice.0 %}
+									{{ type_choice.1 }}</li>
+									{% else %}
+									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
+										{{ type_choice.1 }}	
+									{% endif %}
+									</li>
+							</div>
+								{% endfor %}
+								</ul>
+							
+						</div>
+					</div>
 
 						<div class="widget category-list">
 								<h4 class="widget-header">City</h4>
@@ -141,7 +169,7 @@ Event Directory - {{ block.super }}
 								{% for type_choice in type_choices %}
 								<li>
 									{% if filter.data.type_choice__icontains == type_choice.0 %}
-									{{ type_choice.1 }}
+									<li class="widget-header">{{ type_choice.1 }}</li>
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
 										{{ type_choice.1 }}
@@ -337,15 +365,20 @@ Event Directory - {{ block.super }}
 									</li>
 								</ul>
 							</div>
-						</div>
+						</div>v
 					</div>
 				</div> -->
 
-					<div class="product-grid-list">
+					
+							
+						
 						<a href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
+						
+						
 
 
 						<div class="row mt-30">
+						
 							<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
 
 							{% for event in filter.qs %}
