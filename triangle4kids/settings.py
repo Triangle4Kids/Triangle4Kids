@@ -55,11 +55,8 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
-<<<<<<< HEAD
     'el_pagination',
-=======
     'storages', 
->>>>>>> master
 ]
 
 MIDDLEWARE = [
