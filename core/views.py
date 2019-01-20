@@ -25,6 +25,7 @@ class BusinessResultsListView(ListView):
     model = Business
     context_object_name = 'business_list'
     template_name = 'bsbusiness_directory.html'
+    # paginate_by = 12
 
     def get_queryset(self):
 

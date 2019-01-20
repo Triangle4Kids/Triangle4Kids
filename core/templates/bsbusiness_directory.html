@@ -1,4 +1,6 @@
 {% extends 'base.html' %} 
+{% load el_pagination_tags %}
+
 {% block title %}
  Business Directory  - {{ block.super }} 
 {% endblock title %}
@@ -271,8 +273,13 @@
 					<div class="row mt-30">
 
 					<!-- THIS FOR LOOP HANDLES THE SEARCH QUERY  -->
-
+						<!-- Pagination -->
+						{% paginate 12 business_list %}
+					
 						{% for business in business_list %}	
+
+						
+						
 						<div class="col-sm-12 col-lg-4 col-md-6">																		
 <div class="product-item bg-light">
 		
@@ -319,6 +326,7 @@
 
 					</div>
 					{% endfor %}
+					{% show_pages %}
 
 
 
