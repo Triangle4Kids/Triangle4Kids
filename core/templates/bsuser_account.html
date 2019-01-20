@@ -24,7 +24,7 @@ Homepage - {{ block.super }}
 					<!-- User Widget -->
 					<div class="widget user-dashboard-profile">
 						<!-- User Image -->
-						<div class="profile-thumb">
+						{% comment %} <div class="profile-thumb">
 						<p >
 						<img src="https://3.bp.blogspot.com/-qDc5kIFIhb8/UoJEpGN9DmI/AAAAAAABl1s/BfP6FcBY1R8/s1600/BlueHead.jpg">
 						</p>
@@ -32,7 +32,7 @@ Homepage - {{ block.super }}
 
 
 
-						</div>
+						</div> {% endcomment %}
 						<!-- User Name -->
 						<h5 class="text-center"> {{user}} </h5>
 						<p>Joined February 06, 2017</p>
@@ -41,22 +41,12 @@ Homepage - {{ block.super }}
 					<!-- Dashboard Links -->
 					<div class="widget user-dashboard-menu">
 						<ul>
-							<li class="active">
-								<a href="dashboard-my-ads.html"><i class="fa fa-user"></i> My Ads</a></li>
-							<li>
-								<a href="dashboard-favourite-ads.html"><i class="fa fa-bookmark-o"></i> Favourite Ads <span>5</span></a>
-							</li>
-							<li>
-								<a href="dashboard-archived-ads.html"><i class="fa fa-file-archive-o"></i>Archeved Ads <span>12</span></a>
-							</li>
-							<li>
-								<a href="dashboard-pending-ads.html"><i class="fa fa-bolt"></i> Pending Approval<span>23</span></a>
-							</li>
+							
 							<li>
 								<a href="logout.html"><i class="fa fa-cog"></i> Logout</a>
 							</li>
 							<li>
-								<a href="delete-account.html"><i class="fa fa-power-off"></i>Delete Account</a>
+								<a href="delete-account.html"><i class="fa fa-power-off"></i> Delete Account</a>
 							</li>
 						</ul>
 					</div>
@@ -68,32 +58,27 @@ Homepage - {{ block.super }}
 
 
 					<!-- Favorites Section -->
-					<h3 class="widget-header">My favorites </h3>
+					<h2 >My "High Fives" </h2>
 					<table class="table table-responsive product-dashboard-table">
-						<thead>
-							<tr>
-								<th>Picture</th>
-								<th>Title</th>
-								<th class="text-center">Category</th>
-								<th class="text-center">Action</th>
-							</tr>
-						</thead>
+						
 
 						<tbody>
 								{% for event in favorite_event %}
 							<tr>
 								
 								<td class="product-thumb">
-									
+									<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
 								<td class="product-details">
+								
 									<h3 class="title">{{ event.title }}</h3>
-									<span class="add-id"><strong> Rating:</strong> {{ review.rating }}</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
 									<span class="status active"><strong> Business </strong>{{ event.business }}</span>
+									<span class="add-id"><strong> Location:</strong> {{ event.address }}</span>
+									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
+									
 									<span class="location"><strong> Description </strong>{{ event.description }} </span>
 								</td>
-								<td class="product-category"><span class="categories">Favorites</span></td>
-								<td class="action" data-title="Action">
+								
+								{% comment %} <td class="action" data-title="Action">
 									<div class="">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
@@ -113,7 +98,7 @@ Homepage - {{ block.super }}
 											</li>
 										</ul>
 									</div>
-								</td>
+								</td> {% endcomment %}
 							</tr>
 							{% endfor %}
 							
@@ -122,26 +107,22 @@ Homepage - {{ block.super }}
 							
 						</tbody>
 					</table>
+					</div>
 
 					<!-- Reviews  Section -->
+					<div class="widget dashboard-container my-adslist">
+
+					
 
 
-					<h3 class="widget-header">My Reviews </h3>
+					<h2 >My Reviews </h2>
 					
 
 
 
 
 					<table class="table table-responsive product-dashboard-table">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Title</th>
-								<th class="text-center">Category</th>
-								<th class="text-center">Action</th>
-							</tr>
-						</thead>
-
+						
 						<tbody>
 								{% for review in reviews %}
 							<tr>
