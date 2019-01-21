@@ -77,6 +77,17 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='EventLatLong',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('site_name', models.CharField(blank=True, max_length=512)),
+                ('relevance', models.FloatField(default=0)),
+                ('latitude', models.FloatField(blank=True)),
+                ('longitude', models.FloatField(blank=True)),
+                ('event', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='location', to='core.Event')),
+            ],
+        ),
+        migrations.CreateModel(
             name='LeaveReview',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -85,7 +96,7 @@ class Migration(migrations.Migration):
                 ('event', models.CharField(blank=True, max_length=75)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('rating', models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)])),
-                ('business', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='core.Business')),
+                ('business_review', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='core.Business')),
                 ('reviewer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={

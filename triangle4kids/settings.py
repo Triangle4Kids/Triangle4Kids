@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,7 +40,7 @@ INSTALLED_APPS = [
     # 'django.contrib.sites',
     # Other django apps
     'django.contrib.postgres',
-    
+
     # My apps
     'core',
     'api',
@@ -56,7 +55,7 @@ INSTALLED_APPS = [
     'phone_field',
     'rest_framework',
     'el_pagination',
-    'storages', 
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -149,24 +148,12 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'triangle4kids/media')
 
-
-
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    'DEFAULT_PERMISSION_CLASSES':
+    ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
 }
-
-
-
-
-
-
-
-
 
 ACCOUNT_ACTIVATION_DAYS = 7
 STATIC_URL = '/static/'

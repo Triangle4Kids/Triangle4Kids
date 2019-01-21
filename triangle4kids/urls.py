@@ -48,6 +48,8 @@ router = routers.DefaultRouter()
 router.register('businesses', api_views.BusinessViewset,
                 api_views.BusinessLatLongViewset)
 router.register('businesseslocation', api_views.BusinessLatLongViewset)
+router.register('event', api_views.EventViewset, api_views.EventLatLongViewset)
+router.register('eventlocation', api_views.EventLatLongViewset)
 
 urlpatterns = [
     path(
@@ -104,7 +106,6 @@ urlpatterns = [
     url(r'^api/(?P<pk>[0-9]+)/$', api_views.BusinessDetailViewset),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 if settings.DEBUG:
     import debug_toolbar
