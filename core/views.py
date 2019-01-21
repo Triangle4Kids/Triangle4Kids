@@ -59,12 +59,17 @@ def event_list_text(request):
 
 def submit_event(request):
     if request.method == 'POST':
+
         form = EventForm(request.POST)
+
         if form.is_valid():
-            return HttpResponseRedirect('/events/')
+            event = form.save(commit=False)
+            event.user = request.user
+            event.save()
+            return redirect('bsevent_directory.html')
+
     else:
         form = EventForm()
-
     return render(request, 'submit_event.html', {'form': form})
 
     
