@@ -29,6 +29,7 @@ Event Directory - {{ block.super }}
 					{% comment %} <h2 class="raleway">Event Directory</h2> {% endcomment %}
 					<p> Browsing {{businesses.count }}  Businesses, Camps, and Classes in the Triangle </p>
 					
+					
 
 
 				</div>
@@ -186,20 +187,20 @@ Event Directory - {{ block.super }}
 					
 							
 						
-						<a class="text-large"href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
-
+						
+						<a class="text-large "href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
 						
 
-
-						 {% comment %}Attempted Accordian  <div id="accordion">
+						 <div class="inline" id="accordion">
 					
-							<h4  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-									Categories
-									<span ><a href="#"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<p  class="inline goright" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+									Filter By Event Category
+									<span ><a href="#"> 
 									<i class="fa fa-angle-down fa-1x" style="color:#D01C2E;"></i>  </span>
-									</h4>
+									</p>
+									<div >
 								{% for type_choice in type_choices %}
-								<div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+								<div id="collapseOne" class="collapse list-inline-item " style="text-align: center" aria-labelledby="headingOne" data-parent="#accordion">
 									
 									
 		    		
@@ -207,11 +208,11 @@ Event Directory - {{ block.super }}
 										
 										{% if filter.data.type_choice__icontains == type_choice.0 %}
 										
-										<button class="list-inline-item widget-header">{{ type_choice.1 }}</button>
+										<button class="btn-round-xs danger">{{ type_choice.1 }}</button>
 									
 										{% else %}
 										
-										<button button type="button" class="list-inline-item btn-round-xs btn btn-outline-secondary" > <a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
+										<button button type="button" class="btn-round-xs" > <a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
 											{{ type_choice.1 }}</button>
 										
 											
@@ -220,10 +221,14 @@ Event Directory - {{ block.super }}
 									
 							</div>
 								{% endfor %}
+								</div>
+								
 								
 							
 						
-					</div>  {% endcomment %}
+					</div>
+					 
+					
 
 
 

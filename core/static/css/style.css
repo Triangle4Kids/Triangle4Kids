@@ -91,6 +91,10 @@ color:#fff;
   border-radius: 40px;
 }
 
+.goright{
+  float: right;
+}
+
 .btn-round-xs{
   border-radius: 11px;
   padding-left: 10px;
