@@ -2,7 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900");
 body {
   line-height: 1.5;
-  font-family: "Muli", sans-serif;
+  /* font-family: "Muli", sans-serif; */
+  font-family: 'Raleway', sans-serif;
   
 }
 
@@ -2481,7 +2482,7 @@ article.single-post p {
 }
 
 .footer {
-  background: #0935a5;
+  background: #28a745;
 }
 
 .footer .block h4 {
@@ -2505,7 +2506,7 @@ article.single-post p {
 .footer .block ul li a {
   display: block;
   font-size: 14px;
-  color: #5ae93d;
+  color: #000000;
 }
 
 .footer .block ul li a:hover {
