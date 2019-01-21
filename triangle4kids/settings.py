@@ -181,6 +181,6 @@ LOGIN_REDIRECT_URL = "home"
 
 INTERNAL_IPS = ['127.0.0.1']
 
-# CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Activate django_heroku
