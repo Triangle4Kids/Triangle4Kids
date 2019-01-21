@@ -8,6 +8,15 @@ body {
 
 /* Card custom css  */
 
+.spimg {
+  padding-top: 25px;
+}
+
+.sppad{
+  margin-bottom: 20px;
+
+}
+
 
 .profile-card-2 .card-img-block{
   float:left;
@@ -67,6 +76,15 @@ color:#fff;
 .fonttitle{
   /* font-family: 'Patrick Hand', cursive; */
   font-family: 'Waiting for the Sunrise', cursive;
+}
+
+.centerit{
+  text-align: center;
+}
+
+.roundit{
+  border-radius: 10px;
+
 }
 
 
