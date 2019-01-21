@@ -85,9 +85,35 @@ color:#fff;
 
 .roundit{
   border-radius: 10px;
-
 }
 
+.hardround{
+  border-radius: 40px;
+}
+
+.btn-round-xs{
+  border-radius: 11px;
+  padding-left: 10px;
+  padding-right: 10px;
+  }
+  
+
+.inline{
+  display: inline;
+}
+.raleway{
+  font-family: 'Raleway', sans-serif;
+}
+
+.color1{
+  color: rebeccapurple;
+}
+.color2{
+  color: rgb(199, 19, 52);
+}
+.color3{
+  color: rgb(56, 159, 148);
+}
 
 .spcolor{
   
@@ -175,6 +201,7 @@ h2 {
 
 h3 {
   font-size: 20px;
+ 
 }
 
 h4 {
@@ -1602,14 +1629,18 @@ ul.pagination .active a {
 .product-details .content .nav .nav-item .nav-link:hover {
   background: #28a745;
   color: #fff;
+  
 }
 
 .product-details .content .nav .nav-item .nav-link.active {
   background: #28a745;
+ 
+
 }
 
 .product-details .content .tab-content {
-  background: #fff;
+  background: rgb(235, 235, 235);
+  border-radius: 15px;
   padding: 30px;
 }
 
