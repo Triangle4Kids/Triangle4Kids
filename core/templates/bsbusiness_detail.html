@@ -44,9 +44,9 @@ Homepage - {{ block.super }}
 			<!-- Left sidebar -->
 			<div class="col-md-8">
 				<div id = "business" data-business-id = "{{ business.pk }}" class="product-details">
-					<h1 class="product-title">{{business.name}}</h1>
+					<h1 class="raleway">{{business.name}}</h1>
 					
-					<h4 class="widget-header text-large"><i class="fa fa-star" style="color:#FFFF00;"></i> Little Triangle Rated: {{ business.avg_rating|floatformat:"1" }}</h4>
+					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFFF00;"></i> Little Triangle Rated: {{ business.avg_rating|floatformat:"1" }}</h4>
 					<br>
 
 					<div class="product-meta">
@@ -97,18 +97,18 @@ Homepage - {{ block.super }}
 					<div class="content">
 						<ul class="nav nav-pills  justify-content-left" id="pills-tab" role="tablist">
 							<li class="nav-item green">
-								<a class="nav-link  active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</a>
+								<a class="nav-link raleway active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Upcoming Events</a>
+								<a class="nav-link raleway" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Upcoming Events</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Leave A Review</a>
+								<a class="nav-link raleway" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Leave A Review</a>
 							</li>
 						</ul>
-						<div class="tab-content" id="pills-tabContent">
-							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								<h3 class="tab-title">Reviews for {{business.name}}</h3>
+						<div class="tab-content " id="pills-tabContent">
+							<div class="pre-scrollable tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								<h3 class="tab-title raleway">Reviews for {{business.name}}</h3>
 								
 
 							<!-- Review For Loop -->
@@ -266,9 +266,9 @@ Homepage - {{ block.super }}
 					
 					<!-- Real Map, David just uncomment the div below for the map when its ready  -->
 
-					<!-- <div id = "map" class="d-block w-100" height="300" width="300">
-							</div> -->
-
+					<div id = "map" class="d-block w-100" height="300" width="300">
+							</div> 
+							
 							<!-- Fake Map -->
 							<div class="widget map" >
 					<img class="mr-3" height="200px" width="100%" src="https://activerain-store.s3.amazonaws.com/image_store/uploads/9/6/8/7/1/ar129164824317869.JPG" alt="Generic placeholder image">
