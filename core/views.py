@@ -140,9 +140,9 @@ def event_detail(request, slug):
 
 
 def business_detail(request, slug):
-    business = Business.objects.annotate(
+    business_review = Business.objects.annotate(
         avg_rating=Avg("reviews__rating")).get(slug=slug)
-    events = business.events.all()
+    events = business_review.events.all()
 
     form = LeaveReviewForm()
 
@@ -150,20 +150,21 @@ def business_detail(request, slug):
         form = LeaveReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
-            review.business = business
+            review.business_review = business_review
             review.reviewer = request.user
             review.save()
-            return redirect('business_detail', slug=business.slug)
+            return redirect('business_detail', slug=business_review.slug)
 
-    review = LeaveReview.objects.filter(business_review=business)
+    review = LeaveReview.objects.filter(business_review=business_review)
     # average_score = review.aggregate(Avg('rating'))
 
-    return render(request, 'bsbusiness_detail.html', {
-        'business': business,
-        'events': events,
-        'form': form,
-        'review': review,
-    })
+    return render(
+        request, 'bsbusiness_detail.html', {
+            'business_review': business_review,
+            'events': events,
+            'form': form,
+            'review': review,
+        })
 
 
 def newbusiness_detail(request, slug):

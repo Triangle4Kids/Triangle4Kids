@@ -49,10 +49,10 @@ Homepage - {{ block.super }}
 		<div class="row">
 			<!-- Left sidebar -->
 			<div class="col-md-8">
-				<div id = "business" data-business-id = "{{ business.pk }}" class="product-details">
-					<h1 class="raleway">{{business.name}}</h1>
+				<div id = "business" data-business-id = "{{ business_review.pk }}" class="product-details">
+					<h1 class="raleway">{{business_review.name}}</h1>
 					
-					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFFF00;"></i> Little Triangle Rated: {{ business.avg_rating|floatformat:"1" }}</h4>
+					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFFF00;"></i> Little Triangle Rated: {{ business_review.avg_rating|floatformat:"1" }}</h4>
 					<br>
 
 					<div class="product-meta">
@@ -60,13 +60,13 @@ Homepage - {{ block.super }}
 							 
 							
 							
-							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  <a href="">{{business.address}}</a></li>
-							<li class="list-inline-item"><i class="fa fa-phone" style="color:#9933ff;"></i>  {{business.phone}}</li>
-						<li class="list-inline-item"><i class="fa fa-laptop" style="color:#ff9933;"></i> <a href="{{business.link}}" target="_blank" > Visit this webpage </a> </li>
-						<li class="list-inline-item"><i class="fa fa-check " style="color:#ff9933;"></i>  {{business.reviews.count}} reviews </a> </li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  <a href="">{{business_review.address}}</a></li>
+							<li class="list-inline-item"><i class="fa fa-phone" style="color:#9933ff;"></i>  {{business_review.phone}}</li>
+						<li class="list-inline-item"><i class="fa fa-laptop" style="color:#ff9933;"></i> <a href="{{business_review.link}}" target="_blank" > Visit this webpage </a> </li>
+						<li class="list-inline-item"><i class="fa fa-check " style="color:#ff9933;"></i>  {{business_review.reviews.count}} reviews </a> </li>
 						</ul>
 						<br>
-						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business.categories}}</a></p>
+						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business_review.categories}}</a></p>
 						
 					</div>
 					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
@@ -114,7 +114,7 @@ Homepage - {{ block.super }}
 						</ul>
 						<div class="tab-content " id="pills-tabContent">
 							<div class="pre-scrollable tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								<h3 class="tab-title raleway">Reviews for {{business.name}}</h3>
+								<h3 class="tab-title raleway">Reviews for {{business_review.name}}</h3>
 								
 
 							<!-- Review For Loop -->
@@ -207,7 +207,7 @@ Homepage - {{ block.super }}
 
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 							
-								<h3 class="tab-title">Leave a review for  {{business.name}}</h3>
+								<h3 class="tab-title">Leave a review for  {{business_review.name}}</h3>
 								<div class="product-review">
 							  		
 							  		<div class="review-submission">
@@ -259,7 +259,7 @@ Homepage - {{ block.super }}
 					{% if business.image %}
 					<div class="widget map" >
 					
-						<img class="mr-3" height="50" width="75" src="{{ business.image.url }}" alt="Generic placeholder image">
+						<img class="mr-3" height="50" width="75" src="{{ business_review.image.url }}" alt="Generic placeholder image">
 
 					</div>
 					{% else %}
