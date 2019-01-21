@@ -67,6 +67,10 @@ Homepage - {{ block.super }}
 						</ul>
 						<br>
 						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business_review.categories}}</a></p>
+
+
+
+						
 						
 					</div>
 					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
@@ -115,6 +119,16 @@ Homepage - {{ block.super }}
 						<div class="tab-content " id="pills-tabContent">
 							<div class="pre-scrollable tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 								<h3 class="tab-title raleway">Reviews for {{business_review.name}}</h3>
+
+								<!-- Messages if not logged in go here -->
+
+								{% if messages %}
+							{% for message in messages %}
+								<div id="notification" class="message-header">
+								{{ message }}
+								</div>
+							{% endfor %}
+						{% endif %}
 								
 
 							<!-- Review For Loop -->
@@ -136,7 +150,7 @@ Homepage - {{ block.super }}
 					<div class="card-body text-secondary">
 							<ul>
 
-							<li class="list-inline-item"><i class="fas fa-user" style="color:#0000ff;"> </i> {{ user }} </li>
+							<li class="list-inline-item"><i class="fas fa-user" style="color:#0000ff;"> </i> {{ review.reviewer }} </li>
 							<li class="list-inline-item"><i class="fas fa-compass" style="color:#ff9933;"> </i> activity: "{{ review.event}}" </li>
 							<li class="list-inline-item"><i class="fas fa-calendar" style="color:#33cc33;"> </i> {{ review.created_at}} </li>
 							</ul>

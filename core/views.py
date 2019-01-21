@@ -17,6 +17,8 @@ from django.views.generic import ListView
 from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from api.serializers import BusinessSerializer, BusinessLatLongSerializer
+import json
+from django.contrib import messages
 
 # from .forms import SearchForm
 
@@ -143,17 +145,22 @@ def business_detail(request, slug):
     business_review = Business.objects.annotate(
         avg_rating=Avg("reviews__rating")).get(slug=slug)
     events = business_review.events.all()
+    user = request.user
 
     form = LeaveReviewForm()
-
+    
     if request.method == "POST":
-        form = LeaveReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.business_review = business_review
-            review.reviewer = request.user
-            review.save()
-            return redirect('business_detail', slug=business_review.slug)
+        if user.is_authenticated:
+            form = LeaveReviewForm(request.POST)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.business_review = business_review
+                review.reviewer = request.user
+                review.save()
+                return redirect('business_detail', slug=business_review.slug)
+    
+        else:
+            messages.success(request, "Oops , must be logged in to review! ")
 
     review = LeaveReview.objects.filter(business_review=business_review)
     # average_score = review.aggregate(Avg('rating'))
@@ -174,6 +181,7 @@ def newbusiness_detail(request, slug):
 
     form = LeaveReviewForm()
 
+   
     if request.method == "POST":
         form = LeaveReviewForm(request.POST)
         if form.is_valid():
