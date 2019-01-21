@@ -27,7 +27,7 @@ Event Directory - {{ block.super }}
 
 
 					{% comment %} <h2 class="raleway">Event Directory</h2> {% endcomment %}
-					<p> Browsing {{businesses.count }}  Businesses, Camps, and Classes in the Triangle </p>
+					<p> Browsing Events Triangle </p>
 					
 					
 
@@ -188,24 +188,20 @@ Event Directory - {{ block.super }}
 							
 						
 						
-						<a class="text-large "href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
+						<a class="text-large "href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Events</a>
 						
 
 						 <div class="inline" id="accordion">
 					
 							<p  class="inline goright" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-									Filter By Event Category
+									Filter Events By Category
 									<span ><a href="#"> 
 									<i class="fa fa-angle-down fa-1x" style="color:#D01C2E;"></i>  </span>
 									</p>
 									<div >
 								{% for type_choice in type_choices %}
 								<div id="collapseOne" class="collapse list-inline-item " style="text-align: center" aria-labelledby="headingOne" data-parent="#accordion">
-									
-									
-		    		
-		   
-										
+
 										{% if filter.data.type_choice__icontains == type_choice.0 %}
 										
 										<button class="btn-round-xs danger">{{ type_choice.1 }}</button>
@@ -259,48 +255,57 @@ Event Directory - {{ block.super }}
 							<div class="col-sm-12 col-lg-4 col-md-6">
 								<div class="product-item bg-light">
 
-									<div class="card">
 
-										{% if event.image %}
-										<div class="thumb-content">
-											<img class="mr-3" height="150" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image">
-										</div>
-										{% else %}
 
-										<div class="thumb-content">
-											<img class="mr-3" height="150" width="100%" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg"
-											 alt="Generic placeholder image">
+
+									<div class="card profile-card-2 roundit sppad">
+										<div class="card-img-block">
+													{% if event.image %}
+													<img class=" roundit img-fluid " src="{{ event.image.url }}" alt="Card image cap" />
+													
+													{% else %}
+													<img class="img-fluid roundit" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Card image cap" />
+													{% endif %} 
+											
 										</div>
-										{% endif %}
-										<div class="card-body">
-											<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
+										<div class="card-body pt-3 ">
+										<ul class="list-inline product-meta">
+										<h5 class="card-title list-inline-item"><a href="#">{{event.title}}</h5>
+												<li class="list-inline-item">
+													<p><b>{{event.business }} </b> <p>
+												</li>
+												</ul>
+											
+											
 											<ul class="list-inline product-meta">
 												<li class="list-inline-item">
-													<p> {{event.business}}</p>
+													<a href=""><i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} </a>
 												</li>
-												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}
+												<li class="list-inline-item">
+													<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} </a>
 												</li>
-												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;"></i> {{ event.start_date }}
+												<li class="list-inline-item">
+													<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 												</li>
-												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;"></i> {{ event.start_time }} - {{ event.end_time }} </li>
-
-
 											</ul>
-											<li class="list-inline-item selected"> {{event.description|slice:":75" }} ... </li>
-
-											<div class="product-ratings">
-												<br>
-												<li class="list-inline-item selected"><a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;"
-														 class="fa fa-reply"> </i> See this event </li>
-												</ul>
-											</div>
+											<br>
+											<p> {{event.description|slice:":100"}}...</p>
+											{% if event.type_choice %}
+												<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
+											{% endif %}
+								<br>
+											{% comment %} <div class="icon-block centerit "><a href="#"><i style="color:#31B91C;" class="fas fa-chevron-circle-right"></i> See This Business </a></div> {% endcomment %}
+											<a href="{% url 'event_detail' slug=event.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> See This Event <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button></a>
 										</div>
 									</div>
 
 
+
+
+
+
+
 								</div>
-
-
 							</div>
 							{% endfor %}
 
@@ -331,7 +336,7 @@ Event Directory - {{ block.super }}
 
 
 
-									<!-- REAL Event FOR Loop  -->
+									<!-- THIS FOR LOOP IS NOT WORKING  -->
 
 									{% for event in events %}
 									<div class="col-sm-12 col-lg-4 col-md-6">
@@ -383,9 +388,12 @@ Event Directory - {{ block.super }}
 											</div>
 
 
+
+
+
+
+											
 										</div>
-
-
 									</div>
 									{% endfor %}
 
