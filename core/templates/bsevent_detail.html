@@ -18,17 +18,9 @@ Homepage - {{ block.super }}
  
 	<div class="container">
 	<p class="list"><a href=" {% url 'event_list_preset' %}"> <i class="fas fa-angle-double-left"></i>  Back to Events  </p>
-	
 
-
-
-
-	
 		<div class="row">
-		
 
-
-		
 			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0 roundit ">
 			
 
@@ -37,17 +29,13 @@ Homepage - {{ block.super }}
 			<img class="align-self-start mr-3" height="440px" width="300px" src="https://odyseainthedesert.com/wp-content/uploads/2019/01/OID_ConservationExpo_EventListing-300x300.jpg" alt="Generic placeholder image">
 			</div>
   <div class="media-body ">
-  <p class="list-inline-item">
-								<i class="fa fa-calendar text-large" style="color:#009999;" ></i> {{event.start_date }}
-							</p>
-							<br>
-  
-    <h2 class="raleway"> Going out to the family farm {{ event.title }} </h2>
+  <p class="list-inline-item"> <i class="fa fa-calendar text-large" style="color:#009999;" ></i> {{event.start_date }} </p>			
+	<br>
+    <h2 class="raleway"> {{ event.title }} </h2>
 	<p class="list"> {{ event.business }} </p>
 	<br>
 	<br>
 	
-    
 	<ul class="list-inline">
 					{% if is_favorite %}
 						<li class="list-inline-item raleway"> High Fived! </li>
@@ -55,10 +43,6 @@ Homepage - {{ block.super }}
 						<li class="list-inline-item raleway"> High Five this event to save it  </li>
 						{% endif %}
 						<li class="list-inline-item">
-						
-
-						
-						
 
 						<div id="favorite-section">
 						
@@ -73,9 +57,7 @@ Homepage - {{ block.super }}
 									{% endif %}
 
         						</div> 
-								
 						</li>
-						
 					</ul>
 					<br>
 					
@@ -87,8 +69,7 @@ Homepage - {{ block.super }}
 
 
 					 <ul class="list-inline product-meta ">
-							
-							
+								
 							<li class="list-inline-item">
 								<i class="fa fa-user " style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} 
 							</li>
@@ -102,25 +83,12 @@ Homepage - {{ block.super }}
 								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} 
 							</li>
 							
-							
 						</ul>
-						
-						
-						{% comment %} <p>
-								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
-							</p>
-							<br>  {% endcomment %}
-
-							
-
 						
 					
 					<br>
 					 <ul class="social-circle-icons list-inline ">
-				  		
-						
-						
-						
+
 						{% comment %} <a  href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> See more events from {{ business.name }} </a> {% endcomment %}
 						<a href="{{business.link}}" target="_blank" ><button class="btn btn-success btn-lg btn-block" type="submit" > SIGN UP HERE </button></a>
 				  	</ul> 
@@ -269,13 +237,9 @@ Homepage - {{ block.super }}
 	<br>
 <br>
 <br>
-	<br>
-
+<br>
 
 </section>
-
-
-
 
 
 {% endblock content %}
