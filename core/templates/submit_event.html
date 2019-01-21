@@ -1,0 +1,14 @@
+{% comment %} <form method="post">
+    <label for="your_name">Your name: </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form> {% endcomment %}
+
+<form method="post" novalidate>
+        {% csrf_token %}
+        <table border="1">
+          {{ form }}
+        </table>
+        <button type="submit">Submit</button>
+      </form>
+      

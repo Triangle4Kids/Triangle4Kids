@@ -62,8 +62,12 @@ def submit_event(request):
         form = EventForm(request.POST)
         if form.is_valid():
             return HttpResponseRedirect('/events/')
+    else:
+        form = EventForm()
 
+    return render(request, 'submit_event.html', {'form': form})
 
+    
 def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all().annotate(avg_rating=Avg("reviews__rating"))
@@ -156,8 +160,6 @@ def business_detail(request, slug):
             'form': form,
             'review': review,  
         })
-
-
 
 
 def newbusiness_detail(request, slug):
