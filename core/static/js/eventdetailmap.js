@@ -1,7 +1,7 @@
 $(document).ready(function () {
     mapboxgl.accessToken = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow';
     // TO DO: get ID from HTML 
-    bizID = $('#business').attr("data-business-id");
+    eventID = $('#event').attr("data-event-id");
 
 
     mapObject = new mapboxgl.Map({
@@ -10,21 +10,21 @@ $(document).ready(function () {
         center: [-35.77, 78.63],
         zoom: 12
     });
-    displayBizOnMap(bizID);
+    displayEventOnMap(eventID);
 });
 
-function displayBizOnMap(id) {
+function displayEventOnMap(id) {
 
-    const url = '/api/businesses/' + id;
-    sendBizApiRequest("GET", url);
+    const url = '/api/event/' + id;
+    sendEventApiRequest("GET", url);
 }
 
-function sendBizApiRequest(method, url) {
+function sendEventApiRequest(method, url) {
     console.log("[Search Request] " + url);
-    $.getJSON(url, null, handleBizApiResponse);
+    $.getJSON(url, null, handleEventApiResponse);
 }
 
-function handleBizApiResponse(data, status, xhr) {
+function handleEventApiResponse(data, status, xhr) {
     if (status == "success") {
         console.log("Got response, creating map...");
         var latitude = data["location"]["latitude"]

@@ -52,12 +52,6 @@ class EventResultsListView(ListView):
         return qs
 
 
-# def get_queryset(self):
-#     queryset = Business.average_rating.all()
-#     return super().get_queryset()
-
-
-# from django-filters docs
 def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
     return render(
@@ -197,16 +191,6 @@ def newbusiness_detail(request, slug):
         'form': form,
         'review': review,
     })
-
-
-# # MapBox #
-# def default_map(request):
-#     # TODO: move this token to Django settings from an environment variable
-#     # found in the Mapbox account settings and getting started instructions
-#     # see https://www.mapbox.com/account/ under the "Access tokens" section
-#     mapbox_access_token = 'pk.eyJ1IjoidHJpYW5nbGU0a2lkcyIsImEiOiJjanFubWRwMGw3a2hjNGFtc3RrMWQ4OXl5In0.eZj0i5qyOBlmeY2oH6LWow'
-#     return render(request, 'default.html',
-#                   {'mapbox_access_token': mapbox_access_token})
 
 
 @login_required

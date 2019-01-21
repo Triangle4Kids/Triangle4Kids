@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
+{% load staticfiles %} 
 {% block title %}
-Homepage - {{ block.super }} 
+Event Detail - {{ block.super }} 
 {% endblock title %}
 
 {% block content %}
@@ -8,7 +9,7 @@ Homepage - {{ block.super }}
 
 
 <!--=================================
-=            Single Blog            =
+=            Single Event            =
 ==================================-->
 
 
@@ -17,6 +18,10 @@ Homepage - {{ block.super }}
 
  
 	<div class="container">
+	
+	<!-- DIV is needed for MapBox - Do NOT REMOVE -->
+	<div id = "event" data-event-id = "{{ event.pk }}" class="product-details" />
+
 	<p class="list"><a href=" {% url 'event_list_preset' %}"> <i class="fas fa-angle-double-left"></i>  Back to Events  </p>
 	
 
@@ -189,10 +194,9 @@ Homepage - {{ block.super }}
 			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
 				<div class="sidebar">
 
-				<div >
-					<img class="d-block w-100" src="https://i.stack.imgur.com/yEshb.gif" height="300" width="300" alt="article-01">
-						
-					</div>
+				<!-- DIV is needed for MapBox - Do NOT REMOVE -->
+				<div id = "map" class="d-block w-100" height="300" width="300">
+				</div>
 					<!-- Search Widget -->
 					{% comment %} <div class="widget search p-0">
 						<div class="input-group">
@@ -268,3 +272,7 @@ Homepage - {{ block.super }}
 
 {% endblock content %}
 
+<!--Needed for MapBox DO NOT REMOVE -->
+{% block pagescripts %}
+	<script src= "{% static 'js/eventdetailmap.js' %}"></script>
+{% endblock pagescripts %}
