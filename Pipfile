@@ -20,6 +20,7 @@ beautifulsoup4 = "*"
 pillow = "*"
 djangorestframework = "*"
 django-crispy-forms = "*"
+django-el-pagination = "*"
 "boto3" = "*"
 django-storages = "*"
 

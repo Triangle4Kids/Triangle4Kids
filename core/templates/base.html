@@ -22,6 +22,8 @@
     <link href="{% static 'css/style.css" rel="stylesheet' %}"/>
     <!-- FAVICON -->
     <link href="{% static 'img/favicon.png" rel="shortcut icon' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,6 +33,11 @@
     <![endif]-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     
+
+    <!-- CSS card -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- MAPBOX -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -87,7 +94,7 @@
 </head>
 
 <body>
-<body class="body-wrapper">
+
 
 
 <section>
@@ -97,11 +104,11 @@
 				<nav class="navbar navbar-expand-lg  navigation">
 					<a class="navbar-brand" href="{% url 'home' %}">
 						
-						<h1>
-						<i class="far fa-star"></i>
+						<h1 class="fonttitle text-small">
+						{% comment %} <i class="fas fa-caret-up"></i> {% endcomment %}
 						
-						<span>K4 Triangle </span></h1>
-						<h4>Your guide to the triangles best activities for kids</h4>
+						<span> The Little Triangle </span> </h1>
+						{% comment %} <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your guide to the Triangle's best activities for kids.</p> {% endcomment %}
 						
 						
 					</a>
@@ -114,7 +121,7 @@
 							
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Search <span><i class="fa fa-angle-down"></i></span>
+									Find <span><i class="fa fa-angle-down"></i></span>
 								</a>
 								<!-- Dropdown list -->
 								<div class="dropdown-menu dropdown-menu-right">
@@ -163,23 +170,6 @@
 
 
 
-
-
-
-
-
-<br>
-
-<br>
-
-
-
-
-
-
-
-
-
 {% block content %}{% endblock content %}
 
    
@@ -220,7 +210,7 @@
           <ul>
             <li><a href="{% url 'event_list_preset' %}"> Event Search From Preset Choices </a></li>
             <li><a href="{% url 'event_list_text' %}"> Event List Text Field Search </a></li>
-            <li><a href="{% url 'business_directory' %}"> Event List Text Field Search </a></li>
+            {% comment %} <li><a href="{% url 'newbusiness_detail' %}"> new bs detail </a></li> {% endcomment %}
             
         
           </ul>

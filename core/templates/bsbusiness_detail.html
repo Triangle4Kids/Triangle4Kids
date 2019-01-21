@@ -37,7 +37,7 @@ Homepage - {{ block.super }}
 <!--===================================
 =            Main Section          =
 ====================================-->
-<section class="section bg-gray">
+<section class="section ">
 	<!-- Container Start -->
 	<div class="container">
 		<div class="row">
@@ -45,15 +45,22 @@ Homepage - {{ block.super }}
 			<div class="col-md-8">
 				<div id = "business" data-business-id = "{{ business.pk }}" class="product-details">
 					<h1 class="product-title">{{business.name}}</h1>
+					
+					<h4 class="widget-header text-large"><i class="fa fa-star" style="color:#FFFF00;"></i> Little Triangle Rated: {{ business.avg_rating|floatformat:"1" }}</h4>
+					<br>
+
 					<div class="product-meta">
-						<ul class="list">
-							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> User Score:{{average_score }}</li> 
+						<ul class="list text-large">
+							 
 							
-							<li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business.categories}}</a></li>
+							
 							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  <a href="">{{business.address}}</a></li>
 							<li class="list-inline-item"><i class="fa fa-phone" style="color:#9933ff;"></i>  {{business.phone}}</li>
 						<li class="list-inline-item"><i class="fa fa-laptop" style="color:#ff9933;"></i> <a href="{{business.link}}" target="_blank" > Visit this webpage </a> </li>
+						<li class="list-inline-item"><i class="fa fa-check " style="color:#ff9933;"></i>  {{business.reviews.count}} reviews </a> </li>
 						</ul>
+						<br>
+						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business.categories}}</a></p>
 						
 					</div>
 					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
@@ -83,10 +90,14 @@ Homepage - {{ block.super }}
 							<span class="sr-only">Next</span>
 						</a>
 					</div> {% endcomment %}
+					
+					
+					
+					
 					<div class="content">
-						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</a>
+						<ul class="nav nav-pills  justify-content-left" id="pills-tab" role="tablist">
+							<li class="nav-item green">
+								<a class="nav-link  active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Upcoming Events</a>
@@ -97,7 +108,7 @@ Homepage - {{ block.super }}
 						</ul>
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								<h3 class="tab-title">Review for {{business.name}}</h3>
+								<h3 class="tab-title">Reviews for {{business.name}}</h3>
 								
 
 							<!-- Review For Loop -->
@@ -117,10 +128,13 @@ Homepage - {{ block.super }}
 
 					</div>
 					<div class="card-body text-secondary">
+							<ul>
 
 							<li class="list-inline-item"><i class="fas fa-user" style="color:#0000ff;"> </i> {{ user }} </li>
 							<li class="list-inline-item"><i class="fas fa-compass" style="color:#ff9933;"> </i> activity: "{{ review.event}}" </li>
 							<li class="list-inline-item"><i class="fas fa-calendar" style="color:#33cc33;"> </i> {{ review.created_at}} </li>
+							</ul>
+							<br>
 						
 						<p >"{{ review.text }}"</p>
 					</div>
@@ -245,13 +259,19 @@ Homepage - {{ block.super }}
 					{% else %}
 					<div class="widget map" >
 					
-						<img class="mr-3" height="200px" width="100%" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
+						<img class="mr-3" height="100%" width="100%" src="https://static1.squarespace.com/static/58c06cf520099e31a9afd297/t/58ff507a9f7456d3c6e28e67/1493127302444/" alt="Generic placeholder image">
 
 					</div>
 					{% endif %}
 					
-					<!-- Map Widget -->
-					<div id = "map" class="d-block w-100" height="300" width="300">
+					<!-- Real Map, David just uncomment the div below for the map when its ready  -->
+
+					<!-- <div id = "map" class="d-block w-100" height="300" width="300">
+							</div> -->
+
+							<!-- Fake Map -->
+							<div class="widget map" >
+					<img class="mr-3" height="200px" width="100%" src="https://activerain-store.s3.amazonaws.com/image_store/uploads/9/6/8/7/1/ar129164824317869.JPG" alt="Generic placeholder image">
 
 						
 						</div>
@@ -261,19 +281,22 @@ Homepage - {{ block.super }}
 					<!-- Safety tips widget -->
 					
 					<!-- Coupon Widget -->
-					<div class="widget coupon text-center">
+					{% comment %} <div class="widget coupon text-center">
 						<!-- Coupon description -->
 						<p>Join our mailing list
 						</p>
 						<!-- Submii button -->
 						<a href="" class="btn btn-transparent-white">Submit </a>
 					</div>
-					
+					 {% endcomment %}
 				</div>
 			</div>
 			
 		</div>
 	</div>
+	<br>
+<br>
+<br>
 	<!-- Container End -->
 </section>
 <script>
@@ -334,6 +357,7 @@ function addLatLongMarker(latitude, longitude) {
 }
 
 </script>
+
 
 {% endblock content %}
 
