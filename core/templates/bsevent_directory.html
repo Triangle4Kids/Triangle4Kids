@@ -9,39 +9,6 @@ Event Directory - {{ block.super }}
 <!-- SECONDARY NAV AREA -->
 
 
-{% comment %} <section class="page-search">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Advance Search -->
-				<div class="advance-search">
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="section-title">
-								<!-- Secodnary Nav -->
-								<nav>
-									<a class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
-									<a class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
-									<a class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewed</a>
-									<a class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section> {% endcomment %}
-
-{% comment %} <section class="#">
-	<div class="container">
-		<h2>Map option</h2>
-
-
-	</div>
-</section> {% endcomment %}
 
 <!-- Title Bar -->
 <section>
@@ -50,10 +17,18 @@ Event Directory - {{ block.super }}
 			<div class="col-md-12">
 
 
-				<div class="search-result spcolor">
+				<div class="search-result ">
+				<br>
+
+				
+            <h2 class=" raleway ">Event Directory</h2>
+			
+            
 
 
-					<h2>Event Directory</h2>
+					{% comment %} <h2 class="raleway">Event Directory</h2> {% endcomment %}
+					<p> Browsing Events Triangle </p>
+					
 					
 
 
@@ -64,47 +39,10 @@ Event Directory - {{ block.super }}
 		<div class="row">
 			<div class="col-md-3">
 				<div class="category-sidebar">
-					<div class="widget category-list">
-						{% comment %} <h4 class="widget-header">Search</h4> {% endcomment %}
-						<ul class="category-list">
-						<img class="mr-3" height="200px" width="100%" src="https://activerain-store.s3.amazonaws.com/image_store/uploads/9/6/8/7/1/ar129164824317869.JPG" alt="Generic placeholder image">
-<!-- 
-							This is the old, drop-down search:
-							<form method="GET">
-								{{ filter.form|bootstrap }}
-								<button type="submit" class="btn btn-primary">Search</button>
-							</form> -->
+					
 
 
-						</div>
-
-
-
-						<div id="accordion">
-					<div class="widget category-list">
-							<h4 class="widget-header " data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-									Categories
-									<span ><a href="#"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-									<i class="fa fa-angle-down fa-1x" style="color:#D01C2E;"></i>  </span>
-									</h4>
-								{% for type_choice in type_choices %}
-								<div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
-
-									<ul class="category-list">
-									<li >
-									{% if filter.data.type_choice__icontains == type_choice.0 %}
-									{{ type_choice.1 }}</li>
-									{% else %}
-									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
-										{{ type_choice.1 }}	
-									{% endif %}
-									</li>
-							</div>
-								{% endfor %}
-								</ul>
-							
-						</div>
-					</div>
+						
 
 						<div class="widget category-list">
 								<h4 class="widget-header">City</h4>
@@ -116,7 +54,7 @@ Event Directory - {{ block.super }}
 								{% else %}
 								<a href="{% replace_query_param url=request.get_full_path param='cities_choice' value=cities_choice.0 %}">
 									{{ cities_choice.1 }}
-									<span>93</span></a>
+									</a>
 								{% endif %}
 							</li>
 							{% endfor %}</li>
@@ -135,7 +73,7 @@ Event Directory - {{ block.super }}
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='age_choice' value=age_choice.0 %}">
 										{{ age_choice.1 }}
-										<span>93</span></a>
+										</a>
 									{% endif %}
 								</li>
 								{% endfor %}</li>
@@ -153,7 +91,7 @@ Event Directory - {{ block.super }}
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='class_camp_choice' value=class_camp_choice.0 %}">
 										{{ class_camp_choice.1 }}
-										<span>93</span></a>
+										</a>
 									{% endif %}
 								</li>
 								{% endfor %}</li>
@@ -173,137 +111,14 @@ Event Directory - {{ block.super }}
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
 										{{ type_choice.1 }}
-										<span>93</span></a>
+										
 									{% endif %}
 								</li>
 								{% endfor %}
 							</ul>
 						</div>
 
-						{% comment %} <div class="widget filter">
-							<h4 class="widget-header">Extra Filter #1</h4>
-							<select>
-								<option>Popularity</option>
-								<option value="1">Top rated</option>
-								<option value="2">Lowest Price</option>
-								<option value="4">Highest Price</option>
-							</select>
-						</div> {% endcomment %}
-
-						{% comment %} <div class="widget price-range">
-							<h4 class="widget-header">Extra Filter #2</h4>
-							<div class="block">
-								<b> x </b>
-								<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5"
-								 data-slider-value="[250,450]" />
-								<b>y </b>
-							</div>
-						</div> {% endcomment %}
-
-						<!-- <div class="widget product-shorting">
-							<h4 class="widget-header">Extra filter #3</h4>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									1
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									2
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									3
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									4
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									1
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									2
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									3
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									4
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									1
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									2
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									3
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									4
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									1
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									2
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									3
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" value="">
-									4
-								</label>
-							</div>
-
-
-
-
-
-						</div> -->
+						
 
 						<div class="container">
 
@@ -372,7 +187,62 @@ Event Directory - {{ block.super }}
 					
 							
 						
-						<a href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Listings </a>
+						
+						<a class="text-large "href="{% url 'event_list_preset' %}"><i class="fa fa-th-large"></i> See All Events</a>
+						
+
+						 <div class="inline" id="accordion">
+					
+							<p  class="inline goright" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+									Filter Events By Category
+									<span ><a href="#"> 
+									<i class="fa fa-angle-down fa-1x" style="color:#D01C2E;"></i>  </span>
+									</p>
+									<div >
+								{% for type_choice in type_choices %}
+								<div id="collapseOne" class="collapse list-inline-item " style="text-align: center" aria-labelledby="headingOne" data-parent="#accordion">
+
+										{% if filter.data.type_choice__icontains == type_choice.0 %}
+										
+										<button class="btn-round-xs danger">{{ type_choice.1 }}</button>
+									
+										{% else %}
+										
+										<button button type="button" class="btn-round-xs" > <a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
+											{{ type_choice.1 }}</button>
+										
+											
+										{% endif %}
+									
+									
+							</div>
+								{% endfor %}
+								</div>
+								
+								
+							
+						
+					</div>
+					 
+					
+
+
+
+
+
+
+
+						{% comment %} BUTTON STUFF {% for type_choice in type_choices %}
+								
+									{% if filter.data.type_choice__icontains == type_choice.0 %}
+									<button class="widget-header">{{ type_choice.1 }}</button>
+									{% else %}
+									<button button type="button" class=" btn-round-xs btn btn-outline-secondary" > <a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
+										{{ type_choice.1 }}</button>
+										
+									{% endif %}
+								
+								{% endfor %} {% endcomment %}
 						
 						
 
@@ -385,48 +255,57 @@ Event Directory - {{ block.super }}
 							<div class="col-sm-12 col-lg-4 col-md-6">
 								<div class="product-item bg-light">
 
-									<div class="card">
 
-										{% if event.image %}
-										<div class="thumb-content">
-											<img class="mr-3" height="150" width="100%" src="{{ event.image.url }}" alt="Generic placeholder image">
-										</div>
-										{% else %}
 
-										<div class="thumb-content">
-											<img class="mr-3" height="150" width="100%" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg"
-											 alt="Generic placeholder image">
+
+									<div class="card profile-card-2 roundit sppad">
+										<div class="card-img-block">
+													{% if event.image %}
+													<img class=" roundit img-fluid " src="{{ event.image.url }}" alt="Card image cap" />
+													
+													{% else %}
+													<img class="img-fluid roundit" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Card image cap" />
+													{% endif %} 
+											
 										</div>
-										{% endif %}
-										<div class="card-body">
-											<h4><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h4>
+										<div class="card-body pt-3 ">
+										<ul class="list-inline product-meta">
+										<h5 class="card-title list-inline-item"><a href="#">{{event.title}}</h5>
+												<li class="list-inline-item">
+													<p><b>{{event.business }} </b> <p>
+												</li>
+												</ul>
+											
+											
 											<ul class="list-inline product-meta">
 												<li class="list-inline-item">
-													<p> {{event.business}}</p>
+													<a href=""><i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} </a>
 												</li>
-												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}
+												<li class="list-inline-item">
+													<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} </a>
 												</li>
-												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;"></i> {{ event.start_date }}
+												<li class="list-inline-item">
+													<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 												</li>
-												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;"></i> {{ event.start_time }} - {{ event.end_time }} </li>
-
-
 											</ul>
-											<li class="list-inline-item selected"> {{event.description|slice:":75" }} ... </li>
-
-											<div class="product-ratings">
-												<br>
-												<li class="list-inline-item selected"><a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;"
-														 class="fa fa-reply"> </i> See this event </li>
-												</ul>
-											</div>
+											<br>
+											<p> {{event.description|slice:":100"}}...</p>
+											{% if event.type_choice %}
+												<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
+											{% endif %}
+								<br>
+											{% comment %} <div class="icon-block centerit "><a href="#"><i style="color:#31B91C;" class="fas fa-chevron-circle-right"></i> See This Business </a></div> {% endcomment %}
+											<a href="{% url 'event_detail' slug=event.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> See This Event <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button></a>
 										</div>
 									</div>
 
 
+
+
+
+
+
 								</div>
-
-
 							</div>
 							{% endfor %}
 
@@ -457,7 +336,7 @@ Event Directory - {{ block.super }}
 
 
 
-									<!-- REAL Event FOR Loop  -->
+									<!-- THIS FOR LOOP IS NOT WORKING  -->
 
 									{% for event in events %}
 									<div class="col-sm-12 col-lg-4 col-md-6">
@@ -509,9 +388,12 @@ Event Directory - {{ block.super }}
 											</div>
 
 
+
+
+
+
+											
 										</div>
-
-
 									</div>
 									{% endfor %}
 
