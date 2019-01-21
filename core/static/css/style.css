@@ -2,11 +2,21 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900");
 body {
   line-height: 1.5;
-  font-family: "Muli", sans-serif;
+  /* font-family: "Muli", sans-serif; */
+  font-family: 'Raleway', sans-serif;
   
 }
 
 /* Card custom css  */
+
+.spimg {
+  padding-top: 25px;
+}
+
+.sppad{
+  margin-bottom: 20px;
+
+}
 
 
 .profile-card-2 .card-img-block{
@@ -69,6 +79,45 @@ color:#fff;
   font-family: 'Waiting for the Sunrise', cursive;
 }
 
+.centerit{
+  text-align: center;
+}
+
+.roundit{
+  border-radius: 10px;
+}
+
+.hardround{
+  border-radius: 40px;
+}
+
+.goright{
+  float: right;
+}
+
+.btn-round-xs{
+  border-radius: 11px;
+  padding-left: 10px;
+  padding-right: 10px;
+  }
+  
+
+.inline{
+  display: inline;
+}
+.raleway{
+  font-family: 'Raleway', sans-serif;
+}
+
+.color1{
+  color: rebeccapurple;
+}
+.color2{
+  color: rgb(199, 19, 52);
+}
+.color3{
+  color: rgb(56, 159, 148);
+}
 
 .spcolor{
   
@@ -117,6 +166,10 @@ color:#fff;
   font-size: 200%;
 }
 
+.newcolor{
+  background: #f2f2f24a;
+}
+
 
 
 
@@ -156,6 +209,7 @@ h2 {
 
 h3 {
   font-size: 20px;
+ 
 }
 
 h4 {
@@ -1583,14 +1637,18 @@ ul.pagination .active a {
 .product-details .content .nav .nav-item .nav-link:hover {
   background: #28a745;
   color: #fff;
+  
 }
 
 .product-details .content .nav .nav-item .nav-link.active {
   background: #28a745;
+ 
+
 }
 
 .product-details .content .tab-content {
-  background: #fff;
+  background: rgb(235, 235, 235);
+  border-radius: 15px;
   padding: 30px;
 }
 
@@ -2463,7 +2521,7 @@ article.single-post p {
 }
 
 .footer {
-  background: #0935a5;
+  background: #28a745;
 }
 
 .footer .block h4 {
@@ -2487,7 +2545,7 @@ article.single-post p {
 .footer .block ul li a {
   display: block;
   font-size: 14px;
-  color: #5ae93d;
+  color: #000000;
 }
 
 .footer .block ul li a:hover {

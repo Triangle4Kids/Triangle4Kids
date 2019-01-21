@@ -24,6 +24,7 @@
     <link href="{% static 'img/favicon.png" rel="shortcut icon' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -104,10 +105,14 @@
 				<nav class="navbar navbar-expand-lg  navigation">
 					<a class="navbar-brand" href="{% url 'home' %}">
 						
-						<h1 class="fonttitle text-small">
-						{% comment %} <i class="fas fa-caret-up"></i> {% endcomment %}
+						<h1 class="fonttitle text-small inline">
+
+						<h1 class="fonttitle text-small inline color1">The</h1>
+            <h1 class="fonttitle text-small inline color2">Little</h1>
+            <h1 class="fonttitle text-small inline color3">Triangle</h1>
 						
-						<span> The Little Triangle </span> </h1>
+						{% comment %} <span> The Little Triangle </span> </h1> {% endcomment %}
+            
 						{% comment %} <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your guide to the Triangle's best activities for kids.</p> {% endcomment %}
 						
 						
@@ -217,13 +222,13 @@
         </div>
       </div>
       <!-- Promotion -->
-      <div class="col-lg-4 col-md-7">
+      {% comment %} <div class="col-lg-4 col-md-7">
         <!-- App promotion -->
         <div class="block-2 app-promotion">
           
            <p> logged in as: < {{user}} > </p>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </div>
   <!-- Container End -->
