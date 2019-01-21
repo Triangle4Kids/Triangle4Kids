@@ -130,8 +130,17 @@ class Event(models.Model):
         return self.title
 
 
+class EventLatLong(models.Model):
+    event = models.OneToOneField(
+        Event, on_delete=models.CASCADE, related_name='location', null=True)
+    site_name = models.CharField(max_length=512, blank=True)
+    relevance = models.FloatField(default=0)
+    latitude = models.FloatField(blank=True)
+    longitude = models.FloatField(blank=True)
+
+
 class LeaveReview(models.Model):
-    business = models.ForeignKey(
+    business_review = models.ForeignKey(
         Business, on_delete=models.CASCADE, related_name="reviews")
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500, blank=False)
