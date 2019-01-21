@@ -73,7 +73,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path(
-        'events-dropdown-select',
+        'events-dropdown-select/',
         views.event_list_preset,
         name='event_list_preset'),
     path('events/', views.event_list_text, name='event_list_text'),

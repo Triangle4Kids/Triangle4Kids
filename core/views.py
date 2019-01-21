@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
 from core.models import Event, Business, LeaveReview, Profile, EVENT_TYPE, AGE_RANGE, CLASS_CAMP, CITIES, BusinessLatLong
-from core.forms import LeaveReviewForm
+from core.forms import LeaveReviewForm, EventForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -11,22 +11,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import EventFilterTextSearch, EventFilter
 from django.db.models import Avg, F
-from django.contrib.postgres.search import SearchQuery, \
-SearchRank, SearchVector
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.views.generic import ListView
 from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from api.serializers import BusinessSerializer, BusinessLatLongSerializer
-
-# from .forms import SearchForm
 
 
 class BusinessResultsListView(ListView):
     model = Business
     context_object_name = 'business_list'
     template_name = 'bsbusiness_directory.html'
-    # paginate_by = 12
-
+   
     def get_queryset(self):
 
         qs = Business.objects.all().annotate(avg_rating=Avg("reviews__rating"))
@@ -51,12 +47,6 @@ class EventResultsListView(ListView):
         return qs
 
 
-# def get_queryset(self):
-#     queryset = Business.average_rating.all()
-#     return super().get_queryset()
-
-
-# from django-filters docs
 def event_list_preset(request):
     f = EventFilter(request.GET, queryset=Event.objects.all())
     return render(request, 'bsevent_directory.html', {'filter': f, 'type_choices': EVENT_TYPE, 'age_choices': AGE_RANGE, 'class_camp_choices': CLASS_CAMP, 'cities_choices': CITIES})
@@ -67,11 +57,17 @@ def event_list_text(request):
     return render(request, 'events/event_list.html', {'filter': f})
 
 
+def submit_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/events/')
+
+
 def index(request):
     events = Event.objects.all()
     businesses = Business.objects.all().annotate(avg_rating=Avg("reviews__rating"))
    
-
     return render(request, 'bsindex.html', {
         "events": events,
         "businesses": businesses,
