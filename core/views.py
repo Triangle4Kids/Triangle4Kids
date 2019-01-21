@@ -66,11 +66,11 @@ def submit_event(request):
             event = form.save(commit=False)
             event.user = request.user
             event.save()
-            return redirect('bsevent_directory.html')
+            return redirect('event_directory')
 
     else:
         form = EventForm()
-    return render(request, 'submit_event.html', {'form': form})
+    return render(request, 'submit_event', {'form': form})
 
     
 def index(request):

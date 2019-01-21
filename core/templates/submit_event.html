@@ -1,14 +1,16 @@
-{% comment %} <form method="post">
-    <label for="your_name">Your name: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-    <input type="submit" value="OK">
-</form> {% endcomment %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
 
-<form method="post" novalidate>
-        {% csrf_token %}
-        <table border="1">
-          {{ form }}
-        </table>
-        <button type="submit">Submit</button>
-      </form>
-      
+<DOCTYPE html>
+    <html>
+    <head>
+      <title>Submit an Event</title>
+    </head>
+        <body>
+         
+            <form method="post" >
+            {% csrf_token %}
+            {{form}}
+                <input type="submit" value="Submit">
+            </form>
+        </body>
+    </html>
