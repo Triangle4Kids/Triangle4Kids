@@ -144,7 +144,7 @@
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
 							<li class="nav-item">
-								<a class="nav-link login-button" href="index.html"> Submit an Event </a>
+								<a class="nav-link login-button" href="{% url 'submit_event_form' %}"> Submit an Event </a>
                             </li>
                             {% if user.is_authenticated %} 
                             <li class="nav-item">
