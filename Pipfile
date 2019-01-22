@@ -23,6 +23,7 @@ django-crispy-forms = "*"
 django-el-pagination = "*"
 "boto3" = "*"
 django-storages = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 pylint = "*"

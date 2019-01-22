@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'el_pagination',
     'storages',
+    
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,10 @@ REST_FRAMEWORK = {
     ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
 }
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 ACCOUNT_ACTIVATION_DAYS = 7
 STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -168,6 +173,6 @@ LOGIN_REDIRECT_URL = "home"
 
 INTERNAL_IPS = ['127.0.0.1']
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 # Activate django_heroku

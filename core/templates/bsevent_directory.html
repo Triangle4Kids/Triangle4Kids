@@ -101,7 +101,8 @@ Event Directory - {{ block.super }}
 						</div>
 
 
-						<div class="widget category-list">
+						<!-- <div class="widget category-list">
+
 							<h4 class="widget-header">Category</h4>
 							<ul class="category-list">
 								{% for type_choice in type_choices %}
@@ -116,7 +117,7 @@ Event Directory - {{ block.super }}
 								</li>
 								{% endfor %}
 							</ul>
-						</div>
+						</div> -->
 
 						
 
@@ -272,9 +273,9 @@ Event Directory - {{ block.super }}
 										<ul class="list-inline product-meta">
 										<h5 class="card-title list-inline-item"><a href="#">{{event.title}}</h5>
 												<li class="list-inline-item">
-													<p><b>{{event.business }} </b> <p>
+													<p>{{event.business }}  <p>
 												</li>
-												</ul>
+												
 											
 											
 											<ul class="list-inline product-meta">
@@ -288,7 +289,7 @@ Event Directory - {{ block.super }}
 													<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
 												</li>
 											</ul>
-											<br>
+											
 											<p> {{event.description|slice:":100"}}...</p>
 											{% if event.type_choice %}
 												<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
@@ -296,6 +297,7 @@ Event Directory - {{ block.super }}
 								<br>
 											{% comment %} <div class="icon-block centerit "><a href="#"><i style="color:#31B91C;" class="fas fa-chevron-circle-right"></i> See This Business </a></div> {% endcomment %}
 											<a href="{% url 'event_detail' slug=event.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> See This Event <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button></a>
+											</ul>
 										</div>
 									</div>
 

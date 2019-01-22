@@ -51,12 +51,18 @@
       }
 
       #map {
-        position: absolute;
+        position: relative;
         top: 0;
         bottom: 0;
         width: 50%;
       }
     </style>
+
+    <style type="text/css">
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
   
   <!-- GOOGLE ANALYTICS-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -95,6 +101,8 @@
 
 </head>
 
+
+
 <body>
 
 
@@ -111,7 +119,7 @@
 						<h1 class="fonttitle text-small inline color1">The</h1>
             <h1 class="fonttitle text-small inline color2">Little</h1>
             <h1 class="fonttitle text-small inline color3">Triangle</h1>
-						<p>A parent-to-parent guide of the Triangle's best activities for all-ages.</p>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A parent-to-parent guide of the Triangle's best activities.</p>
 						
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +137,7 @@
 								<div class="dropdown-menu dropdown-menu-right">
 									<a class="dropdown-item" href="{% url 'business_directory' %}"> Businesses </a>
 									<a class="dropdown-item" href="{% url 'event_list_preset' %}"> Events </a>
-									<a class="dropdown-item" href="#"> Categories </a>
+									<a class="dropdown-item" href="#module"> Categories </a>
 									
 								</div>
 							</li>
@@ -255,7 +263,7 @@
     <!-- Container End -->
     <!-- To Top -->
     <div class="top-to">
-      <a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
+      <a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
     </div>
 </footer>
 

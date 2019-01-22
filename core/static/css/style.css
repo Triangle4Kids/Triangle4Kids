@@ -101,6 +101,11 @@ color:#fff;
   padding-right: 10px;
   }
   
+  .pre-scrollable {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
 
 .inline{
   display: inline;
@@ -119,10 +124,21 @@ color:#fff;
   color: rgb(56, 159, 148);
 }
 
+
+.scroll {
+  
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
 .spcolor{
-  
-  
   background-color: rgb(238, 238, 238);
+  
+  border-radius: 5px;
+}
+
+.spcolor2{
+  background-color: rgba(245, 245, 245, 0.55);
   
   border-radius: 5px;
 }
@@ -1647,7 +1663,7 @@ ul.pagination .active a {
 }
 
 .product-details .content .tab-content {
-  background: rgb(235, 235, 235);
+  background: rgb(255, 255, 255);
   border-radius: 15px;
   padding: 30px;
 }
@@ -1720,7 +1736,7 @@ ul.pagination .active a {
   background: #fff;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
   padding: 25px 30px 30px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   border-radius: 2px;
 }
 

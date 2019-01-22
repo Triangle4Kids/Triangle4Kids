@@ -1,16 +1,35 @@
 {% extends 'base.html' %} 
+{% load crispy_forms_tags %}
 {% block title %}
 Registration Form - {{ block.super }} 
 {% endblock title %}
 {% block content %}
 
-<h1>Registration Form</h1>
+
+<div class="container">
+<h1 class="fonttitle "> Create an Account </h1>
+		<div class="row">
+
 <form role="form" action="" method="post">
 
 {% csrf_token %}
-{{ form.as_p }}
-
-<input type="submit" value="Submit" />
+{{ form|crispy }}
+{% comment %} 
+<button type="submit" class="btn btn-primary  form-padding">Submit</button>  {% endcomment %}
+<input class="btn btn-primary " type="submit" value="Submit" />
 </form>
+
+</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 {% endblock content %}
