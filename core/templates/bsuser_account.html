@@ -58,25 +58,48 @@ Homepage - {{ block.super }}
 
 
 					<!-- Favorites Section -->
-					<h2 >My "High Fives" </h2>
+					<h2 class=" raleway "  >My "High Fives" </h2>
 					<table class="table table-responsive product-dashboard-table">
 						
 
 						<tbody>
+						<br>
 								{% for event in favorite_event %}
-							<tr>
+								<div class="media">
+								{% if event.image %}
+										<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
+								{% endif %}
+										<div class="media-body">
+											<h4 class="mt-0"><a href="{% url 'event_detail' slug=event.slug %}"> {{ event.title}} </h4>
+											<p> {{ event.business}} </p>
+											<p> {{ event.date}} </p>
+											<p> {{ event.address}} </p>
+											<p> {{ event.description }} </p>
+											<button class= "btn-round-xs "> <a href="{% url 'event_detail' slug=event.slug %}"> See This Event </button> </a>
+											<br>
+										</div>
+										</div>
+
+
+
+
+
+
+
+
+							{% comment %} <tr>
 								
 								<td class="product-thumb">
-									<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
+									
 								<td class="product-details">
 								
-									<h3 class="title">{{ event.title }}</h3>
+								
+								
+									<h3 class="title"><a href="{% url 'event_detail' slug=event.slug %}">{{ event.title }}</h3></a>
 									<span class="status active"><strong> Business </strong>{{ event.business }}</span>
 									<span class="add-id"><strong> Location:</strong> {{ event.address }}</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									
 									<span class="location"><strong> Description </strong>{{ event.description }} </span>
-								</td>
+								</td> {% endcomment %}
 								
 								{% comment %} <td class="action" data-title="Action">
 									<div class="">
@@ -99,7 +122,7 @@ Homepage - {{ block.super }}
 										</ul>
 									</div>
 								</td> {% endcomment %}
-							</tr>
+							{% comment %} </tr> {% endcomment %}
 							{% endfor %}
 							
 							
@@ -115,7 +138,7 @@ Homepage - {{ block.super }}
 					
 
 
-					<h2 >My Reviews </h2>
+					<h2 class=" raleway " >My Reviews </h2>
 					
 
 
@@ -125,6 +148,38 @@ Homepage - {{ block.super }}
 						
 						<tbody>
 								{% for review in reviews %}
+
+
+								<div class="card border-secondary mb-10" style="max-width: 50rem;">
+					<div class="card-header">
+					<ul class="list">
+							
+							 <li class="list-inline-item"><i class="fa fa-star" ></i> {{ review.rating }} / 5.0 </li> 
+							 <li class="list-inline-item"> <b> "{{ review.title }} " </b></li> 
+							
+							{% comment %} <li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Categories:<a href=""></a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i> Location: <a href="">/a></li> {% endcomment %}
+						</ul>
+
+					</div>
+					<div class="card-body text-secondary">
+							<ul>
+
+							<li class="list-inline-item"><i class="fas fa-user" > </i> {{ review.reviewer }} </li>
+							<li class="list-inline-item"><i class="fas fa-compass" > </i> activity: "{{ review.event}}" </li>
+							<li class="list-inline-item"><i class="fas fa-calendar" > </i> {{ review.created_at}} </li>
+							</ul>
+							<br>
+						
+						<p >"{{ review.text }}"</p>
+						<button class= "btn-round-xs "> <a href="{% url 'business_detail' slug=review.business_review.slug %}"> See This Business </button> </a>
+						<button class= "btn-round-xs "> <a class="button" href="{% url 'user_delete_review' id=review.id %}" ><i class="fas fa-trash-alt"></i> &nbsp; Delete My Review </a> </button> </a>
+					</div>
+					</div>
+					<br> 
+
+{% comment %} 
+
 							<tr>
 								
 								<td class="product-thumb">
@@ -132,7 +187,7 @@ Homepage - {{ block.super }}
 								<td class="product-details">
 									<h3 class="title">Review for {{ review.business}}</h3>
 									<span class="add-id"><strong> Rating:</strong> {{ review.rating }}</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
+									<span><strong>Posted on: </strong><time><a href="{% url 'business_detail' slug=review.business_review.slug %}">CLICK</time> </span>
 									<span class="status active"><strong> Event  </strong>"goes here"</span>
 									<span class="location"><strong>Review text:  </strong>{{ review.text}} </span>
 								</td>
@@ -158,7 +213,7 @@ Homepage - {{ block.super }}
 										</ul>
 									</div>
 								</td>
-							</tr>
+							</tr> {% endcomment %}
 							{% endfor %}
 							
 							
