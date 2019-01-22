@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'el_pagination',
     'storages',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -154,6 +155,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':
     ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
 }
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 ACCOUNT_ACTIVATION_DAYS = 7
 STATIC_URL = '/static/'

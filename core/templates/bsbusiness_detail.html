@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load staticfiles %} 
+{% load crispy_forms_tags %}
 {% block pageheader %}
 
 
@@ -233,9 +234,9 @@ Homepage - {{ block.super }}
 
 												<form role="form" action="" method="post" class= "subtitle is-4" >
 												{% csrf_token %}
-												{{ form.as_p }}
+												{{ form|crispy }}
 												<br>
-												<button type="submit" class = "button hero is-outlined  form-padding">Submit</button>   
+												<button type="submit" class="btn btn-primary  form-padding">Submit</button>   
 													</form> 
 													<!-- Non Working Form  -->
 						  					{% comment %} <form action="#" class="row">
