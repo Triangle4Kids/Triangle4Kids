@@ -16,7 +16,7 @@
 			<div class="col-md-12">
 				<div class="search-result ">
 				<br>
-					<h2 class="raleway">Business Directory</h2>
+					<h2 class="raleway">Directory of Triangle Businesses </h2>
 					<p> Browsing {{businesses.count }}  Businesses, Camps, and Classes in the Triangle </p>
 
 				</div>
@@ -62,36 +62,7 @@
 									</form>
 								</div>
 							
-				<!-- <div class="category-search-filter">
-					<div class="row">
-						<div class="col-md-6">
-							<strong>Sort</strong>
-							<select>
-								<option>Most Recent</option>
-								<option value="1">Most Popular</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<div class="view">
-								<strong>Views</strong>
-								<ul class="list-inline view-switcher">
-									<li class="list-inline-item">
-										<a href="{% url 'business_directory' %}"><i class="fa fa-th-large"></i>See All Listings</a>
-									</li>
-									<li class="list-inline-item">
-
-									<form id="searchform" action="{% url 'business_list' %}" method="get" accept-charset="utf-8">
-										<button class="searchbutton" type="submit">
-										<i class="fa fa-search"></i>
-										</button>
-										<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-									</form>				
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div> -->
+				
 				
 				<div class="product-grid-list">
 						
@@ -112,7 +83,7 @@
 		<div class="card-img-block">
 					{% if business.image %}
 					<img class=" roundit img-fluid " src="{{ business.image.url }}" alt="Card image cap" />
-					<img class="mr-3" height="150" width="300" src="{{ business.image.url }}" alt="Generic placeholder image">
+					
 					{% else %}
 					<img class="img-fluid roundit" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Card image cap" />
 					{% endif %} 
@@ -172,7 +143,7 @@
                     <div class="card-img-block">
 								{% if business.image %}
 								<img class=" roundit img-fluid " src="{{ business.image.url }}" alt="Card image cap" />
-								<img class="mr-3" height="150" width="300" src="{{ business.image.url }}" alt="Generic placeholder image">
+								
 								{% else %}
 								<img class="img-fluid roundit" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Card image cap" />
 								{% endif %} 
