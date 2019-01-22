@@ -36,18 +36,18 @@ Homepage - {{ block.super }}
 						</div> {% endcomment %}
 						<!-- User Name -->
 						<h5 class="text-center"> {{user}} </h5>
-						<p>Joined February 06, 2017</p>
-						<a href="user-profile.html" class="btn btn-main-sm">Edit Profile</a>
+						 {% comment %} <p> {{ user.reviews.count }} total reviews  </p> {% endcomment %}
+						{% comment %} <a href="user-profile.html" class="btn btn-main-sm">Edit Profile</a>  {% endcomment %}
 					</div>
 					<!-- Dashboard Links -->
 					<div class="widget user-dashboard-menu">
 						<ul>
 							
 							<li>
-								<a href="logout.html"><i class="fa fa-cog"></i> Logout</a>
+								<a  href="{% url 'auth_logout' %}"><i class="fa fa-cog"></i> Logout</a>
 							</li>
 							<li>
-								<a href="delete-account.html"><i class="fa fa-power-off"></i> Delete Account</a>
+								{% comment %} <a href="delete-account.html"><i class="fa fa-power-off"></i> Delete Account</a> {% endcomment %}
 							</li>
 						</ul>
 					</div>
@@ -71,8 +71,12 @@ Homepage - {{ block.super }}
 
 								
 								<div class="media ">
+
+								
 								{% if event.image %}
-										<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
+										<img class="mr-3" height="120px" width="120px" src="{{ event.image.url }}" alt="Generic placeholder image">
+								
+
 								{% endif %}
 										<div class="media-body">
 											<h4 class="mt-0"><a href="{% url 'event_detail' slug=event.slug %}"> {{ event.title}} </h4>
