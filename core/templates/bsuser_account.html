@@ -78,7 +78,7 @@ Homepage - {{ block.super }}
 											<h4 class="mt-0"><a href="{% url 'event_detail' slug=event.slug %}"> {{ event.title}} </h4>
 											<p> {{ event.business}} </p>
 											<p> {{ event.date}} </p>
-											<p> {{ event.address}} </p>
+											<p> {{ event.address}}, {{ event.city }}, {{ event.state}} </p>
 											{% comment %} <p> {{ event.description }} </p> {% endcomment %}
 											<button class= "btn-round-xs "> <a href="{% url 'event_detail' slug=event.slug %}"> See This Event </button> </a>
 											<br>

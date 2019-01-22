@@ -17,31 +17,6 @@ Business Details - {{ block.super }}
 ====================================-->
 
 
-{% comment %} <section >
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Advance Search -->
-				<div class="advance-search"> {% endcomment %}
-					
-{% comment %} <div class="row">
-			<div class="col-md-12">
-				<div class="section-title">
-				<!-- Secodnary Nav -->
-				<nav >
-					<a  class="navtwo" href="#" title="Home"><i class="fas fa-map-marker-alt fa-3x"></i> Activities by City</a>
-					<a  class="navtwo" href="#" title="Home"><i class="fas fa-futbol fa-3x"></i> Categories</a>
-					<a  class="navtwo" href="#" title="About"><i class="fas fa-check fa-3x"></i> Best Reviewd</a>
-					<a  class="navtwo" href="#" title="Store"><i class="fas fa-search fa-3x"></i> Search</a>
-					</nav>
-				</div>
-			</div>
-		</div> {% endcomment %}
-				{% comment %} </div>
-			</div>
-		</div>
-	</div>
-</section> {% endcomment %}
 <!--===================================
 =            Main Section          =
 ====================================-->
@@ -54,54 +29,28 @@ Business Details - {{ block.super }}
 				<div id = "business" data-business-id = "{{ business_review.pk }}" class="product-details">
 					<h1 class="raleway">{{business_review.name}}</h1>
 					
-					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFFF00;"></i> Little Triangle Rated: {{ business_review.avg_rating|floatformat:"1" }}</h4>
+					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFCF48;"></i> Parent Rated: {{ business_review.avg_rating|floatformat:"1" }}</h4>
 					<br>
 
 					<div class="product-meta">
 						<ul class="list text-large">
 							 
 							
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  {{business_review.address}} , {{business_review.city}}</li>
 							
-							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  <a href="">{{business_review.address}}</a></li>
 							<li class="list-inline-item"><i class="fa fa-phone" style="color:#9933ff;"></i>  {{business_review.phone}}</li>
 						<li class="list-inline-item"><i class="fa fa-laptop" style="color:#ff9933;"></i> <a href="{{business_review.link}}" target="_blank" > Visit this webpage </a> </li>
-						<li class="list-inline-item"><i class="fa fa-check " style="color:#ff9933;"></i>  {{business_review.reviews.count}} reviews </a> </li>
+						<li class="list-inline-item"><i class="fa fa-check " style="color:#EE204D;"></i>  {{business_review.reviews.count}} reviews  </li>
 						</ul>
 						<br>
-						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> <a href="">{{business_review.categories}}</a></p>
+						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> {{business_review.categories}}</p>
 
 
 
 						
 						
 					</div>
-					{% comment %} <div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-						</ol>
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="https://i.stack.imgur.com/53eCm.png" height="100" width="100" alt="article-01">
-						
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</div> {% endcomment %}
+					
 					
 					
 					
@@ -109,13 +58,13 @@ Business Details - {{ block.super }}
 					<div class="content">
 						<ul class="nav nav-pills  justify-content-left" id="pills-tab" role="tablist">
 							<li class="nav-item green">
-								<a class="nav-link raleway active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</a>
+								<a class="nav-link raleway active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"> Reviews </a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link raleway" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Upcoming Events</a>
+								<a class="nav-link raleway" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> Upcoming Events </a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link raleway" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Leave A Review</a>
+								<a class="nav-link raleway" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"> Leave A Review </a>
 							</li>
 						</ul>
 						<div class="tab-content " id="pills-tabContent">
@@ -142,7 +91,7 @@ Business Details - {{ block.super }}
 					<div class="card-header">
 					<ul class="list">
 							
-							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFFF00;"></i> {{ review.rating }} / 5.0 </li> 
+							 <li class="list-inline-item"><i class="fa fa-star" style="color:#FFCF48;"></i> {{ review.rating }} / 5.0 </li> 
 							 <li class="list-inline-item"> <b> "{{ review.title }} " </b></li> 
 							
 							{% comment %} <li class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> Categories:<a href=""></a></li>
@@ -197,7 +146,7 @@ Business Details - {{ block.super }}
 												<li class="list-inline-item">
 													<p> {{event.business}}</p></li>
 												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}  </li>
-												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;" ></i> {{ event.start_date }}  </li>
+												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#1575FE;" ></i> {{ event.start_date }}  </li>
 												<li class="list-inline-item"><i class="fa fa-user" style="color:#009999;" ></i> {{ event.get_class_camp_choice_display }}  </li>
 												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;" ></i> {{ event.start_time }} - {{ event.end_time }}   </li>
 											</ul>
@@ -275,10 +224,10 @@ Business Details - {{ block.super }}
 				<div class="sidebar">
 					
 					<!-- User Profile widget -->
-					{% if business.image %}
+					{% if business_review.image %}
 					<div class="widget map" >
 					
-						<img class="mr-3" height="50" width="75" src="{{ business_review.image.url }}" alt="Generic placeholder image">
+						<img class="mr-3 roundit" height="100%" width="100%" src="{{ business_review.image.url }}" alt="Generic placeholder image">
 
 					</div>
 					{% else %}

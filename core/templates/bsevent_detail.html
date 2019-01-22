@@ -22,7 +22,7 @@ Event Details - {{ block.super }}
 	<!-- DIV is needed for MapBox - Do NOT REMOVE -->
 	<div id = "event" data-event-id = "{{ event.pk }}" class="product-details" />
 
-	<p class="list"><a href=" {% url 'event_list_preset' %}"> <i class="fas fa-angle-double-left"></i>  Back to Events  </p>
+	<p class="list"><a href=" {% url 'event_list_preset' %}"> <i class="fas fa-angle-double-left"></i>  Back to Events  </p></a>
 
 		<div class="row">
 
@@ -30,11 +30,15 @@ Event Details - {{ block.super }}
 			
 
 			<div class="media single-post spcolor2 roundit ">
+
 			<div class="media" >
+			{% if event.image %}
+			<img class="mr-3 roundit" height="350px" width="583px" src="{{ event.image.url }}" alt="Generic placeholder image">
+			{% else %}
 			<img class="mr-3 roundit" height="350px" width="583px" src="http://www.thestorysiren.com/wp-content/uploads/2018/10/beverage-3157395_1920-1100x660.jpg" alt="Generic placeholder image">
-				
-			
+			{% endif %}
 			</div>
+
   <div class="media-body ">
   <br>
   <p class="list-inline-item"> <i class="fa fa-calendar text-large" style="color:#009999;" ></i> {{event.start_date }} </p>			
@@ -56,7 +60,7 @@ Event Details - {{ block.super }}
 						
 									{% if is_favorite %}
 									<a href="{% url 'favorite_event' id=event.id %}">
-											<i class="far fa-hand-paper fa-1x" style="color:#009999;" ></i>
+											<i class="far fa-hand-paper fa-1x" style="color:#1C76D0;" ></i>
 									</a>
 									{% else %}
 									<a href="{% url 'favorite_event' id=event.id %}">
@@ -71,7 +75,7 @@ Event Details - {{ block.super }}
 					<ul class="social-circle-icons list-inline ">
 
 						{% comment %} <a  href="{% url 'business_detail' slug=business_slug %}"><i style="color:#31B91C;" class="fas fa-reply "> </i> See more events from {{ business.name }} </a> {% endcomment %}
-						<a href="{{business.link}}" target="_blank" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-success  center " type="submit" > SIGN UP HERE </button></a>
+						<a href="{{business.link}}" target="_blank" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-success  center " type="submit" > MORE INFO </button></a>
 				  	</ul> 
 					
 					{% comment %} <p>{{event.description}}</p>  {% endcomment %}
@@ -119,13 +123,13 @@ Event Details - {{ block.super }}
 								<i class="fa fa-user " style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} 
 							</li>
 							<li class="list-inline-item ">
-								<i class="fa fa-chalkboard-teacher" style="color:#9933ff;" ></i> {{event.get_class_camp_choice_display}} 
+								<i class="fa fa-chalkboard-teacher" style="color:#7851A9;" ></i> {{event.get_class_camp_choice_display}} 
 							</li>
 							<li class="list-inline-item ">
-								<i class="fa fa-clock" style="color:#66ff99;" ></i> {{event.start_time}} - {{event.end_time}}
+								<i class="fa fa-clock" style="color:#1CAC78;" ></i> {{event.start_time}} - {{event.end_time}}
 							</li>
 							<li class="list-inline-item ">
-								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} 
+								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} , {{ event.city }} , {{ event.state }} 
 							</li>
 							
 						</ul>
@@ -240,7 +244,7 @@ Event Details - {{ block.super }}
 						<li><a > Average Rating <span class = "text-large">  <b> {{business1.avg_rating|floatformat:"1"}} </b> <i class="fa fa-star" style="color:#FFFF00;"></i></span></a></li>
 						<li ><a > Total Reviews <span> {{business.reviews.count}} </span></a></li>
 						<br>
-						<a href="{% url 'business_detail' slug=business_slug %}"><button class="btn-round-xs btn-block" type="submit" > See all Reviews </button></a>
+						<a href="{% url 'business_detail' slug=business_slug %}"><button class="btn-round-xs btn-block" type="submit" > See All Reviews </button></a>
 						
 						</ul>
 						</div>

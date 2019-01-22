@@ -150,8 +150,10 @@ def submit_event_form(request):
             event = form.save(commit=False)
             event.user = request.user
             event.save()
-            # return redirect('event_list_preset')
-            return HttpResponseRedirect('/thanks/')
+           
+            
+            messages.success(request, "Created")
+            return redirect('submit_event_form')
     else:
         form = EventForm()
     return render(request, 'submitevent.html', {'form': form})

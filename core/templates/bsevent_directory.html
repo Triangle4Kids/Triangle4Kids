@@ -27,7 +27,7 @@ Event Directory - {{ block.super }}
 
 
 					{% comment %} <h2 class="raleway">Event Directory</h2> {% endcomment %}
-					<p> Browsing Events Triangle </p>
+					<p> Browse Events in the Triangle </p>
 					
 					
 
@@ -101,23 +101,7 @@ Event Directory - {{ block.super }}
 						</div>
 
 
-						<!-- <div class="widget category-list">
-
-							<h4 class="widget-header">Category</h4>
-							<ul class="category-list">
-								{% for type_choice in type_choices %}
-								<li>
-									{% if filter.data.type_choice__icontains == type_choice.0 %}
-									<li class="widget-header">{{ type_choice.1 }}</li>
-									{% else %}
-									<a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
-										{{ type_choice.1 }}
-										
-									{% endif %}
-								</li>
-								{% endfor %}
-							</ul>
-						</div> -->
+						
 
 						
 
@@ -271,7 +255,7 @@ Event Directory - {{ block.super }}
 										</div>
 										<div class="card-body pt-3 ">
 										<ul class="list-inline product-meta">
-										<h5 class="card-title list-inline-item"><a href="#">{{event.title}}</h5>
+										<h5 class="card-title list-inline-item"><a href="{% url 'event_detail' slug=event.slug %}">{{event.title}}</h5></a>
 												<li class="list-inline-item">
 													<p>{{event.business }}  <p>
 												</li>
@@ -280,19 +264,19 @@ Event Directory - {{ block.super }}
 											
 											<ul class="list-inline product-meta">
 												<li class="list-inline-item">
-													<a href=""><i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} </a>
+													<i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} 
 												</li>
 												<li class="list-inline-item">
-													<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} </a>
+													<i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} 
 												</li>
 												<li class="list-inline-item">
-													<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
+													<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.city}} 
 												</li>
 											</ul>
 											
 											<p> {{event.description|slice:":100"}}...</p>
 											{% if event.type_choice %}
-												<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
+												<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</p>
 											{% endif %}
 								<br>
 											{% comment %} <div class="icon-block centerit "><a href="#"><i style="color:#31B91C;" class="fas fa-chevron-circle-right"></i> See This Business </a></div> {% endcomment %}
