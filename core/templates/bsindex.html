@@ -94,7 +94,7 @@ Homepage - {{ block.super }}
 				<!-- Secodnary Nav -->
 				<nav >
 					<a  class="navtwo" href="{% url 'event_list_preset' %}"><i style="color:#F5F56F;" class="fas fa-map-marker-alt fa-2x"></i><b> Search upcoming events</b></a>
-					<a  class="navtwo" href="#" title="Home"><i style="color:#D01C2E;" class="fas fa-futbol fa-2x"></i> <b>Categories</b></a>
+					<a  class="navtwo scroll" href="#module" title="Home"><i style="color:#D01C2E;" class="fas fa-futbol fa-2x"></i> <b>Categories</b></a>
 					<a  class="navtwo" href="#" title="About"><i style="color:#31B91C;" class="fas fa-check fa-2x "></i> <b> Best Reviewed </b> </a>
 					<a  class="navtwo" href="{% url 'business_directory' %}" title="Store"><i style="color:#1C76D0;" class="fas fa-search fa-2x"></i> <b>See Business Directory</b></a>
 					</nav>
@@ -102,6 +102,7 @@ Homepage - {{ block.super }}
 			</div>
 		</div> 
 		
+
 
 		
 
@@ -263,7 +264,7 @@ Homepage - {{ block.super }}
                     </div>
                     <div class="card-body pt-3 ">
 					<ul class="list-inline product-meta">
-					<h5 class="card-title list-inline-item"><a href="#">{{event.title}}</h5>
+					<h5 class="card-title list-inline-item"><a href="{% url 'event_detail' slug=event.slug %}">{{event.title}}</h5>
 							<li class="list-inline-item">
 								<p><b>{{event.business }} </b> <p>
 							</li>
@@ -401,8 +402,9 @@ Homepage - {{ block.super }}
 <!--==========================================
 =            All Category Section            =
 ===========================================-->
-
-<section class=" section">
+<scroll-container>
+ <scroll-page id="module"></scroll-page>
+<section class=" section"  >
 	<!-- Container Start -->
 	<div class="container">
 		<div class="row">
@@ -526,6 +528,7 @@ Homepage - {{ block.super }}
 							</div>
 						</div>
 					</div> 
+					</scroll-container>
 
 					<!-- End of Catagory grid -->
 

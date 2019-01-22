@@ -17,6 +17,8 @@ from django.views.generic import ListView
 from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from api.serializers import BusinessSerializer, BusinessLatLongSerializer
+import json
+from django.contrib import messages
 
 # from .forms import SearchForm
 
@@ -159,20 +161,23 @@ def business_detail(request, slug):
     business_review = Business.objects.annotate(
         avg_rating=Avg("reviews__rating")).get(slug=slug)
     events = business_review.events.all()
+    user = request.user
 
     form = LeaveReviewForm()
-
+    
     if request.method == "POST":
-        form = LeaveReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.business_review = business_review
-            review.reviewer = request.user
-            review.save()
-            return redirect('business_detail', slug=business_review.slug)
+        if user.is_authenticated:
+            form = LeaveReviewForm(request.POST)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.business_review = business_review
+                review.reviewer = request.user
+                review.save()
+                return redirect('business_detail', slug=business_review.slug)
+        else:
+            messages.success(request, "Oops , must be logged in to review! ")
 
     review = LeaveReview.objects.filter(business_review=business_review)
-    # average_score = review.aggregate(Avg('rating'))
 
     return render(
         request, 'bsbusiness_detail.html', {
@@ -190,6 +195,7 @@ def newbusiness_detail(request, slug):
 
     form = LeaveReviewForm()
 
+   
     if request.method == "POST":
         form = LeaveReviewForm(request.POST)
         if form.is_valid():
@@ -213,10 +219,10 @@ def newbusiness_detail(request, slug):
 @login_required
 def user_delete_review(request, id):
     user = request.user
-    review = LeaveReview.objects.filter(reviewer=user)
-
-    review.delete()
-    return redirect('home')
+    review = LeaveReview.objects.get(id=id)
+    if (request.user == review.reviewer):
+        review.delete()
+    return redirect('get_user_profile')
 
 
 @login_required
@@ -224,11 +230,13 @@ def get_user_profile(request):
     user = request.user
 
     reviews = LeaveReview.objects.filter(reviewer=user)
-    favorite_event = user.favorite.all()
+    favorite_event = user.favorite.all
+   
 
     return render(request, 'bsuser_account.html', {
         'reviews': reviews,
         'favorite_event': favorite_event,
+        
     })
 
 
