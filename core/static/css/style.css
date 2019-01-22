@@ -120,9 +120,13 @@ color:#fff;
 }
 
 .spcolor{
-  
-  
   background-color: rgb(238, 238, 238);
+  
+  border-radius: 5px;
+}
+
+.spcolor2{
+  background-color: rgba(228, 227, 227, 0.55);
   
   border-radius: 5px;
 }
