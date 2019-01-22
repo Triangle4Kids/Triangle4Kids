@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'phone_field',
     'rest_framework',
+    'crispy_forms',
     'el_pagination',
     'storages',
 ]
@@ -166,5 +167,7 @@ EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
 
 INTERNAL_IPS = ['127.0.0.1']
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Activate django_heroku
