@@ -14,10 +14,10 @@ Submit an Event - {{ block.super }}
     </head>
         <body>
           {% block content %}
-            <form method="post" >
+            <form action="{% url 'event_list_preset' %}" method="post" >
             {% csrf_token %}
             <table>{{form.as_table}}</table>
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </body>
     </html>

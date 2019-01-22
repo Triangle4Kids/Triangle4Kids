@@ -148,8 +148,8 @@ def submit_event_form(request):
             event = form.save(commit=False)
             event.user = request.user
             event.save()
-            return redirect('event_directory')
-
+            # return redirect('event_list_preset')
+            return HttpResponseRedirect('/thanks/')
     else:
         form = EventForm()
     return render(request, 'submitevent.html', {'form': form})
