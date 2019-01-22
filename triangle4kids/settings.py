@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'el_pagination',
     'storages',
-    'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
@@ -173,6 +173,6 @@ LOGIN_REDIRECT_URL = "home"
 
 INTERNAL_IPS = ['127.0.0.1']
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 # Activate django_heroku
