@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load staticfiles %} 
+{% load el_pagination_tags %}
 {% load crispy_forms_tags %}
 {% block pageheader %}
 
@@ -133,6 +134,7 @@ Homepage - {{ block.super }}
 								
 
 							<!-- Review For Loop -->
+							{% paginate 5 review %}
                 {% for review in review %}
 				
 
@@ -170,6 +172,7 @@ Homepage - {{ block.super }}
                         
 
                 {% endfor %}
+				{% show_pages %}
 				
 								<!-- End Review For Loop -->
 								
@@ -177,14 +180,14 @@ Homepage - {{ block.super }}
 							</div>
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 							
-								<h3 class="tab-title">Upcoming Events </h3>
+								<h3 class="tab-title raleway">Upcoming Events </h3>
 
 								<!-- Event For Loop -->
 								{% for event in events %}
 
 								<div class="media">
 									{% if event.image %}
-										<img class="mr-3" height="120" width="120" src="{{ event.image.url }}" alt="Generic placeholder image">
+										<img class="mr-3 roundit" height="120" width="120" src="{{ event.image.url }}" alt="Generic placeholder image">
 									{% else %}
 										<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
 									{% endif %}
@@ -195,6 +198,7 @@ Homepage - {{ block.super }}
 													<p> {{event.business}}</p></li>
 												<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{ event.city }}  </li>
 												<li class="list-inline-item"><i class="fa fa-calendar" style="color:#009999;" ></i> {{ event.start_date }}  </li>
+												<li class="list-inline-item"><i class="fa fa-user" style="color:#009999;" ></i> {{ event.get_class_camp_choice_display }}  </li>
 												<li class="list-inline-item"><i class="fa fa-clock" style="color:#ffbb33;" ></i> {{ event.start_time }} - {{ event.end_time }}   </li>
 											</ul>
 											<p> {{event.description}}</p> 
@@ -222,7 +226,7 @@ Homepage - {{ block.super }}
 
 							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 							
-								<h3 class="tab-title">Leave a review for  {{business_review.name}}</h3>
+								<h3 class="tab-title raleway">Leave a review for  {{business_review.name}}</h3>
 								<div class="product-review">
 							  		
 							  		<div class="review-submission">

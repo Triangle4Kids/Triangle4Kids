@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+{% load el_pagination_tags %}
 {% block title %}
 Homepage - {{ block.super }} 
 {% endblock title %}
@@ -65,7 +66,11 @@ Homepage - {{ block.super }}
 						<tbody>
 						<br>
 								{% for event in favorite_event %}
-								<div class="media">
+
+
+
+								
+								<div class="media ">
 								{% if event.image %}
 										<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
 								{% endif %}
@@ -74,11 +79,13 @@ Homepage - {{ block.super }}
 											<p> {{ event.business}} </p>
 											<p> {{ event.date}} </p>
 											<p> {{ event.address}} </p>
-											<p> {{ event.description }} </p>
+											{% comment %} <p> {{ event.description }} </p> {% endcomment %}
 											<button class= "btn-round-xs "> <a href="{% url 'event_detail' slug=event.slug %}"> See This Event </button> </a>
 											<br>
 										</div>
 										</div>
+										<br>
+										
 
 
 
@@ -147,6 +154,7 @@ Homepage - {{ block.super }}
 					<table class="table table-responsive product-dashboard-table">
 						
 						<tbody>
+						{% paginate 3 reviews %}
 								{% for review in reviews %}
 
 
@@ -215,6 +223,7 @@ Homepage - {{ block.super }}
 								</td>
 							</tr> {% endcomment %}
 							{% endfor %}
+							{% show_pages %}
 							
 							
 							

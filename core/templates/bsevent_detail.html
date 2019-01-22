@@ -56,11 +56,11 @@ Event Detail - {{ block.super }}
 						
 									{% if is_favorite %}
 									<a href="{% url 'favorite_event' id=event.id %}">
-											<i class="fas fa-heart"></i>
+											<i class="far fa-hand-paper fa-1x" style="color:#009999;" ></i>
 									</a>
 									{% else %}
 									<a href="{% url 'favorite_event' id=event.id %}">
-											<i class="far fa-heart"></i>
+											<i class="far fa-hand-paper fa-1x"></i>
 									</a>
 									{% endif %}
 
