@@ -6,8 +6,8 @@ $(document).ready(function () {
 
     mapObject = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/triangle4kids/cjqnnjj934q5o2rpd5gk06x1q',
-        center: [-35.77, 78.63],
+        style: 'mapbox://styles/triangle4kids/cjr76oj82091f2slmqsflrg68',
+        center: [-78.597386, 35.804611],
         zoom: 12
     });
     displayBizOnMap(bizID);
