@@ -260,7 +260,7 @@ def get_user_profile(request):
         
     })
 
-
+@login_required
 def favorite_event(request, id):
     event = get_object_or_404(Event, id=id)
 

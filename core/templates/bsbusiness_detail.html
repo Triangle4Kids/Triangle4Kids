@@ -29,9 +29,14 @@ Business Details - {{ block.super }}
 				<div id = "business" data-business-id = "{{ business_review.pk }}" class="product-details">
 					<h1 class="raleway">{{business_review.name}}</h1>
 					
+					{% if business_review.avg_rating %}
 					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFCF48;"></i> Parent Rated: {{ business_review.avg_rating|floatformat:"1" }}</h4>
 					<br>
-
+					{% else %}
+					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFCF48;"></i> No ratings yet!  </h4>
+					<br>
+					{% endif %}
+					
 					<div class="product-meta">
 						<ul class="list text-large">
 							 
@@ -132,8 +137,9 @@ Business Details - {{ block.super }}
 								<h3 class="tab-title raleway">Upcoming Events </h3>
 
 								<!-- Event For Loop -->
-								{% for event in events %}
-
+								
+								{% if events %}
+									{% for event in events %}
 								<div class="media">
 									{% if event.image %}
 										<img class="mr-3 roundit" height="120" width="120" src="{{ event.image.url }}" alt="Generic placeholder image">
@@ -164,6 +170,17 @@ Business Details - {{ block.super }}
 
 									
         				{% endfor %}
+
+
+						{% else %}
+
+									<div class="media">
+									
+								<div class="media-body">
+									<h5 class="mt-0">{{events.buiness}}  no upcoming events </h5>			
+								</div>
+								</div>
+									{% endif %}
 								
 							</div>
 							<!-- End Event For Loop -->

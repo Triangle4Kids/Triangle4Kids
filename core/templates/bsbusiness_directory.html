@@ -94,9 +94,9 @@
 			<h5 class="card-title"><a href="{% url 'business_detail' slug=business.slug %}">{{business.name}}</h5></a>
 			
 			{% if business.avg_rating %} 
-			<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
+			<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FFCF48;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
 				{% else %}
-				<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
+				<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FFCF48;"></i> no reviews yet </a>
 
 		{% endif  %} 
 		<ul class="list-inline product-meta">
@@ -156,7 +156,7 @@
 						{% if business.avg_rating %} 
 						<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FFCF48;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
 							{% else %}
-							<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
+							<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FFCF48;"></i> no reviews yet </a>
 
 					{% endif  %} 
 					<ul class="list-inline product-meta">
