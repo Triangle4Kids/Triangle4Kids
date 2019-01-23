@@ -18,6 +18,8 @@ Event Details - {{ block.super }}
 
  
 	<div class="container">
+
+	
 	
 	<!-- DIV is needed for MapBox - Do NOT REMOVE -->
 	<div id = "event" data-event-id = "{{ event.pk }}" class="product-details" />
@@ -41,7 +43,7 @@ Event Details - {{ block.super }}
 
   <div class="media-body ">
   <br>
-  <p class="list-inline-item"> <i class="fa fa-calendar text-large" style="color:#009999;" ></i> {{event.start_date }} </p>			
+  <p class="list-inline-item"> <i class="fa fa-calendar text-large" style="color:#1C76D0;" ></i> {{event.start_date }} </p>			
 	<br>
     <h2 class="raleway"> {{ event.title }} </h2>
 	<p class="list"> {{ event.business }} </p>
@@ -172,10 +174,16 @@ Event Details - {{ block.super }}
 						<div class="widget category-list">
 						<h4 class="widget-header"> {{ business.name }} </h4>
 						<ul class="category-list">
-						
-						<li><a > Average Rating <span class = "text-large">  <b> {{business1.avg_rating|floatformat:"1"}} </b> <i class="fa fa-star" style="color:#FFFF00;"></i></span></a></li>
+						{% if business1.avg_rating %}
+						<li><a > Average Rating <span class = "text-large">   {{business1.avg_rating|floatformat:"1"}}  <i class="fa fa-star" style="color:#FFCF48;"></i></span></a></li>
 						<li ><a > Total Reviews <span> {{business.reviews.count}} </span></a></li>
 						<br>
+						{% else %}
+						<li><a > No Ratings yet <span class = "text-large">   <i class="fa fa-star" style="color:#FFCF48;"></i></span></a></li>
+						
+						<br>
+
+						{% endif %}
 						<a href="{% url 'business_detail' slug=business_slug %}"><button class="btn-round-xs btn-block" type="submit" > See All Reviews </button></a>
 						
 						</ul>

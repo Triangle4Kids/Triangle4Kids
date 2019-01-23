@@ -50,7 +50,7 @@ Event Directory - {{ block.super }}
 							{% for cities_choice in cities_choices %}
 							<li>
 								{% if filter.data.cities_choice == cities_choice.0 %}
-								{{ cities_choice.1 }}
+								<h2> {{ cities_choice.1 }} </h2> 
 								{% else %}
 								<a href="{% replace_query_param url=request.get_full_path param='cities_choice' value=cities_choice.0 %}">
 									{{ cities_choice.1 }}
@@ -69,7 +69,7 @@ Event Directory - {{ block.super }}
 								{% for age_choice in age_choices %}
 								<li>
 									{% if filter.data.age_choice == age_choice.0 %}
-									{{ age_choice.1 }}
+									<h2>{{ age_choice.1 }} </h2> 
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='age_choice' value=age_choice.0 %}">
 										{{ age_choice.1 }}
@@ -87,7 +87,7 @@ Event Directory - {{ block.super }}
 								{% for class_camp_choice in class_camp_choices %}
 								<li>
 									{% if filter.data.class_camp_choice == class_camp_choice.0 %}
-									{{ class_camp_choice.1 }}
+									 <h2> {{ class_camp_choice.1 }} </h2> 
 									{% else %}
 									<a href="{% replace_query_param url=request.get_full_path param='class_camp_choice' value=class_camp_choice.0 %}">
 										{{ class_camp_choice.1 }}
@@ -148,8 +148,8 @@ Event Directory - {{ block.super }}
 						 <div class="inline" id="accordion">
 					
 							<p  class="inline goright" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-									Filter Events By Category
-									<span ><a href="#"> 
+									<a href="#">  Filter Events By Category
+									<span ></a>
 									<i class="fa fa-angle-down fa-1x" style="color:#D01C2E;"></i>  </span>
 									</p>
 									<div >
@@ -158,13 +158,13 @@ Event Directory - {{ block.super }}
 
 										{% if filter.data.type_choice__icontains == type_choice.0 %}
 										
-										<button class="btn-round-xs danger">{{ type_choice.1 }}</button>
+										<button class="btn-round-xs success">{{ type_choice.1 }}</button>
 									
 										{% else %}
 										
 										<button button type="button" class="btn-round-xs" > <a href="{% replace_query_param url=request.get_full_path param='type_choice__icontains' value=type_choice.0 %}">
 											{{ type_choice.1 }}</button>
-										
+										</a>
 											
 										{% endif %}
 									

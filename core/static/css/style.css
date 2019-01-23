@@ -102,7 +102,7 @@ color:#fff;
   }
   
   .pre-scrollable {
-    max-height: 600px;
+    max-height: 800px;
     overflow-y: scroll;
 }
 
@@ -115,13 +115,18 @@ color:#fff;
 }
 
 .color1{
-  color: rebeccapurple;
+  /* color: rebeccapurple; */
+  color: #1C76D0;
 }
 .color2{
-  color: rgb(199, 19, 52);
+  /* color: rgb(199, 19, 52); */
+  color: #d01c2e;
+  
 }
 .color3{
-  color: rgb(56, 159, 148);
+  /* color: rgb(56, 159, 148); */
+  color: #28a745;
+  
 }
 
 
@@ -2537,7 +2542,7 @@ article.single-post p {
 }
 
 .footer {
-  background: #28a745;
+  background: #1974D2;
 }
 
 .footer .block h4 {

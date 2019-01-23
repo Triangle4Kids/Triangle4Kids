@@ -29,18 +29,23 @@ Business Details - {{ block.super }}
 				<div id = "business" data-business-id = "{{ business_review.pk }}" class="product-details">
 					<h1 class="raleway">{{business_review.name}}</h1>
 					
+					{% if business_review.avg_rating %}
 					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFCF48;"></i> Parent Rated: {{ business_review.avg_rating|floatformat:"1" }}</h4>
 					<br>
-
+					{% else %}
+					<h4 class="widget-header text-large raleway"><i class="fa fa-star" style="color:#FFCF48;"></i> No ratings yet!  </h4>
+					<br>
+					{% endif %}
+					
 					<div class="product-meta">
 						<ul class="list text-large">
 							 
 							
-							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#7CFC00;"></i>  {{business_review.address}} , {{business_review.city}}</li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow" style="color:#d01c2e;"></i>  {{business_review.address}} , {{business_review.city}}</li>
 							
 							<li class="list-inline-item"><i class="fa fa-phone" style="color:#9933ff;"></i>  {{business_review.phone}}</li>
 						<li class="list-inline-item"><i class="fa fa-laptop" style="color:#ff9933;"></i> <a href="{{business_review.link}}" target="_blank" > Visit this webpage </a> </li>
-						<li class="list-inline-item"><i class="fa fa-check " style="color:#EE204D;"></i>  {{business_review.reviews.count}} reviews  </li>
+						<li class="list-inline-item"><i class="fa fa-check " style="color:#28a745;"></i>  {{business_review.reviews.count}} reviews  </li>
 						</ul>
 						<br>
 						<p class="list-inline-item"><i class="fas fa-globe-americas" style="color:#0000ff;"></i> {{business_review.categories}}</p>
@@ -83,7 +88,7 @@ Business Details - {{ block.super }}
 								
 
 							<!-- Review For Loop -->
-							{% paginate 5 review %}
+							{% paginate 7 review %}
                 {% for review in review %}
 				
 
@@ -104,7 +109,7 @@ Business Details - {{ block.super }}
 
 							<li class="list-inline-item"><i class="fas fa-user" style="color:#0000ff;"> </i> {{ review.reviewer }} </li>
 							<li class="list-inline-item"><i class="fas fa-compass" style="color:#ff9933;"> </i> activity: "{{ review.event}}" </li>
-							<li class="list-inline-item"><i class="fas fa-calendar" style="color:#33cc33;"> </i> {{ review.created_at}} </li>
+							<li class="list-inline-item"><i class="fas fa-calendar" style="color:#28a745;"> </i> {{ review.created_at}} </li>
 							</ul>
 							<br>
 						
@@ -132,8 +137,9 @@ Business Details - {{ block.super }}
 								<h3 class="tab-title raleway">Upcoming Events </h3>
 
 								<!-- Event For Loop -->
-								{% for event in events %}
-
+								
+								{% if events %}
+									{% for event in events %}
 								<div class="media">
 									{% if event.image %}
 										<img class="mr-3 roundit" height="120" width="120" src="{{ event.image.url }}" alt="Generic placeholder image">
@@ -141,7 +147,7 @@ Business Details - {{ block.super }}
 										<img class="mr-3" height="120px" width="120px" src="http://www.firstnonprofit.org/wp-content/uploads/2018/04/YMCA-Camp-Mason_400x400.jpg" alt="Generic placeholder image">
 									{% endif %}
 								<div class="media-body">
-									<h5 class="mt-0"><a href="{% url 'event_detail' slug=event.slug %}">{{event.title}}</h5>
+									<h5 class="mt-0"><a href="{% url 'event_detail' slug=event.slug %}">{{event.title}}</h5></a> 
 									<ul class="list-inline product-meta">
 												<li class="list-inline-item">
 													<p> {{event.business}}</p></li>
@@ -164,6 +170,17 @@ Business Details - {{ block.super }}
 
 									
         				{% endfor %}
+
+
+						{% else %}
+
+									<div class="media">
+									
+								<div class="media-body">
+									<h5 class="mt-0">{{events.buiness}}  no upcoming events </h5>			
+								</div>
+								</div>
+									{% endif %}
 								
 							</div>
 							<!-- End Event For Loop -->

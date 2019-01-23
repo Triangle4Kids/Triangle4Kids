@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import PasswordChangeForm
 from core.models import Event, Business, LeaveReview, Profile, EVENT_TYPE, AGE_RANGE, CLASS_CAMP, CITIES, BusinessLatLong
-from core.forms import LeaveReviewForm, EventForm
+from core.forms import LeaveReviewForm, EventForm, NewEventForm, GeneralSubmitForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -144,19 +144,38 @@ def event_detail(request, slug):
 def submit_event_form(request):
     if request.method == "POST":
 
-        form = EventForm(request.POST)
+        form = NewEventForm(request.POST)
 
         if form.is_valid():
-            event = form.save(commit=False)
-            event.user = request.user
-            event.save()
+            # event = form.save(commit=False)
+            # event.user = request.user
+            # event.save()
            
             
-            messages.success(request, "Created")
+            messages.success(request, "Thanks for your submission! We appreciate it! ")
             return redirect('submit_event_form')
     else:
-        form = EventForm()
+        form = NewEventForm()
     return render(request, 'submitevent.html', {'form': form})
+
+
+
+def general_submit_form(request):
+    if request.method == "POST":
+
+        form = GeneralSubmitForm(request.POST)
+
+        if form.is_valid():
+            # event = form.save(commit=False)
+            # event.user = request.user
+            # event.save()
+           
+            
+            messages.success(request, "Thanks for your inquiry, we'll be in touch soon! ")
+            return redirect('general_submit_form')
+    else:
+        form = GeneralSubmitForm()
+    return render(request, 'generalsubmit.html', {'form': form})
 
 
 def business_detail(request, slug):
@@ -241,7 +260,7 @@ def get_user_profile(request):
         
     })
 
-
+@login_required
 def favorite_event(request, id):
     event = get_object_or_404(Event, id=id)
 
