@@ -91,10 +91,10 @@
 		</div>
 		<div class="card-body pt-3 ">
 			
-			<h5 class="card-title"><a href="{% url 'business_detail' slug=business.slug %}">{{business.name}}</h5>
+			<h5 class="card-title"><a href="{% url 'business_detail' slug=business.slug %}">{{business.name}}</h5></a>
 			
 			{% if business.avg_rating %} 
-			<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
+			<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
 				{% else %}
 				<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
 
@@ -107,7 +107,7 @@
 </ul>
 <br>
 			{% comment %} <div class="icon-block centerit "><a href="#"><i style="color:#31B91C;" class="fas fa-chevron-circle-right"></i> See This Business </a></div> {% endcomment %}
-			<a href="{% url 'business_detail' slug=business.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> More Information <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button>
+			<a href="{% url 'business_detail' slug=business.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> More Information <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button></a>
 		</div>
 	</div>
 	
@@ -151,12 +151,12 @@
                     </div>
                     <div class="card-body pt-3 ">
                         
-                        <h5 class="card-title"><a href="{% url 'business_detail' slug=business.slug %}">{{business.name}}</h5>
+                        <h5 class="card-title"><a href="{% url 'business_detail' slug=business.slug %}">{{business.name}}</h5></a>
                         
 						{% if business.avg_rating %} 
-						<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
+						<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FFCF48;"></i> <b> {{business.avg_rating|floatformat:"1"}}   / 5.0 </b> user rated</a>
 							{% else %}
-							<a href=""><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
+							<a href="{% url 'business_detail' slug=business.slug %}"><i class="fa fa-star" style="color:#FAF43D;"></i> no reviews yet </a>
 
 					{% endif  %} 
 					<ul class="list-inline product-meta">
@@ -167,7 +167,7 @@
 		    </ul>
 			<br>
                         {% comment %} <div class="icon-block centerit "><a href="#"><i style="color:#31B91C;" class="fas fa-chevron-circle-right"></i> See This Business </a></div> {% endcomment %}
-						<a href="{% url 'business_detail' slug=business.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> More Information <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button>
+						<a href="{% url 'business_detail' slug=business.slug %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block"> More Information <i style="color:#31B91C;" class="fas fa-angle-double-right"></i> </button></a>
                     </div>
                 </div>
 	
