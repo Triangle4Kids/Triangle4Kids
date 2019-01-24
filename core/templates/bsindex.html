@@ -230,69 +230,6 @@ Homepage - {{ block.super }}
 
 
 
-
-
-
-
-
-{% comment %} 
-			{% for event in events|slice:":6" %}
-				<!-- OLD CARD product card -->
-			<div class="product-item bg-light">
-
-			
-			
-				<div class="card">
-				
-				
-		
-					<div class="card-body">
-
-					{% if event.image %}
-						<div class="thumb-content">
-							<img class="mr-3" height="150" width="300" src="{{ event.image.url }}" alt="Generic placeholder image">
-						</div>
-						{% else %}
-						<div class="thumb-content">
-						<img class="mr-3" height="150" width="300" src="https://kehilanews.com/wp-content/uploads/2018/02/KIDS-WORSHIP_39-300x200.jpg" alt="Generic placeholder image">
-						</div>
-
-					{% endif %} 
-					
-					<br>
-
-						<h3><a href="{% url 'event_detail' slug=event.slug %}"> {{event.title}} </a></h3>
-						<ul class="list-inline product-meta">
-							<li class="list-inline-item">
-								<p><b>{{event.business }} </b> <p>
-							</li>
-							<li class="list-inline-item">
-								<a href=""><i class="fa fa-calendar" style="color:#009999;" ></i> {{event.start_date }} </a>
-							</li>
-							<li class="list-inline-item">
-								<a href=""><i class="fa fa-user" style="color:#ffbb33;" ></i> {{event.get_age_choice_display}} </a>
-							</li>
-							<li class="list-inline-item">
-								<i class="fa fa-location-arrow" style="color:#D01C2E;"></i> {{event.address}} </a>
-							</li>
-						</ul>
-						<p> {{event.description|slice:":100"}}...</p>
-						{% if event.type_choice %}
-							<p class="list-inline-item"> <i style="color:#1C76D0;" class="fas fa-globe-americas"></i> {{event.type_choice }}</a></p>
-						{% endif %}
-						
-						<div class="product-ratings">
-						<a href="{% url 'event_detail' slug=event.slug %}"><i style="color:#31B91C;" class="fas fa-reply "></i> Learn More! </a>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-
-						</div>
-						<div class="col-sm-12 col-lg-4">
-						{% endfor %} {% endcomment %}
-
 						<p> <a  class="navtwo" href="{% url 'event_list_preset' %}">  See All Events &nbsp;<i class="fas fa-angle-double-right"></i> </p> </a>
 
 		    	</ul>
@@ -349,7 +286,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<a href="http://www.thelittletriangle.com/events-dropdown-select?type_choice__icontains=animal_care&class_camp_choice=camp"> <i style="color:#1974D2;" class="far fa-compass fa-3x"> </a></i>
+								<a href="http://www.thelittletriangle.com/business/?q=camps"> <i style="color:#1974D2;" class="far fa-compass fa-3x"> </a></i>
 								<h4>Camps</h4>
 							</div>
 							
@@ -359,7 +296,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<a href="http://www.thelittletriangle.com/events-dropdown-select?type_choice__icontains=academics&class_camp_choice=camp" > <i style="color:#1CAC78;" class="fas fa-graduation-cap fa-3x"> </a></i>
+								<a href="http://www.thelittletriangle.com/events-dropdown-select/?type_choice__icontains=academics" > <i style="color:#1CAC78;" class="fas fa-graduation-cap fa-3x"> </a></i>
 								<h4>Academics</h4>
 							</div>
 							
@@ -453,7 +390,7 @@ Homepage - {{ block.super }}
 					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
 						<div class="category-block">
 							<div class="header">
-								<a href="http://www.thelittletriangle.com/events-dropdown-select?type_choice__icontains=technology&age_choice=k_5"><i style="color:#7851A9;" class="far fa-user fa-3x"></a></i>
+								<a href="http://www.thelittletriangle.com/events-dropdown-select/?age_choice=k_5"><i style="color:#7851A9;" class="far fa-user fa-3x"></a></i>
 								<h4>K-5</h4>
 							</div>
 						</div>
