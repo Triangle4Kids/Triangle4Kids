@@ -57,8 +57,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'el_pagination',
     'storages',
-    
 ]
+
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
