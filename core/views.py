@@ -198,7 +198,8 @@ def business_detail(request, slug):
         else:
             messages.success(request, "Oops , must be logged in to review! ")
 
-    review = LeaveReview.objects.filter(business_review=business_review)
+    review = LeaveReview.objects.filter(business_review=business_review).order_by('-created_at')
+
 
     return render(
         request, 'bsbusiness_detail.html', {
