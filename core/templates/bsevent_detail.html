@@ -175,7 +175,7 @@ Event Details - {{ block.super }}
 						<h4 class="widget-header"> {{ business.name }} </h4>
 						<ul class="category-list">
 						{% if business1.avg_rating %}
-						<li><a > Average Rating <span class = "text-large">   {{business1.avg_rating|floatformat:"1"}}  <i class="fa fa-star" style="color:#FFCF48;"></i></span></a></li>
+						<li><a > Parent Rated <span class = "text-large">   {{business1.avg_rating|floatformat:"1"}}  <i class="fa fa-star" style="color:#FFCF48;"></i></span></a></li>
 						<li ><a > Total Reviews <span> {{business.reviews.count}} </span></a></li>
 						<br>
 						{% else %}
